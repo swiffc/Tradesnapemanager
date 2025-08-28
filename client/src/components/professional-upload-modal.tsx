@@ -137,12 +137,20 @@ export function ProfessionalUploadModal({ isOpen, onClose, onUpload }: Professio
         };
 
         console.log('Uploading data:', uploadData);
-        await onUpload(uploadData);
+        console.log('Starting upload process...');
         
-        toast({
-          title: "Trade uploaded successfully!",
-          description: "Your trade has been added to the system.",
-        });
+        try {
+          await onUpload(uploadData);
+          console.log('Upload completed successfully!');
+          
+          toast({
+            title: "Trade uploaded successfully!",
+            description: "Your trade has been added to the system.",
+          });
+        } catch (uploadError) {
+          console.error('Upload failed in modal:', uploadError);
+          throw uploadError; // Re-throw to be caught by outer catch
+        }
 
         // Reset form
         setFormData({

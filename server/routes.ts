@@ -36,12 +36,27 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   app.post("/api/screenshots", async (req, res) => {
     try {
+      console.log("POST /api/screenshots received:", JSON.stringify(req.body, null, 2));
+      
       const screenshotData = insertScreenshotSchema.parse(req.body);
+      console.log("Schema validation passed");
+      
       const screenshot = await storage.createScreenshot(screenshotData);
+      console.log("Screenshot created successfully:", screenshot.id);
+      
       res.status(201).json(screenshot);
     } catch (error) {
       console.error("Error creating screenshot:", error);
-      res.status(400).json({ error: "Invalid screenshot data" });
+      
+      if (error instanceof Error) {
+        console.error("Error details:", error.message);
+        console.error("Error stack:", error.stack);
+      }
+      
+      res.status(400).json({ 
+        error: "Invalid screenshot data",
+        details: error instanceof Error ? error.message : "Unknown error"
+      });
     }
   });
 
