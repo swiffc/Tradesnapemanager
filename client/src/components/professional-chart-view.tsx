@@ -336,20 +336,239 @@ function TradeCard({ screenshot, isSelected, isHovered, onSelect, onHover, onLea
 
 // Professional Chart Analysis
 function ProfessionalChartAnalysis({ screenshots }: { screenshots: Screenshot[] }) {
+  const [chartType, setChartType] = useState<'performance' | 'pairs' | 'sessions' | 'monthly'>('performance');
+  
+  // Calculate chart data
+  const chartData = React.useMemo(() => {
+    const monthlyData = screenshots.reduce((acc, screenshot) => {
+      const month = new Date(screenshot.uploadedAt!).toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
+      if (!acc[month]) {
+        acc[month] = { trades: 0, wins: 0, totalR: 0 };
+      }
+      acc[month].trades++;
+      if (screenshot.result === 'win') acc[month].wins++;
+      
+      const rValue = parseFloat(screenshot.riskReward?.replace(/[^-0-9.]/g, '') || '0');
+      acc[month].totalR += rValue;
+      
+      return acc;
+    }, {} as Record<string, { trades: number; wins: number; totalR: number }>);
+
+    const pairData = screenshots.reduce((acc, screenshot) => {
+      if (screenshot.currencyPair) {
+        if (!acc[screenshot.currencyPair]) {
+          acc[screenshot.currencyPair] = { trades: 0, wins: 0, winRate: 0 };
+        }
+        acc[screenshot.currencyPair].trades++;
+        if (screenshot.result === 'win') acc[screenshot.currencyPair].wins++;
+        acc[screenshot.currencyPair].winRate = (acc[screenshot.currencyPair].wins / acc[screenshot.currencyPair].trades) * 100;
+      }
+      return acc;
+    }, {} as Record<string, { trades: number; wins: number; winRate: number }>);
+
+    const sessionData = screenshots.reduce((acc, screenshot) => {
+      if (screenshot.sessionTiming) {
+        if (!acc[screenshot.sessionTiming]) {
+          acc[screenshot.sessionTiming] = { trades: 0, wins: 0, winRate: 0 };
+        }
+        acc[screenshot.sessionTiming].trades++;
+        if (screenshot.result === 'win') acc[screenshot.sessionTiming].wins++;
+        acc[screenshot.sessionTiming].winRate = (acc[screenshot.sessionTiming].wins / acc[screenshot.sessionTiming].trades) * 100;
+      }
+      return acc;
+    }, {} as Record<string, { trades: number; wins: number; winRate: number }>);
+
+    return { monthlyData, pairData, sessionData };
+  }, [screenshots]);
+
+  const chartTypes = [
+    { key: 'performance', label: 'Performance', icon: 'fas fa-chart-line' },
+    { key: 'pairs', label: 'Currency Pairs', icon: 'fas fa-exchange-alt' },
+    { key: 'sessions', label: 'Sessions', icon: 'fas fa-clock' },
+    { key: 'monthly', label: 'Monthly', icon: 'fas fa-calendar-alt' }
+  ];
+
   return (
     <Card className="bg-[hsl(215,20%,16%)] border-[hsl(215,15%,22%)] p-6">
-      <h4 className="text-xl font-semibold text-white mb-6 flex items-center">
-        <i className="fas fa-chart-area mr-3 text-blue-400"></i>
-        Performance Chart Analysis
-      </h4>
-      
-      <div className="h-96 flex items-center justify-center">
-        <div className="text-center">
-          <i className="fas fa-chart-line text-6xl text-white/20 mb-4"></i>
-          <h5 className="text-lg font-semibold text-white mb-2">Advanced Charting</h5>
-          <p className="text-white/60">Interactive performance charts coming soon</p>
+      <div className="flex items-center justify-between mb-6">
+        <h4 className="text-xl font-semibold text-white flex items-center">
+          <i className="fas fa-chart-area mr-3 text-blue-400"></i>
+          Performance Charts
+        </h4>
+        
+        <div className="flex items-center space-x-2">
+          {chartTypes.map((type) => (
+            <button
+              key={type.key}
+              onClick={() => setChartType(type.key as any)}
+              className={`flex items-center space-x-2 px-3 py-2 rounded-lg transition-all duration-300 ${
+                chartType === type.key
+                  ? 'bg-gradient-to-r from-purple-500 to-blue-500 text-white shadow-lg'
+                  : 'bg-[hsl(215,25%,11%)] border border-[hsl(215,15%,22%)] text-white/60 hover:text-white hover:border-purple-500/50'
+              }`}
+            >
+              <i className={type.icon}></i>
+              <span className="hidden sm:inline">{type.label}</span>
+            </button>
+          ))}
         </div>
       </div>
+
+      {/* Performance Chart */}
+      {chartType === 'performance' && (
+        <div className="space-y-6">
+          <div className="h-64 bg-[hsl(215,25%,11%)] rounded-lg border border-[hsl(215,15%,22%)] p-4">
+            <h5 className="text-white font-medium mb-4">Cumulative Performance</h5>
+            <div className="flex items-end justify-between h-40 space-x-2">
+              {Object.entries(chartData.monthlyData).slice(-6).map(([month, data], index) => {
+                const height = Math.max((data.totalR + 10) * 2, 10);
+                return (
+                  <div key={month} className="flex flex-col items-center space-y-2 flex-1">
+                    <div className="text-xs text-white/60 mb-1">{data.totalR > 0 ? '+' : ''}{data.totalR.toFixed(1)}R</div>
+                    <div 
+                      className={`w-full rounded-t-md ${data.totalR >= 0 ? 'bg-green-500' : 'bg-red-500'}`}
+                      style={{ height: `${height}px` }}
+                    />
+                    <div className="text-xs text-white/60 text-center">{month}</div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="p-4 rounded-lg bg-[hsl(215,25%,11%)] border border-[hsl(215,15%,22%)]">
+              <div className="text-center">
+                <div className="text-2xl font-bold text-green-400 mb-1">
+                  {Object.values(chartData.monthlyData).reduce((sum, data) => sum + data.totalR, 0).toFixed(1)}R
+                </div>
+                <div className="text-white/60 text-sm">Total Return</div>
+              </div>
+            </div>
+            <div className="p-4 rounded-lg bg-[hsl(215,25%,11%)] border border-[hsl(215,15%,22%)]">
+              <div className="text-center">
+                <div className="text-2xl font-bold text-blue-400 mb-1">
+                  {screenshots.length}
+                </div>
+                <div className="text-white/60 text-sm">Total Trades</div>
+              </div>
+            </div>
+            <div className="p-4 rounded-lg bg-[hsl(215,25%,11%)] border border-[hsl(215,15%,22%)]">
+              <div className="text-center">
+                <div className="text-2xl font-bold text-purple-400 mb-1">
+                  {screenshots.length > 0 ? ((screenshots.filter(s => s.result === 'win').length / screenshots.length) * 100).toFixed(1) : '0'}%
+                </div>
+                <div className="text-white/60 text-sm">Win Rate</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Currency Pairs Chart */}
+      {chartType === 'pairs' && (
+        <div className="space-y-4">
+          <h5 className="text-white font-medium">Currency Pair Performance</h5>
+          <div className="space-y-3">
+            {Object.entries(chartData.pairData)
+              .sort(([,a], [,b]) => b.winRate - a.winRate)
+              .slice(0, 6)
+              .map(([pair, data]) => (
+                <div key={pair} className="flex items-center justify-between p-3 rounded-lg bg-[hsl(215,25%,11%)] border border-[hsl(215,15%,22%)]">
+                  <div className="flex items-center space-x-3">
+                    <span className="text-white font-mono font-medium">{pair}</span>
+                    <Badge className="bg-blue-500/20 text-blue-300 text-xs">
+                      {data.trades} trades
+                    </Badge>
+                  </div>
+                  <div className="flex items-center space-x-4">
+                    <div className="w-32 bg-[hsl(215,22%,14%)] rounded-full h-2">
+                      <div 
+                        className={`h-2 rounded-full ${data.winRate >= 50 ? 'bg-green-500' : 'bg-red-500'}`}
+                        style={{ width: `${Math.min(data.winRate, 100)}%` }}
+                      />
+                    </div>
+                    <span className={`text-sm font-medium w-12 text-right ${data.winRate >= 50 ? 'text-green-400' : 'text-red-400'}`}>
+                      {data.winRate.toFixed(1)}%
+                    </span>
+                  </div>
+                </div>
+              ))}
+          </div>
+        </div>
+      )}
+
+      {/* Sessions Chart */}
+      {chartType === 'sessions' && (
+        <div className="space-y-6">
+          <h5 className="text-white font-medium">Session Performance</h5>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {Object.entries(chartData.sessionData).map(([session, data]) => (
+              <div key={session} className="p-4 rounded-lg bg-[hsl(215,25%,11%)] border border-[hsl(215,15%,22%)]">
+                <div className="text-center">
+                  <h6 className="text-white font-medium mb-2">{session}</h6>
+                  <div className={`text-3xl font-bold mb-2 ${data.winRate >= 50 ? 'text-green-400' : 'text-red-400'}`}>
+                    {data.winRate.toFixed(1)}%
+                  </div>
+                  <div className="text-white/60 text-sm mb-3">
+                    {data.wins}/{data.trades} trades
+                  </div>
+                  <div className="w-full bg-[hsl(215,22%,14%)] rounded-full h-2">
+                    <div 
+                      className={`h-2 rounded-full ${data.winRate >= 50 ? 'bg-green-500' : 'bg-red-500'}`}
+                      style={{ width: `${Math.min(data.winRate, 100)}%` }}
+                    />
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* Monthly Chart */}
+      {chartType === 'monthly' && (
+        <div className="space-y-6">
+          <h5 className="text-white font-medium">Monthly Breakdown</h5>
+          <div className="space-y-3">
+            {Object.entries(chartData.monthlyData)
+              .sort(([a], [b]) => new Date(a).getTime() - new Date(b).getTime())
+              .map(([month, data]) => {
+                const winRate = data.trades > 0 ? (data.wins / data.trades) * 100 : 0;
+                return (
+                  <div key={month} className="p-4 rounded-lg bg-[hsl(215,25%,11%)] border border-[hsl(215,15%,22%)]">
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <h6 className="text-white font-medium">{month}</h6>
+                        <div className="text-white/60 text-sm">{data.trades} trades</div>
+                      </div>
+                      <div className="text-right">
+                        <div className={`text-xl font-bold ${data.totalR >= 0 ? 'text-green-400' : 'text-red-400'}`}>
+                          {data.totalR > 0 ? '+' : ''}{data.totalR.toFixed(1)}R
+                        </div>
+                        <div className={`text-sm ${winRate >= 50 ? 'text-green-400' : 'text-red-400'}`}>
+                          {winRate.toFixed(1)}% win rate
+                        </div>
+                      </div>
+                    </div>
+                    <div className="mt-3">
+                      <div className="flex justify-between text-xs text-white/60 mb-1">
+                        <span>Performance</span>
+                        <span>{data.wins}W / {data.trades - data.wins}L</span>
+                      </div>
+                      <div className="w-full bg-[hsl(215,22%,14%)] rounded-full h-2">
+                        <div 
+                          className={`h-2 rounded-full ${data.totalR >= 0 ? 'bg-green-500' : 'bg-red-500'}`}
+                          style={{ width: `${Math.min(Math.abs(data.totalR) * 10, 100)}%` }}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+          </div>
+        </div>
+      )}
     </Card>
   );
 }

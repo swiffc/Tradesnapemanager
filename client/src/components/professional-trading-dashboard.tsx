@@ -1000,29 +1000,647 @@ function TradingJournal({ screenshots }: { screenshots: Screenshot[] }) {
   );
 }
 
-function TradeDetailsCard({ screenshot }: any) {
+function TradeDetailsCard({ screenshot }: { screenshot: Screenshot | null }) {
+  if (!screenshot) {
+    return (
+      <Card className="bg-[hsl(215,20%,16%)] border-[hsl(215,15%,22%)] p-4">
+        <h4 className="text-lg font-semibold text-white mb-4 flex items-center">
+          <i className="fas fa-info-circle mr-2 text-blue-400"></i>
+          Trade Details
+        </h4>
+        <div className="text-center py-8">
+          <i className="fas fa-mouse-pointer text-4xl text-white/20 mb-4"></i>
+          <p className="text-white/60">Select a trade to view details</p>
+        </div>
+      </Card>
+    );
+  }
+
+  const rValue = parseFloat(screenshot.riskReward?.replace(/[^-0-9.]/g, '') || '0');
+  const isWinner = screenshot.result === 'win';
+  const isLoser = screenshot.result === 'loss';
+
   return (
     <Card className="bg-[hsl(215,20%,16%)] border-[hsl(215,15%,22%)] p-4">
-      <h4 className="text-lg font-semibold text-white mb-4">Trade Details</h4>
-      <div className="text-white/60">Trade details...</div>
+      <div className="flex items-center justify-between mb-4">
+        <h4 className="text-lg font-semibold text-white flex items-center">
+          <i className="fas fa-info-circle mr-2 text-blue-400"></i>
+          Trade Details
+        </h4>
+        <div className="flex space-x-2">
+          <Button size="sm" variant="ghost" className="text-white/60 hover:text-white">
+            <i className="fas fa-edit"></i>
+          </Button>
+          <Button size="sm" variant="ghost" className="text-white/60 hover:text-white">
+            <i className="fas fa-share"></i>
+          </Button>
+        </div>
+      </div>
+
+      {/* Trade Image */}
+      <div className="mb-4">
+        <img 
+          src={screenshot.imagePath} 
+          alt={screenshot.title}
+          className="w-full h-32 object-cover rounded-lg border border-[hsl(215,15%,22%)]"
+        />
+      </div>
+
+      {/* Basic Info */}
+      <div className="space-y-3 mb-4">
+        <div>
+          <h5 className="text-white font-medium text-sm mb-1">{screenshot.title}</h5>
+          <p className="text-white/60 text-xs">
+            {screenshot.uploadedAt && new Date(screenshot.uploadedAt).toLocaleString()}
+          </p>
+        </div>
+
+        {/* Key Metrics */}
+        <div className="grid grid-cols-2 gap-3">
+          <div className="p-3 rounded-lg bg-[hsl(215,25%,11%)] border border-[hsl(215,15%,22%)]">
+            <div className="text-white/60 text-xs mb-1">Currency Pair</div>
+            <div className="text-white font-mono font-medium">
+              {screenshot.currencyPair || 'Not set'}
+            </div>
+          </div>
+          <div className="p-3 rounded-lg bg-[hsl(215,25%,11%)] border border-[hsl(215,15%,22%)]">
+            <div className="text-white/60 text-xs mb-1">Session</div>
+            <div className="text-white font-medium">
+              {screenshot.sessionTiming || 'Not set'}
+            </div>
+          </div>
+        </div>
+
+        {/* Result Badge */}
+        {screenshot.result && (
+          <div className="flex items-center space-x-2">
+            <span className="text-white/60 text-sm">Result:</span>
+            <Badge className={`${
+              isWinner 
+                ? 'bg-green-500/20 text-green-300 border border-green-500/30' 
+                : isLoser 
+                ? 'bg-red-500/20 text-red-300 border border-red-500/30'
+                : 'bg-yellow-500/20 text-yellow-300 border border-yellow-500/30'
+            }`}>
+              {isWinner ? (
+                <><i className="fas fa-trophy mr-1"></i>WIN</>
+              ) : isLoser ? (
+                <><i className="fas fa-times mr-1"></i>LOSS</>
+              ) : (
+                <><i className="fas fa-clock mr-1"></i>PENDING</>
+              )}
+            </Badge>
+          </div>
+        )}
+
+        {/* Risk Reward */}
+        {screenshot.riskReward && (
+          <div className="p-3 rounded-lg bg-[hsl(215,25%,11%)] border border-[hsl(215,15%,22%)]">
+            <div className="flex items-center justify-between">
+              <span className="text-white/60 text-sm">Risk:Reward</span>
+              <span className={`font-mono font-bold ${
+                rValue > 0 ? 'text-green-400' : rValue < 0 ? 'text-red-400' : 'text-white'
+              }`}>
+                {screenshot.riskReward}
+              </span>
+            </div>
+            {rValue !== 0 && (
+              <div className="mt-2">
+                <div className="w-full bg-[hsl(215,22%,14%)] rounded-full h-2">
+                  <div 
+                    className={`h-2 rounded-full ${rValue > 0 ? 'bg-green-500' : 'bg-red-500'}`}
+                    style={{ width: `${Math.min(Math.abs(rValue) * 20, 100)}%` }}
+                  />
+                </div>
+              </div>
+            )}
+          </div>
+        )}
+      </div>
+
+      {/* BTMM Flow */}
+      <div className="mb-4">
+        <h6 className="text-white font-medium text-sm mb-3">BTMM Flow</h6>
+        <div className="space-y-2">
+          {[
+            { label: 'Bias', value: screenshot.bias, color: 'blue', icon: 'fas fa-compass' },
+            { label: 'Setup', value: screenshot.setupPattern, color: 'green', icon: 'fas fa-cog' },
+            { label: 'Pattern', value: screenshot.strategyType, color: 'purple', icon: 'fas fa-chart-line' },
+            { label: 'Entry', value: screenshot.entry, color: 'orange', icon: 'fas fa-crosshairs' }
+          ].map((item) => (
+            <div key={item.label} className="flex items-center justify-between p-2 rounded bg-[hsl(215,25%,11%)]">
+              <div className="flex items-center space-x-2">
+                <i className={`${item.icon} text-${item.color}-400`}></i>
+                <span className="text-white/80 text-sm">{item.label}</span>
+              </div>
+              <div className={`text-sm ${item.value ? 'text-white' : 'text-white/40'}`}>
+                {item.value || 'Not set'}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Tags */}
+      {screenshot.tags && screenshot.tags.length > 0 && (
+        <div className="mb-4">
+          <h6 className="text-white font-medium text-sm mb-2">Tags</h6>
+          <div className="flex flex-wrap gap-2">
+            {screenshot.tags.map((tag, index) => (
+              <Badge key={index} className="bg-gray-500/20 text-gray-300 text-xs">
+                {tag}
+              </Badge>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* Notes */}
+      {screenshot.notes && (
+        <div className="mb-4">
+          <h6 className="text-white font-medium text-sm mb-2">Notes</h6>
+          <div className="p-3 rounded-lg bg-[hsl(215,25%,11%)] border border-[hsl(215,15%,22%)]">
+            <p className="text-white/80 text-sm leading-relaxed">{screenshot.notes}</p>
+          </div>
+        </div>
+      )}
+
+      {/* Actions */}
+      <div className="grid grid-cols-2 gap-2">
+        <Button 
+          size="sm" 
+          className="bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600"
+        >
+          <i className="fas fa-eye mr-2"></i>
+          View Full
+        </Button>
+        <Button 
+          size="sm" 
+          className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600"
+        >
+          <i className="fas fa-edit mr-2"></i>
+          Edit
+        </Button>
+      </div>
     </Card>
   );
 }
 
-function BTMMAnalysisCard({ screenshot }: any) {
+function BTMMAnalysisCard({ screenshot }: { screenshot: Screenshot | null }) {
+  if (!screenshot) {
+    return (
+      <Card className="bg-[hsl(215,20%,16%)] border-[hsl(215,15%,22%)] p-4">
+        <h4 className="text-lg font-semibold text-white mb-4 flex items-center">
+          <i className="fas fa-chart-line mr-2 text-purple-400"></i>
+          BTMM Analysis
+        </h4>
+        <div className="text-center py-8">
+          <i className="fas fa-chart-area text-4xl text-white/20 mb-4"></i>
+          <p className="text-white/60">Select a trade for BTMM analysis</p>
+        </div>
+      </Card>
+    );
+  }
+
+  // Calculate BTMM completion score
+  const btmmStages = [
+    { key: 'bias', label: 'Bias', value: screenshot.bias, icon: 'fas fa-compass', color: 'blue' },
+    { key: 'setup', label: 'Setup', value: screenshot.setupPattern, icon: 'fas fa-cog', color: 'green' },
+    { key: 'pattern', label: 'Pattern', value: screenshot.strategyType, icon: 'fas fa-chart-line', color: 'purple' },
+    { key: 'entry', label: 'Entry', value: screenshot.entry, icon: 'fas fa-crosshairs', color: 'orange' }
+  ];
+
+  const completedStages = btmmStages.filter(stage => stage.value).length;
+  const completionScore = (completedStages / btmmStages.length) * 100;
+
+  // BTMM Quality Analysis
+  const analysisChecks = [
+    {
+      category: 'Bias Identification',
+      checks: [
+        { label: 'Bias Level Set', status: !!screenshot.bias, weight: 25 },
+        { label: 'Session Timing', status: !!screenshot.sessionTiming, weight: 15 },
+        { label: 'Currency Pair', status: !!screenshot.currencyPair, weight: 10 }
+      ]
+    },
+    {
+      category: 'Setup Quality',
+      checks: [
+        { label: 'Setup Pattern', status: !!screenshot.setupPattern, weight: 20 },
+        { label: 'Strategy Type', status: !!screenshot.strategyType, weight: 15 },
+        { label: 'Entry Method', status: !!screenshot.entry, weight: 15 }
+      ]
+    }
+  ];
+
+  const totalQualityScore = analysisChecks.reduce((acc, category) => {
+    const categoryScore = category.checks.reduce((catAcc, check) => {
+      return catAcc + (check.status ? check.weight : 0);
+    }, 0);
+    return acc + categoryScore;
+  }, 0);
+
   return (
     <Card className="bg-[hsl(215,20%,16%)] border-[hsl(215,15%,22%)] p-4">
-      <h4 className="text-lg font-semibold text-white mb-4">BTMM Analysis</h4>
-      <div className="text-white/60">BTMM analysis...</div>
+      <h4 className="text-lg font-semibold text-white mb-4 flex items-center">
+        <i className="fas fa-chart-line mr-2 text-purple-400"></i>
+        BTMM Analysis
+      </h4>
+
+      {/* BTMM Completion Score */}
+      <div className="mb-6">
+        <div className="flex items-center justify-between mb-2">
+          <span className="text-white/80 text-sm">BTMM Completion</span>
+          <span className={`font-bold text-sm ${
+            completionScore >= 75 ? 'text-green-400' : 
+            completionScore >= 50 ? 'text-yellow-400' : 'text-red-400'
+          }`}>
+            {completionScore.toFixed(0)}%
+          </span>
+        </div>
+        <div className="w-full bg-[hsl(215,22%,14%)] rounded-full h-3">
+          <div 
+            className={`h-3 rounded-full ${
+              completionScore >= 75 ? 'bg-gradient-to-r from-green-500 to-emerald-500' : 
+              completionScore >= 50 ? 'bg-gradient-to-r from-yellow-500 to-orange-500' : 
+              'bg-gradient-to-r from-red-500 to-pink-500'
+            }`}
+            style={{ width: `${completionScore}%` }}
+          />
+        </div>
+      </div>
+
+      {/* BTMM Flow Progress */}
+      <div className="mb-6">
+        <h5 className="text-white font-medium text-sm mb-3">BTMM Flow Progress</h5>
+        <div className="space-y-3">
+          {btmmStages.map((stage, index) => (
+            <div key={stage.key} className="flex items-center space-x-3">
+              <div className={`w-8 h-8 rounded-full flex items-center justify-center ${
+                stage.value 
+                  ? `bg-${stage.color}-500 text-white` 
+                  : 'bg-[hsl(215,25%,11%)] border border-[hsl(215,15%,22%)] text-white/40'
+              }`}>
+                {stage.value ? (
+                  <i className="fas fa-check text-sm"></i>
+                ) : (
+                  <span className="text-xs font-bold">{index + 1}</span>
+                )}
+              </div>
+              <div className="flex-1">
+                <div className="flex items-center justify-between">
+                  <span className={`text-sm ${stage.value ? 'text-white' : 'text-white/60'}`}>
+                    {stage.label}
+                  </span>
+                  {stage.value ? (
+                    <Badge className={`bg-${stage.color}-500/20 text-${stage.color}-300 text-xs`}>
+                      {stage.value}
+                    </Badge>
+                  ) : (
+                    <span className="text-white/40 text-xs">Not set</span>
+                  )}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Quality Analysis */}
+      <div className="mb-6">
+        <div className="flex items-center justify-between mb-3">
+          <h5 className="text-white font-medium text-sm">Quality Score</h5>
+          <span className={`font-bold text-sm ${
+            totalQualityScore >= 75 ? 'text-green-400' : 
+            totalQualityScore >= 50 ? 'text-yellow-400' : 'text-red-400'
+          }`}>
+            {totalQualityScore}%
+          </span>
+        </div>
+        
+        <div className="space-y-3">
+          {analysisChecks.map((category) => (
+            <div key={category.category} className="p-3 rounded-lg bg-[hsl(215,25%,11%)] border border-[hsl(215,15%,22%)]">
+              <h6 className="text-white/80 text-xs font-medium mb-2">{category.category}</h6>
+              <div className="space-y-1">
+                {category.checks.map((check) => (
+                  <div key={check.label} className="flex items-center justify-between">
+                    <div className="flex items-center space-x-2">
+                      <div className={`w-3 h-3 rounded-full ${
+                        check.status ? 'bg-green-500' : 'bg-red-500'
+                      }`} />
+                      <span className="text-white/70 text-xs">{check.label}</span>
+                    </div>
+                    <span className="text-white/60 text-xs">{check.weight}%</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* BTMM Recommendations */}
+      <div className="mb-4">
+        <h5 className="text-white font-medium text-sm mb-3">Recommendations</h5>
+        <div className="space-y-2">
+          {completionScore < 100 && (
+            <div className="p-2 rounded bg-yellow-500/20 border border-yellow-500/30">
+              <div className="flex items-center space-x-2">
+                <i className="fas fa-exclamation-triangle text-yellow-400 text-xs"></i>
+                <span className="text-yellow-200 text-xs">
+                  Complete missing BTMM stages for better analysis
+                </span>
+              </div>
+            </div>
+          )}
+          
+          {!screenshot.notes && (
+            <div className="p-2 rounded bg-blue-500/20 border border-blue-500/30">
+              <div className="flex items-center space-x-2">
+                <i className="fas fa-lightbulb text-blue-400 text-xs"></i>
+                <span className="text-blue-200 text-xs">
+                  Add trade notes for detailed analysis insights
+                </span>
+              </div>
+            </div>
+          )}
+
+          {!screenshot.result && (
+            <div className="p-2 rounded bg-purple-500/20 border border-purple-500/30">
+              <div className="flex items-center space-x-2">
+                <i className="fas fa-clock text-purple-400 text-xs"></i>
+                <span className="text-purple-200 text-xs">
+                  Update trade result when position closes
+                </span>
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* BTMM Score Badge */}
+      <div className="text-center">
+        <div className={`inline-flex items-center px-3 py-2 rounded-lg border ${
+          totalQualityScore >= 75 
+            ? 'bg-green-500/20 border-green-500/30 text-green-300' 
+            : totalQualityScore >= 50 
+            ? 'bg-yellow-500/20 border-yellow-500/30 text-yellow-300'
+            : 'bg-red-500/20 border-red-500/30 text-red-300'
+        }`}>
+          <i className={`fas ${
+            totalQualityScore >= 75 ? 'fa-trophy' :
+            totalQualityScore >= 50 ? 'fa-star' : 'fa-exclamation-triangle'
+          } mr-2`}></i>
+          <span className="text-sm font-medium">
+            {totalQualityScore >= 75 ? 'Excellent' :
+             totalQualityScore >= 50 ? 'Good' : 'Needs Improvement'} BTMM Setup
+          </span>
+        </div>
+      </div>
     </Card>
   );
 }
 
 function RiskManagementCard() {
+  const [accountSize, setAccountSize] = useState(10000);
+  const [riskPerTrade, setRiskPerTrade] = useState(2);
+  const [selectedPair, setSelectedPair] = useState('EURUSD');
+  const [entryPrice, setEntryPrice] = useState('');
+  const [stopLoss, setStopLoss] = useState('');
+  const [takeProfit, setTakeProfit] = useState('');
+
+  // Sample pip values for major pairs
+  const pipValues: Record<string, number> = {
+    'EURUSD': 10, 'GBPUSD': 10, 'AUDUSD': 10, 'NZDUSD': 10,
+    'USDJPY': 0.91, 'USDCAD': 7.5, 'USDCHF': 10
+  };
+
+  // Calculate position size and risk metrics
+  const calculations = React.useMemo(() => {
+    const entry = parseFloat(entryPrice);
+    const sl = parseFloat(stopLoss);
+    const tp = parseFloat(takeProfit);
+    
+    if (!entry || !sl) return null;
+
+    const pipValue = pipValues[selectedPair] || 10;
+    const riskAmount = (accountSize * riskPerTrade) / 100;
+    
+    let stopLossPips: number;
+    let positionSize: number;
+    let potentialLoss: number;
+    let potentialProfit = 0;
+    let riskRewardRatio = 0;
+
+    if (selectedPair.startsWith('USD')) {
+      // USD is quote currency
+      stopLossPips = Math.abs(entry - sl) * 10000;
+      positionSize = riskAmount / (stopLossPips * (pipValue / 10));
+    } else {
+      // USD is base currency  
+      stopLossPips = Math.abs(entry - sl) * 10000;
+      positionSize = riskAmount / (stopLossPips * pipValue);
+    }
+
+    potentialLoss = riskAmount;
+    
+    if (tp) {
+      const takeProfitPips = Math.abs(tp - entry) * 10000;
+      potentialProfit = (takeProfitPips * pipValue * positionSize) / 10000;
+      riskRewardRatio = potentialProfit / potentialLoss;
+    }
+
+    return {
+      stopLossPips: stopLossPips.toFixed(1),
+      positionSize: positionSize.toFixed(2),
+      potentialLoss: potentialLoss.toFixed(2),
+      potentialProfit: potentialProfit.toFixed(2),
+      riskRewardRatio: riskRewardRatio.toFixed(2),
+      riskAmount: riskAmount.toFixed(2)
+    };
+  }, [accountSize, riskPerTrade, selectedPair, entryPrice, stopLoss, takeProfit]);
+
+  const currencyPairs = ['EURUSD', 'GBPUSD', 'USDJPY', 'AUDUSD', 'USDCAD', 'NZDUSD', 'USDCHF'];
+
   return (
     <Card className="bg-[hsl(215,20%,16%)] border-[hsl(215,15%,22%)] p-4">
-      <h4 className="text-lg font-semibold text-white mb-4">Risk Management</h4>
-      <div className="text-white/60">Risk management...</div>
+      <h4 className="text-lg font-semibold text-white mb-4 flex items-center">
+        <i className="fas fa-shield-alt mr-2 text-green-400"></i>
+        Risk Management
+      </h4>
+
+      {/* Account Settings */}
+      <div className="space-y-4 mb-6">
+        <div className="grid grid-cols-2 gap-3">
+          <div>
+            <label className="text-white/80 text-xs mb-1 block">Account Size</label>
+            <div className="relative">
+              <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-white/60 text-sm">$</span>
+              <Input
+                type="number"
+                value={accountSize}
+                onChange={(e) => setAccountSize(Number(e.target.value))}
+                className="bg-[hsl(215,25%,11%)] border-[hsl(215,15%,22%)] text-white pl-8 text-sm"
+              />
+            </div>
+          </div>
+          <div>
+            <label className="text-white/80 text-xs mb-1 block">Risk per Trade</label>
+            <div className="relative">
+              <Input
+                type="number"
+                value={riskPerTrade}
+                onChange={(e) => setRiskPerTrade(Number(e.target.value))}
+                className="bg-[hsl(215,25%,11%)] border-[hsl(215,15%,22%)] text-white pr-8 text-sm"
+                step="0.1"
+                max="10"
+              />
+              <span className="absolute right-3 top-1/2 transform -translate-y-1/2 text-white/60 text-sm">%</span>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <label className="text-white/80 text-xs mb-1 block">Currency Pair</label>
+          <select
+            value={selectedPair}
+            onChange={(e) => setSelectedPair(e.target.value)}
+            className="w-full bg-[hsl(215,25%,11%)] border border-[hsl(215,15%,22%)] rounded-md px-3 py-2 text-white text-sm"
+          >
+            {currencyPairs.map(pair => (
+              <option key={pair} value={pair}>{pair}</option>
+            ))}
+          </select>
+        </div>
+      </div>
+
+      {/* Trade Setup */}
+      <div className="space-y-3 mb-6">
+        <h5 className="text-white font-medium text-sm">Trade Setup</h5>
+        <div className="space-y-3">
+          <div>
+            <label className="text-white/80 text-xs mb-1 block">Entry Price</label>
+            <Input
+              type="number"
+              placeholder="1.0850"
+              value={entryPrice}
+              onChange={(e) => setEntryPrice(e.target.value)}
+              className="bg-[hsl(215,25%,11%)] border-[hsl(215,15%,22%)] text-white text-sm"
+              step="0.0001"
+            />
+          </div>
+          <div>
+            <label className="text-white/80 text-xs mb-1 block">Stop Loss</label>
+            <Input
+              type="number"
+              placeholder="1.0820"
+              value={stopLoss}
+              onChange={(e) => setStopLoss(e.target.value)}
+              className="bg-[hsl(215,25%,11%)] border-[hsl(215,15%,22%)] text-white text-sm"
+              step="0.0001"
+            />
+          </div>
+          <div>
+            <label className="text-white/80 text-xs mb-1 block">Take Profit</label>
+            <Input
+              type="number"
+              placeholder="1.0920"
+              value={takeProfit}
+              onChange={(e) => setTakeProfit(e.target.value)}
+              className="bg-[hsl(215,25%,11%)] border-[hsl(215,15%,22%)] text-white text-sm"
+              step="0.0001"
+            />
+          </div>
+        </div>
+      </div>
+
+      {/* Calculations */}
+      {calculations && (
+        <div className="space-y-3 mb-4">
+          <h5 className="text-white font-medium text-sm">Calculations</h5>
+          <div className="grid grid-cols-2 gap-2 text-xs">
+            <div className="p-2 rounded bg-[hsl(215,25%,11%)] border border-[hsl(215,15%,22%)]">
+              <div className="text-white/60 mb-1">Position Size</div>
+              <div className="text-white font-mono">{calculations.positionSize}</div>
+            </div>
+            <div className="p-2 rounded bg-[hsl(215,25%,11%)] border border-[hsl(215,15%,22%)]">
+              <div className="text-white/60 mb-1">Risk Amount</div>
+              <div className="text-red-400 font-mono">${calculations.riskAmount}</div>
+            </div>
+            <div className="p-2 rounded bg-[hsl(215,25%,11%)] border border-[hsl(215,15%,22%)]">
+              <div className="text-white/60 mb-1">Stop Loss Pips</div>
+              <div className="text-white font-mono">{calculations.stopLossPips}</div>
+            </div>
+            <div className="p-2 rounded bg-[hsl(215,25%,11%)] border border-[hsl(215,15%,22%)]">
+              <div className="text-white/60 mb-1">Potential Profit</div>
+              <div className="text-green-400 font-mono">${calculations.potentialProfit}</div>
+            </div>
+          </div>
+          
+          {takeProfit && (
+            <div className="p-3 rounded-lg bg-[hsl(215,25%,11%)] border border-[hsl(215,15%,22%)]">
+              <div className="flex items-center justify-between">
+                <span className="text-white/80 text-sm">Risk:Reward Ratio</span>
+                <span className={`font-bold text-sm ${
+                  parseFloat(calculations.riskRewardRatio) >= 2 ? 'text-green-400' :
+                  parseFloat(calculations.riskRewardRatio) >= 1 ? 'text-yellow-400' : 'text-red-400'
+                }`}>
+                  1:{calculations.riskRewardRatio}
+                </span>
+              </div>
+              <div className="mt-2">
+                <div className="w-full bg-[hsl(215,22%,14%)] rounded-full h-2">
+                  <div 
+                    className={`h-2 rounded-full ${
+                      parseFloat(calculations.riskRewardRatio) >= 2 ? 'bg-green-500' :
+                      parseFloat(calculations.riskRewardRatio) >= 1 ? 'bg-yellow-500' : 'bg-red-500'
+                    }`}
+                    style={{ width: `${Math.min(parseFloat(calculations.riskRewardRatio) * 25, 100)}%` }}
+                  />
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+      )}
+
+      {/* Risk Rules */}
+      <div className="space-y-2">
+        <h5 className="text-white font-medium text-sm">Risk Rules</h5>
+        <div className="space-y-2 text-xs">
+          <div className={`flex items-center space-x-2 p-2 rounded ${
+            riskPerTrade <= 2 ? 'bg-green-500/20 border border-green-500/30' : 'bg-red-500/20 border border-red-500/30'
+          }`}>
+            <i className={`fas ${riskPerTrade <= 2 ? 'fa-check' : 'fa-times'} ${
+              riskPerTrade <= 2 ? 'text-green-400' : 'text-red-400'
+            }`}></i>
+            <span className={riskPerTrade <= 2 ? 'text-green-200' : 'text-red-200'}>
+              Risk ≤ 2% per trade
+            </span>
+          </div>
+          
+          {calculations && (
+            <div className={`flex items-center space-x-2 p-2 rounded ${
+              parseFloat(calculations.riskRewardRatio) >= 1.5 ? 'bg-green-500/20 border border-green-500/30' : 'bg-yellow-500/20 border border-yellow-500/30'
+            }`}>
+              <i className={`fas ${parseFloat(calculations.riskRewardRatio) >= 1.5 ? 'fa-check' : 'fa-exclamation-triangle'} ${
+                parseFloat(calculations.riskRewardRatio) >= 1.5 ? 'text-green-400' : 'text-yellow-400'
+              }`}></i>
+              <span className={parseFloat(calculations.riskRewardRatio) >= 1.5 ? 'text-green-200' : 'text-yellow-200'}>
+                R:R ≥ 1:1.5 minimum
+              </span>
+            </div>
+          )}
+          
+          <div className="flex items-center space-x-2 p-2 rounded bg-blue-500/20 border border-blue-500/30">
+            <i className="fas fa-info-circle text-blue-400"></i>
+            <span className="text-blue-200">
+              Never risk more than you can afford to lose
+            </span>
+          </div>
+        </div>
+      </div>
     </Card>
   );
 }
