@@ -1,63 +1,61 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-import express from 'express';
-import { registerRoutes } from '../server/routes';
+import { storage } from '../server/storage';
+import { insertScreenshotSchema, insertNoteSchema } from '../shared/schema';
 
-// Create Express app for Vercel
-const app = express();
-
-// Increase payload size limit for base64 images
-app.use(express.json({ limit: '50mb' }));
-app.use(express.urlencoded({ extended: false, limit: '50mb' }));
-
-// Add logging middleware
-app.use((req, res, next) => {
-  const start = Date.now();
-  const path = req.path;
-  let capturedJsonResponse: Record<string, any> | undefined = undefined;
-
-  const originalResJson = res.json;
-  res.json = function (bodyJson, ...args) {
-    capturedJsonResponse = bodyJson;
-    return originalResJson.apply(res, [bodyJson, ...args]);
-  };
-
-  res.on("finish", () => {
-    const duration = Date.now() - start;
-    if (path.startsWith("/api")) {
-      let logLine = `${req.method} ${path} ${res.statusCode} in ${duration}ms`;
-      if (capturedJsonResponse) {
-        logLine += ` :: ${JSON.stringify(capturedJsonResponse)}`;
-      }
-
-      if (logLine.length > 80) {
-        logLine = logLine.slice(0, 79) + "…";
-      }
-
-      console.log(logLine);
-    }
-  });
-
-  next();
-});
-
-// Initialize routes
-let routesInitialized = false;
-
-async function initializeRoutes() {
-  if (!routesInitialized) {
-    await registerRoutes(app);
-    routesInitialized = true;
-  }
-}
-
-// Vercel handler
 export default async function handler(req: VercelRequest, res: VercelResponse) {
-  await initializeRoutes();
-  
-  // Convert Vercel request to Express request format
-  const expressReq = req as any;
-  const expressRes = res as any;
-  
-  // Handle the request with Express
-  app(expressReq, expressRes);
+  // Set CORS headers
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+
+  if (req.method === 'OPTIONS') {
+    return res.status(200).end();
+  }
+
+  const { url } = req;
+  const path = url?.replace('/api', '') || '/';
+
+  try {
+    // Health check endpoint
+    if (path === '/health') {
+      return res.json({ status: 'ok', timestamp: new Date().toISOString() });
+    }
+
+    // Screenshots API
+    if (path === '/screenshots') {
+      if (req.method === 'GET') {
+        const { strategyType, sessionTiming, studyBucket, isBookmarked, limit, offset } = req.query;
+        const screenshots = await storage.getScreenshots({
+          strategyType: strategyType as string,
+          sessionTiming: sessionTiming as string,
+          studyBucket: studyBucket as string,
+          isBookmarked: isBookmarked === 'true' ? true : isBookmarked === 'false' ? false : undefined,
+          limit: limit ? parseInt(limit as string) : undefined,
+          offset: offset ? parseInt(offset as string) : undefined,
+        });
+        return res.json(screenshots);
+      }
+
+      if (req.method === 'POST') {
+        const screenshotData = insertScreenshotSchema.parse(req.body);
+        const screenshot = await storage.createScreenshot(screenshotData);
+        return res.status(201).json(screenshot);
+      }
+    }
+
+    // Stats API
+    if (path === '/stats') {
+      if (req.method === 'GET') {
+        const stats = await storage.getScreenshotStats();
+        return res.json(stats);
+      }
+    }
+
+    // Default 404
+    return res.status(404).json({ error: 'API endpoint not found' });
+
+  } catch (error) {
+    console.error('API Error:', error);
+    return res.status(500).json({ error: 'Internal server error' });
+  }
 }
