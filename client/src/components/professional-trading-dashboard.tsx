@@ -5,6 +5,7 @@ import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { Badge } from './ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from './ui/tabs';
+import { ProfessionalChartView } from './professional-chart-view';
 import type { Screenshot, InsertScreenshot } from '@shared/schema';
 
 interface TradingDashboardProps {}
@@ -413,11 +414,16 @@ function PerformanceMetricsCard({ metrics, timeframe, onTimeframeChange }: {
 
 // Placeholder components for other sections
 function TradingOverview({ screenshots, selectedScreenshot, onSelectScreenshot }: any) {
+  const [viewMode, setViewMode] = useState<'grid' | 'chart' | 'table'>('grid');
+  
   return (
-    <Card className="bg-[hsl(215,20%,16%)] border-[hsl(215,15%,22%)] p-6 h-96">
-      <h4 className="text-lg font-semibold text-white mb-4">Recent Trades</h4>
-      <div className="text-white/60">Trading overview content...</div>
-    </Card>
+    <ProfessionalChartView
+      screenshots={screenshots}
+      selectedScreenshot={selectedScreenshot}
+      onSelectScreenshot={onSelectScreenshot}
+      viewMode={viewMode}
+      onViewModeChange={setViewMode}
+    />
   );
 }
 

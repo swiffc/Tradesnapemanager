@@ -125,6 +125,8 @@ export function ScreenshotGallery({ filters, selectedScreenshot, onSelectScreens
                       : 'text-trading-text hover:text-white hover:bg-trading-dark/50'
                   }`} 
                   data-testid="button-grid-view"
+                  title="Grid View"
+                  aria-label="Switch to grid view"
                 >
                   <i className="fas fa-th-large"></i>
                 </button>
