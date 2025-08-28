@@ -7,6 +7,8 @@ import Home from "@/pages/home";
 import StudyBucketsPage from "@/pages/study-buckets";
 import NotFound from "@/pages/not-found";
 import { BTMMDashboard } from "@/components/btmm-dashboard";
+import { ModernBTMMDashboard } from "@/components/modern-btmm-dashboard";
+import { ProfessionalTradingDashboard } from "@/components/professional-trading-dashboard";
 
 function Router() {
   return (
@@ -14,6 +16,8 @@ function Router() {
       <Route path="/" component={Home} />
       <Route path="/study-buckets" component={StudyBucketsPage} />
       <Route path="/btmm" component={BTMMDashboard} />
+      <Route path="/btmm-modern" component={ModernBTMMDashboard} />
+      <Route path="/pro" component={ProfessionalTradingDashboard} />
       <Route component={NotFound} />
     </Switch>
   );

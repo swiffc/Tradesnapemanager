@@ -1,0 +1,339 @@
+/* Professional Trading App Theme - Research-Based Design */
+
+:root {
+  /* Primary Trading Colors - Inspired by Professional Platforms */
+  --trading-bg-primary: hsl(215, 28%, 8%);
+  --trading-bg-secondary: hsl(215, 25%, 11%);
+  --trading-bg-tertiary: hsl(215, 22%, 14%);
+  --trading-bg-card: hsl(215, 20%, 16%);
+  --trading-bg-elevated: hsl(215, 18%, 18%);
+  
+  /* Accent Colors - Market-Inspired */
+  --trading-accent-primary: hsl(280, 85%, 65%);
+  --trading-accent-secondary: hsl(195, 85%, 65%);
+  --trading-accent-tertiary: hsl(45, 85%, 65%);
+  
+  /* Market Colors */
+  --trading-bullish: hsl(134, 60%, 55%);
+  --trading-bearish: hsl(355, 70%, 55%);
+  --trading-neutral: hsl(220, 15%, 65%);
+  
+  /* Text Colors */
+  --trading-text-primary: hsl(220, 20%, 95%);
+  --trading-text-secondary: hsl(220, 15%, 80%);
+  --trading-text-tertiary: hsl(220, 10%, 65%);
+  --trading-text-muted: hsl(220, 8%, 45%);
+  
+  /* Border Colors */
+  --trading-border-primary: hsl(215, 15%, 22%);
+  --trading-border-secondary: hsl(215, 12%, 25%);
+  --trading-border-accent: hsl(280, 85%, 65%);
+  
+  /* Shadows */
+  --trading-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+  --trading-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
+  --trading-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+  --trading-shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.6);
+  
+  /* Glass Effect */
+  --trading-glass-bg: rgba(255, 255, 255, 0.05);
+  --trading-glass-border: rgba(255, 255, 255, 0.1);
+  --trading-glass-backdrop: blur(16px);
+  
+  /* Typography */
+  --trading-font-primary: 'Inter', 'Segoe UI', system-ui, sans-serif;
+  --trading-font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+  
+  /* Spacing Scale */
+  --trading-space-xs: 0.25rem;
+  --trading-space-sm: 0.5rem;
+  --trading-space-md: 1rem;
+  --trading-space-lg: 1.5rem;
+  --trading-space-xl: 2rem;
+  --trading-space-2xl: 3rem;
+  
+  /* Border Radius */
+  --trading-radius-sm: 4px;
+  --trading-radius-md: 8px;
+  --trading-radius-lg: 12px;
+  --trading-radius-xl: 16px;
+  
+  /* Transitions */
+  --trading-transition-fast: 150ms ease-out;
+  --trading-transition-normal: 250ms ease-out;
+  --trading-transition-slow: 350ms ease-out;
+}
+
+/* Global Base Styles */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--trading-font-primary);
+  background: var(--trading-bg-primary);
+  color: var(--trading-text-primary);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Glass Morphism Utility Classes */
+.glass-panel {
+  background: var(--trading-glass-bg);
+  border: 1px solid var(--trading-glass-border);
+  backdrop-filter: var(--trading-glass-backdrop);
+  -webkit-backdrop-filter: var(--trading-glass-backdrop);
+}
+
+.glass-intense {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+/* Professional Button Styles */
+.btn-primary {
+  background: linear-gradient(135deg, var(--trading-accent-primary), var(--trading-accent-secondary));
+  color: white;
+  border: none;
+  padding: var(--trading-space-sm) var(--trading-space-lg);
+  border-radius: var(--trading-radius-md);
+  font-weight: 600;
+  transition: all var(--trading-transition-fast);
+  box-shadow: var(--trading-shadow-sm);
+}
+
+.btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--trading-shadow-md);
+  filter: brightness(1.1);
+}
+
+.btn-secondary {
+  background: var(--trading-bg-elevated);
+  color: var(--trading-text-primary);
+  border: 1px solid var(--trading-border-primary);
+  padding: var(--trading-space-sm) var(--trading-space-lg);
+  border-radius: var(--trading-radius-md);
+  font-weight: 500;
+  transition: all var(--trading-transition-fast);
+}
+
+.btn-secondary:hover {
+  background: var(--trading-bg-card);
+  border-color: var(--trading-border-accent);
+}
+
+/* Card Styles */
+.trading-card {
+  background: var(--trading-bg-card);
+  border: 1px solid var(--trading-border-primary);
+  border-radius: var(--trading-radius-lg);
+  padding: var(--trading-space-lg);
+  box-shadow: var(--trading-shadow-sm);
+  transition: all var(--trading-transition-normal);
+}
+
+.trading-card:hover {
+  border-color: var(--trading-border-secondary);
+  box-shadow: var(--trading-shadow-md);
+}
+
+.trading-card-elevated {
+  background: var(--trading-bg-elevated);
+  box-shadow: var(--trading-shadow-md);
+}
+
+/* Market-Specific Colors */
+.text-bullish { color: var(--trading-bullish); }
+.text-bearish { color: var(--trading-bearish); }
+.text-neutral { color: var(--trading-neutral); }
+
+.bg-bullish { background-color: var(--trading-bullish); }
+.bg-bearish { background-color: var(--trading-bearish); }
+.bg-neutral { background-color: var(--trading-neutral); }
+
+/* BTMM Flow Colors */
+.btmm-bias { color: hsl(200, 80%, 60%); }
+.btmm-setup { color: hsl(150, 70%, 55%); }
+.btmm-pattern { color: hsl(280, 75%, 65%); }
+.btmm-entry { color: hsl(30, 85%, 60%); }
+
+/* Professional Animations */
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+@keyframes glow {
+  0%, 100% { box-shadow: 0 0 5px var(--trading-accent-primary); }
+  50% { box-shadow: 0 0 20px var(--trading-accent-primary); }
+}
+
+.animate-slide-in { animation: slideInUp 0.4s ease-out; }
+.animate-fade-in { animation: fadeIn 0.3s ease-out; }
+.animate-pulse { animation: pulse 2s infinite; }
+.animate-glow { animation: glow 2s infinite; }
+
+/* Professional Form Styles */
+.trading-input {
+  background: var(--trading-bg-secondary);
+  border: 1px solid var(--trading-border-primary);
+  border-radius: var(--trading-radius-md);
+  padding: var(--trading-space-sm) var(--trading-space-md);
+  color: var(--trading-text-primary);
+  font-family: var(--trading-font-primary);
+  transition: all var(--trading-transition-fast);
+}
+
+.trading-input:focus {
+  outline: none;
+  border-color: var(--trading-border-accent);
+  box-shadow: 0 0 0 3px rgba(280, 85%, 65%, 0.1);
+}
+
+.trading-input::placeholder {
+  color: var(--trading-text-muted);
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--trading-bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--trading-border-secondary);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--trading-text-muted);
+}
+
+/* Professional Data Table */
+.trading-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--trading-font-mono);
+  font-size: 0.875rem;
+}
+
+.trading-table th {
+  background: var(--trading-bg-secondary);
+  color: var(--trading-text-secondary);
+  padding: var(--trading-space-sm) var(--trading-space-md);
+  text-align: left;
+  font-weight: 600;
+  border-bottom: 1px solid var(--trading-border-primary);
+}
+
+.trading-table td {
+  padding: var(--trading-space-sm) var(--trading-space-md);
+  border-bottom: 1px solid var(--trading-border-primary);
+}
+
+.trading-table tr:hover {
+  background: var(--trading-bg-secondary);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  :root {
+    --trading-space-xs: 0.125rem;
+    --trading-space-sm: 0.375rem;
+    --trading-space-md: 0.75rem;
+    --trading-space-lg: 1rem;
+    --trading-space-xl: 1.5rem;
+  }
+  
+  .trading-card {
+    padding: var(--trading-space-md);
+  }
+  
+  .btn-primary,
+  .btn-secondary {
+    padding: var(--trading-space-xs) var(--trading-space-md);
+    font-size: 0.875rem;
+  }
+}
+
+/* Professional Loading States */
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--trading-bg-secondary) 25%,
+    var(--trading-bg-tertiary) 50%,
+    var(--trading-bg-secondary) 75%
+  );
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* Professional Status Indicators */
+.status-indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: var(--trading-space-sm);
+}
+
+.status-online { background: var(--trading-bullish); }
+.status-offline { background: var(--trading-bearish); }
+.status-pending { background: var(--trading-neutral); animation: pulse 1s infinite; }
+
+/* Professional Tooltips */
+.tooltip {
+  position: relative;
+  cursor: help;
+}
+
+.tooltip::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--trading-bg-elevated);
+  color: var(--trading-text-primary);
+  padding: var(--trading-space-xs) var(--trading-space-sm);
+  border-radius: var(--trading-radius-sm);
+  font-size: 0.75rem;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--trading-transition-fast);
+  border: 1px solid var(--trading-border-primary);
+  box-shadow: var(--trading-shadow-md);
+  z-index: 1000;
+}
+
+.tooltip:hover::after {
+  opacity: 1;
+}

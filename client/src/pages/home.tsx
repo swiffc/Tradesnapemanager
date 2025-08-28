@@ -147,6 +147,16 @@ export default function Home() {
                 </button>
               </Link>
               
+              <Link href="/pro">
+                <button 
+                  className="px-3 py-2 hover:bg-gradient-to-r hover:from-purple-500 hover:to-blue-500 rounded-lg transition-all duration-300 md:bg-transparent bg-gradient-to-r from-purple-500/20 to-blue-500/20 md:text-white text-white font-semibold text-sm hover:scale-105 hover:shadow-lg group border border-purple-500/30"
+                  title="Professional Trading Dashboard"
+                  data-testid="button-pro-dashboard"
+                >
+                  <span className="group-hover:animate-pulse">⚡</span> Pro Dashboard
+                </button>
+              </Link>
+              
               <Link href="/study-buckets">
                 <button 
                   className="px-3 py-2 hover:bg-blue-500 rounded-lg transition-all duration-300 md:bg-transparent bg-blue-500/20 md:text-white text-white font-semibold text-sm hover:scale-105 hover:shadow-lg group"
