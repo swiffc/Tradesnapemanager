@@ -18,6 +18,7 @@ function Router() {
       <Route path="/btmm" component={BTMMDashboard} />
       <Route path="/btmm-modern" component={ModernBTMMDashboard} />
       <Route path="/pro" component={ProfessionalTradingDashboard} />
+      <Route path="/legacy" component={StudyBucketsPage} /> {/* Legacy interface for reference */}
       <Route component={NotFound} />
     </Switch>
   );

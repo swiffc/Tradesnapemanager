@@ -1,138 +1,49 @@
-import { useState, useEffect } from "react";
+import { ProfessionalTradingDashboard } from "@/components/professional-trading-dashboard";
+import { Toaster } from "@/components/ui/toaster";
 import { Link } from "wouter";
-import { StudyBuckets } from "@/components/study-buckets";
-import { StudyMode } from "@/components/study-mode";
-import type { Screenshot } from "@shared/schema";
-import { ResizablePanelGroup, ResizablePanel, ResizableHandle } from "@/components/ui/resizable";
-import { ArrowLeft } from "lucide-react";
 
 export default function StudyBucketsPage() {
-  const [selectedScreenshot, setSelectedScreenshot] = useState<Screenshot | null>(null);
-  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
-
-  // Handle window resize
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-    
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
-  const handleScreenshotSelect = (screenshot: Screenshot) => {
-    setSelectedScreenshot(screenshot);
-  };
-
-  const handleScreenshotUpdate = (updatedScreenshot: Screenshot) => {
-    if (selectedScreenshot?.id === updatedScreenshot.id) {
-      setSelectedScreenshot(updatedScreenshot);
-    }
-  };
-
-  if (isMobile) {
-    return (
-      <div className="min-h-screen bg-trading-dark flex flex-col">
-        {/* Mobile Header with Back Navigation */}
-        <header className="bg-trading-card border-b border-trading-border">
-          <div className="px-4 py-3 flex items-center justify-between">
-            <Link href="/">
-              <button 
-                className="flex items-center space-x-2 px-3 py-2 hover:bg-trading-border rounded-lg transition-colors text-trading-text hover:text-white"
-                data-testid="button-back-home-mobile"
-              >
-                <ArrowLeft className="w-4 h-4" />
-                <span>Home</span>
-              </button>
-            </Link>
-            <div className="flex items-center space-x-2">
-              <span className="text-white font-bold text-lg">Strategy Levels</span>
-              <span className="text-2xl">📊</span>
-            </div>
-          </div>
-        </header>
-
-        {!selectedScreenshot ? (
-          <div className="flex-1">
-            <StudyBuckets 
-              onScreenshotSelect={handleScreenshotSelect}
-              selectedScreenshot={selectedScreenshot}
-            />
-          </div>
-        ) : (
-          <div className="flex-1 flex flex-col">
-            <div className="bg-trading-card border-b border-trading-border p-3">
-              <button
-                onClick={() => setSelectedScreenshot(null)}
-                className="flex items-center space-x-2 text-trading-accent hover:text-trading-accent/80 text-sm"
-                data-testid="button-back-to-buckets"
-              >
-                <ArrowLeft className="w-4 h-4" />
-                <span>Back to Study Buckets</span>
-              </button>
-            </div>
-            <div className="flex-1">
-              <StudyMode 
-                screenshot={selectedScreenshot}
-                isMobile={true}
-                onScreenshotUpdate={handleScreenshotUpdate}
-              />
-            </div>
-          </div>
-        )}
-      </div>
-    );
-  }
-
   return (
-    <div className="h-screen bg-trading-dark flex flex-col">
-      {/* Header */}
-      <header className="bg-trading-card border-b border-trading-border">
-        <div className="px-4 py-3 flex items-center justify-between">
-          <div className="flex items-center space-x-4">
-            <Link href="/">
-              <button 
-                className="flex items-center space-x-2 px-3 py-2 hover:bg-trading-border rounded-lg transition-colors text-trading-text hover:text-white"
-                data-testid="button-back-home"
-              >
-                <ArrowLeft className="w-4 h-4" />
-                <span>Back to Home</span>
-              </button>
-            </Link>
-            <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-sm">📊</span>
-            </div>
-            <div>
-              <h1 className="text-lg font-bold text-white">Strategy Levels</h1>
-              <p className="text-trading-text text-sm">1. BIAS • 2. SETUP • 3. PATTERN • 4. ENTRY'S</p>
+    <div className="min-h-screen bg-gradient-to-br from-[hsl(215,28%,8%)] via-[hsl(215,25%,10%)] to-[hsl(215,22%,12%)]">
+      {/* Professional Header */}
+      <div className="border-b border-[hsl(215,15%,22%)] bg-[hsl(215,20%,16%)] backdrop-blur-xl">
+        <div className="px-6 py-4">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center space-x-4">
+              <Link href="/">
+                <button className="flex items-center space-x-2 text-white/60 hover:text-white transition-colors">
+                  <i className="fas fa-arrow-left"></i>
+                  <span>Back to Dashboard</span>
+                </button>
+              </Link>
+              <div className="h-6 w-px bg-[hsl(215,15%,22%)]"></div>
+              <h1 className="text-xl font-bold text-white">Strategy Levels</h1>
             </div>
           </div>
         </div>
-      </header>
-
-      {/* Main Content */}
-      <div className="flex-1">
-        <ResizablePanelGroup direction="horizontal">
-          {/* Study Buckets Panel */}
-          <ResizablePanel defaultSize={40} minSize={30}>
-            <StudyBuckets 
-              onScreenshotSelect={handleScreenshotSelect}
-              selectedScreenshot={selectedScreenshot}
-            />
-          </ResizablePanel>
-
-          <ResizableHandle className="w-1 bg-trading-border hover:bg-trading-accent transition-colors" />
-
-          {/* Study Mode Panel */}
-          <ResizablePanel defaultSize={60} minSize={40}>
-            <StudyMode 
-              screenshot={selectedScreenshot}
-              isMobile={false}
-              onScreenshotUpdate={handleScreenshotUpdate}
-            />
-          </ResizablePanel>
-        </ResizablePanelGroup>
       </div>
+
+      {/* Content */}
+      <div className="p-6">
+        <div className="text-center py-12">
+          <div className="w-24 h-24 bg-gradient-to-r from-purple-500 to-blue-500 rounded-2xl flex items-center justify-center mx-auto mb-6">
+            <i className="fas fa-graduation-cap text-white text-3xl"></i>
+          </div>
+          <h2 className="text-3xl font-bold text-white mb-4">Study Buckets - Professional Mode</h2>
+          <p className="text-white/60 mb-8 max-w-2xl mx-auto">
+            The study buckets feature has been integrated into the professional dashboard. 
+            Use the Analysis and Journal tabs for comprehensive trade study and review.
+          </p>
+          <Link href="/">
+            <button className="bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600 text-white px-8 py-3 rounded-lg font-medium transition-all duration-300 shadow-lg hover:shadow-xl">
+              <i className="fas fa-chart-line mr-2"></i>
+              Go to Professional Dashboard
+            </button>
+          </Link>
+        </div>
+      </div>
+      
+      <Toaster />
     </div>
   );
 }
