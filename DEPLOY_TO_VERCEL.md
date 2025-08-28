@@ -1,3 +1,4 @@
+best setup for screenshot manager
 # 🚀 Deploy TradeSnapManager to Vercel
 
 ## Quick Deployment Steps

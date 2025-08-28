@@ -6,12 +6,14 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import Home from "@/pages/home";
 import StudyBucketsPage from "@/pages/study-buckets";
 import NotFound from "@/pages/not-found";
+import { BTMMDashboard } from "@/components/btmm-dashboard";
 
 function Router() {
   return (
     <Switch>
       <Route path="/" component={Home} />
       <Route path="/study-buckets" component={StudyBucketsPage} />
+      <Route path="/btmm" component={BTMMDashboard} />
       <Route component={NotFound} />
     </Switch>
   );
