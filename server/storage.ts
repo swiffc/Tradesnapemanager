@@ -57,6 +57,7 @@ export class MemStorage implements IStorage {
       result: insertScreenshot.result || "win", // Default to win
       riskReward: insertScreenshot.riskReward || "+2R", // Default to 2R
       tags: insertScreenshot.tags || [],
+      notes: insertScreenshot.notes || null,
       isBookmarked: insertScreenshot.isBookmarked || false,
     };
     this.screenshots.set(id, screenshot);

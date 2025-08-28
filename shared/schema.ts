@@ -24,6 +24,7 @@ export const screenshots = pgTable("screenshots", {
   result: text("result"), // win, loss, breakeven
   riskReward: text("risk_reward"), // e.g., "+2.3R", "-0.5R"
   tags: text("tags").array().default([]),
+  notes: text("notes"), // Simple notes field for basic note-taking
   metadata: jsonb("metadata"), // Additional data like entry, stop, target
   uploadedAt: timestamp("uploaded_at").defaultNow(),
   isBookmarked: boolean("is_bookmarked").default(false),

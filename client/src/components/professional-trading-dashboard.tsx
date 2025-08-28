@@ -132,6 +132,7 @@ export function ProfessionalTradingDashboard({}: TradingDashboardProps) {
         onClose={() => setIsUploadModalOpen(false)}
         onUpload={async (data) => {
           try {
+            console.log('Dashboard: Sending data to API:', data);
             const response = await fetch('/api/screenshots', {
               method: 'POST',
               headers: {
@@ -140,12 +141,21 @@ export function ProfessionalTradingDashboard({}: TradingDashboardProps) {
               body: JSON.stringify(data),
             });
             
-            if (!response.ok) throw new Error('Upload failed');
+            console.log('Dashboard: Response status:', response.status);
+            
+            if (!response.ok) {
+              const errorText = await response.text();
+              console.error('Dashboard: Upload failed with error:', errorText);
+              throw new Error(`Upload failed: ${errorText}`);
+            }
+            
+            const result = await response.json();
+            console.log('Dashboard: Upload successful:', result);
             
             await refetch();
             setIsUploadModalOpen(false);
           } catch (error) {
-            console.error('Upload error:', error);
+            console.error('Dashboard: Upload error:', error);
             throw error;
           }
         }}

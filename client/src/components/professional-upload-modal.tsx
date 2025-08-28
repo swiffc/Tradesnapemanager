@@ -136,6 +136,7 @@ export function ProfessionalUploadModal({ isOpen, onClose, onUpload }: Professio
           }
         };
 
+        console.log('Uploading data:', uploadData);
         await onUpload(uploadData);
         
         toast({
@@ -164,9 +165,10 @@ export function ProfessionalUploadModal({ isOpen, onClose, onUpload }: Professio
       };
       reader.readAsDataURL(formData.file);
     } catch (error) {
+      console.error('Upload modal error:', error);
       toast({
         title: "Upload failed",
-        description: "There was an error uploading your trade. Please try again.",
+        description: error instanceof Error ? error.message : "There was an error uploading your trade. Please try again.",
         variant: "destructive",
       });
     } finally {
