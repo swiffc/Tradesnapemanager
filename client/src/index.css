@@ -1,0 +1,351 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: hsl(0, 0%, 100%);
+  --foreground: hsl(210, 25%, 7.8431%);
+  --card: hsl(180, 6.6667%, 97.0588%);
+  --card-foreground: hsl(210, 25%, 7.8431%);
+  --popover: hsl(0, 0%, 100%);
+  --popover-foreground: hsl(210, 25%, 7.8431%);
+  --primary: hsl(203.8863, 88.2845%, 53.1373%);
+  --primary-foreground: hsl(0, 0%, 100%);
+  --secondary: hsl(210, 25%, 7.8431%);
+  --secondary-foreground: hsl(0, 0%, 100%);
+  --muted: hsl(240, 1.9608%, 90%);
+  --muted-foreground: hsl(210, 25%, 7.8431%);
+  --accent: hsl(211.5789, 51.3514%, 92.7451%);
+  --accent-foreground: hsl(203.8863, 88.2845%, 53.1373%);
+  --destructive: hsl(356.3033, 90.5579%, 54.3137%);
+  --destructive-foreground: hsl(0, 0%, 100%);
+  --border: hsl(201.4286, 30.4348%, 90.9804%);
+  --input: hsl(200, 23.0769%, 97.4510%);
+  --ring: hsl(202.8169, 89.1213%, 53.1373%);
+  --chart-1: hsl(203.8863, 88.2845%, 53.1373%);
+  --chart-2: hsl(159.7826, 100%, 36.0784%);
+  --chart-3: hsl(42.0290, 92.8251%, 56.2745%);
+  --chart-4: hsl(147.1429, 78.5047%, 41.9608%);
+  --chart-5: hsl(341.4894, 75.2000%, 50.9804%);
+  --sidebar: hsl(180, 6.6667%, 97.0588%);
+  --sidebar-foreground: hsl(210, 25%, 7.8431%);
+  --sidebar-primary: hsl(203.8863, 88.2845%, 53.1373%);
+  --sidebar-primary-foreground: hsl(0, 0%, 100%);
+  --sidebar-accent: hsl(211.5789, 51.3514%, 92.7451%);
+  --sidebar-accent-foreground: hsl(203.8863, 88.2845%, 53.1373%);
+  --sidebar-border: hsl(205.0000, 25.0000%, 90.5882%);
+  --sidebar-ring: hsl(202.8169, 89.1213%, 53.1373%);
+  --font-sans: Inter, system-ui, sans-serif;
+  --font-serif: Georgia, serif;
+  --font-mono: Menlo, monospace;
+  --radius: 1.3rem;
+  
+  /* Trading-specific colors - Modern Purple & Cyan Theme */
+  --trading-dark: hsl(240, 30%, 8%);
+  --trading-card: hsl(240, 25%, 12%);
+  --trading-border: hsl(240, 20%, 18%);
+  --trading-accent: hsl(280, 90%, 65%);
+  --trading-gold: hsl(50, 100%, 65%);
+  --trading-text: hsl(240, 15%, 80%);
+  --trading-muted: hsl(240, 10%, 50%);
+  --bullish: hsl(160, 85%, 60%);
+  --bearish: hsl(10, 90%, 65%);
+}
+
+/* Custom Dynamic Animations */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes breathe {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200px 0; }
+  100% { background-position: calc(200px + 100%) 0; }
+}
+
+@keyframes glow {
+  0%, 100% { box-shadow: 0 0 5px rgba(168, 85, 247, 0.3); }
+  50% { box-shadow: 0 0 20px rgba(168, 85, 247, 0.6), 0 0 30px rgba(168, 85, 247, 0.4); }
+}
+
+@keyframes wiggle {
+  0%, 7%, 14%, 21% { transform: rotate(0deg); }
+  3.5% { transform: rotate(-3deg); }
+  10.5%, 17.5% { transform: rotate(3deg); }
+}
+
+@keyframes fadeInScale {
+  0% { opacity: 0; transform: scale(0.8); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-breathe {
+  animation: breathe 2s ease-in-out infinite;
+}
+
+.animate-shimmer {
+  background: linear-gradient(90deg, transparent, rgba(168, 85, 247, 0.2), transparent);
+  background-size: 200px 100%;
+  animation: shimmer 2s infinite;
+}
+
+.animate-glow {
+  animation: glow 2s ease-in-out infinite;
+}
+
+.animate-wiggle {
+  animation: wiggle 1s ease-in-out;
+}
+
+.animate-fade-in-scale {
+  animation: fadeInScale 0.5s ease-out;
+}
+
+.dark {
+  --background: hsl(0, 0%, 0%);
+  --foreground: hsl(200, 6.6667%, 91.1765%);
+  --card: hsl(228, 9.8039%, 10%);
+  --card-foreground: hsl(0, 0%, 85.0980%);
+  --popover: hsl(0, 0%, 0%);
+  --popover-foreground: hsl(200, 6.6667%, 91.1765%);
+  --primary: hsl(203.7736, 87.6033%, 52.5490%);
+  --primary-foreground: hsl(0, 0%, 100%);
+  --secondary: hsl(195.0000, 15.3846%, 94.9020%);
+  --secondary-foreground: hsl(210, 25%, 7.8431%);
+  --muted: hsl(0, 0%, 9.4118%);
+  --muted-foreground: hsl(210, 3.3898%, 46.2745%);
+  --accent: hsl(205.7143, 70%, 7.8431%);
+  --accent-foreground: hsl(203.7736, 87.6033%, 52.5490%);
+  --destructive: hsl(356.3033, 90.5579%, 54.3137%);
+  --destructive-foreground: hsl(0, 0%, 100%);
+  --border: hsl(210, 5.2632%, 14.9020%);
+  --input: hsl(207.6923, 27.6596%, 18.4314%);
+  --ring: hsl(202.8169, 89.1213%, 53.1373%);
+  --chart-1: hsl(280, 90%, 65%);
+  --chart-2: hsl(200, 85%, 60%);
+  --chart-3: hsl(50, 100%, 65%);
+  --chart-4: hsl(160, 85%, 60%);
+  --chart-5: hsl(320, 80%, 65%);
+  --sidebar: hsl(240, 25%, 12%);
+  --sidebar-foreground: hsl(240, 15%, 80%);
+  --sidebar-primary: hsl(280, 90%, 65%);
+  --sidebar-primary-foreground: hsl(0, 0%, 100%);
+  --sidebar-accent: hsl(240, 20%, 18%);
+  --sidebar-accent-foreground: hsl(280, 90%, 65%);
+  --sidebar-border: hsl(240, 20%, 18%);
+  --sidebar-ring: hsl(280, 90%, 65%);
+  --font-sans: Inter, system-ui, sans-serif;
+  --font-serif: Georgia, serif;
+  --font-mono: Menlo, monospace;
+  --radius: 1.3rem;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased text-white;
+    font-family: var(--font-sans);
+    background: linear-gradient(135deg, 
+      var(--trading-dark) 0%, 
+      hsl(250, 30%, 6%) 25%,
+      hsl(270, 25%, 8%) 50%, 
+      hsl(240, 28%, 10%) 75%,
+      var(--trading-dark) 100%
+    );
+    min-height: 100vh;
+    /* Prevent text size adjustment on mobile */
+    -webkit-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    /* Better font rendering */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  /* Disable pull-to-refresh on mobile */
+  body {
+    overscroll-behavior-y: contain;
+  }
+  
+  /* Better scroll behavior on mobile */
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  /* Improve form controls on mobile */
+  input, textarea, select, button {
+    font-size: 16px; /* Prevents zoom on iOS */
+  }
+  
+  @media (min-width: 768px) {
+    input, textarea, select, button {
+      font-size: inherit;
+    }
+  }
+}
+
+@layer utilities {
+  .font-trading {
+    font-family: var(--font-sans);
+  }
+  
+  .bg-trading-dark {
+    background-color: var(--trading-dark);
+  }
+  
+  .bg-trading-card {
+    background-color: var(--trading-card);
+  }
+  
+  .bg-trading-border {
+    background-color: var(--trading-border);
+  }
+  
+  .bg-trading-accent {
+    background-color: var(--trading-accent);
+  }
+  
+  .bg-trading-gold {
+    background-color: var(--trading-gold);
+  }
+  
+  .bg-bullish {
+    background-color: var(--bullish);
+  }
+  
+  .bg-bearish {
+    background-color: var(--bearish);
+  }
+  
+  .text-trading-dark {
+    color: var(--trading-dark);
+  }
+  
+  .text-trading-card {
+    color: var(--trading-card);
+  }
+  
+  .text-trading-border {
+    color: var(--trading-border);
+  }
+  
+  .text-trading-accent {
+    color: var(--trading-accent);
+  }
+  
+  .text-trading-gold {
+    color: var(--trading-gold);
+  }
+  
+  .text-trading-text {
+    color: var(--trading-text);
+  }
+  
+  .text-trading-muted {
+    color: var(--trading-muted);
+  }
+  
+  .text-bullish {
+    color: var(--bullish);
+  }
+  
+  .text-bearish {
+    color: var(--bearish);
+  }
+  
+  .border-trading-dark {
+    border-color: var(--trading-dark);
+  }
+  
+  .border-trading-card {
+    border-color: var(--trading-card);
+  }
+  
+  .border-trading-border {
+    border-color: var(--trading-border);
+  }
+  
+  .border-trading-accent {
+    border-color: var(--trading-accent);
+  }
+  
+  .border-trading-gold {
+    border-color: var(--trading-gold);
+  }
+  
+  .border-bullish {
+    border-color: var(--bullish);
+  }
+  
+  .border-bearish {
+    border-color: var(--bearish);
+  }
+  
+  /* Mobile-specific utilities */
+  .touch-target {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  .mobile-scroll {
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+  }
+  
+  .mobile-tap-highlight {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0.1);
+  }
+  
+  @media (max-width: 768px) {
+    .mobile-hidden {
+      display: none;
+    }
+    
+    .mobile-text-sm {
+      font-size: 0.875rem;
+      line-height: 1.25rem;
+    }
+    
+    .mobile-p-2 {
+      padding: 0.5rem;
+    }
+    
+    .mobile-gap-2 {
+      gap: 0.5rem;
+    }
+  }
+  
+  /* Enhanced touch interactions */
+  button, [role="button"] {
+    @apply touch-target mobile-tap-highlight;
+  }
+  
+  input, textarea, select {
+    @apply mobile-tap-highlight;
+  }
+  
+  /* Smooth scrolling for mobile */
+  .scroll-smooth {
+    @apply mobile-scroll;
+  }
+  
+  /* Focus states for better accessibility */
+  .focus-ring:focus {
+    outline: 2px solid var(--trading-accent);
+    outline-offset: 2px;
+  }
+}

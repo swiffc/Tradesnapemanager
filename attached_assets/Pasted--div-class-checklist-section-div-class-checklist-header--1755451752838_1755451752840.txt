@@ -1,0 +1,2016 @@
+<div class="checklist-section">
+                    <div class="checklist-header">
+                        <div class="checklist-title">✅ Pattern Recognition Checklist</div>
+                        <p>Verify pattern criteria match your proven setups</p>
+                    </div>
+
+                    <div class="checklist-grid">
+                        <div class="checklist-column">
+                            <div class="column-title">Pattern Identification</div>
+                            <div class="checklist-item" onclick="toggleCheck(this)">
+                                <input type="checkbox" id="pattern-type">
+                                <label for="pattern-type">Specific X-Vibz pattern identified</label>
+                            </div>
+                            <div class="checklist-item" onclick="toggleCheck(this)">
+                                <input type="checkbox" id="pattern-structure">
+                                <label for="pattern-structure">Pattern structure matches criteria</label>
+                            </div>
+                            <div class="checklist-item" onclick="toggleCheck(this)">
+                                <input type="checkbox" id="pattern-timeframe">
+                                <label for="pattern-timeframe">Correct timeframe for pattern</label>
+                            </div>
+                        </div>
+
+                        <div class="checklist-column">
+                            <div class="column-title">EMA Confirmation</div>
+                            <div class="checklist-item" onclick="toggleCheck(this)">
+                                <input type="checkbox" id="pattern-ema-interaction">
+                                <label for="pattern-ema-interaction">EMA interaction matches pattern rules</label>
+                            </div>
+                            <div class="checklist-item" onclick="toggleCheck(this)">
+                                <input type="checkbox" id="pattern-ema-respect">
+                                <label for="pattern-ema-respect">EMA respect/violation as expected</label>
+                            </div>
+                            <div class="checklist-item" onclick="toggleCheck(this)">
+                                <input type="checkbox" id="pattern-ema-cross">
+                                <label for="pattern-ema-cross">EMA crosses align with pattern</label>
+                            </div>
+                        </div>
+
+                        <div class="checklist-column">
+                            <div class="column-title">Technical Validation</div>
+                            <div class="checklist-item" onclick="toggleCheck(this)">
+                                <input type="checkbox" id="pattern-tdi">
+                                <label for="pattern-tdi">TDI indicators support pattern</label>
+                            </div>
+                            <div class="checklist-item" onclick="toggleCheck(this)">
+                                <input type="checkbox" id="pattern-candle">
+                                <label for="pattern-candle">Candlestick confirmation present</label>
+                            </div>
+                            <div class="checklist-item" onclick="toggleCheck(this)">
+                                <input type="checkbox" id="pattern-level">
+                                <label for="pattern-level">Pattern forms at key level</label>
+                            </div>
+                        </div>
+
+                        <div class="checklist-column">
+                            <div class="column-title">Pattern Quality</div>
+                            <div class="checklist-item" onclick="toggleCheck(this)">
+                                <input type="checkbox" id="pattern-clean">
+                                <label for="pattern-clean">Clean, unambiguous pattern</label>
+                            </div>
+                            <div class="checklist-item" onclick="toggleCheck(this)">
+                                <input type="checkbox" id="pattern-confluence">
+                                <label for="pattern-confluence">Multiple confluence factors</label>
+                            </div>
+                            <div class="checklist-item" onclick="toggleCheck(this)">
+                                <input type="checkbox" id="pattern-timing">
+                                <label for="pattern-timing">Optimal session timing</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="action-buttons">
+                        <button class="btn btn-reset" onclick="window.resetChecklist('pattern')">🔄 Reset</button>
+                        <button class="btn btn-next" id="pattern-next-btn" disabled onclick="window.nextStep('entry')">
+                            Next: Trade Entry →
+                        </button>
+                    </div>
+                </div>
+
+                <div class="navigation-hint">
+                    <p><strong>💡 Pro Tip:</strong> Stick to your proven X-Vibz patterns. These are your tested setups with documented success rates. Don't deviate from the rules that make each pattern unique.</p>
+                </div>
+            </div>
+
+            <!-- STEP 4: TRADE ENTRY -->
+            <div class="section" id="entry-section">
+                <div class="section-header">
+                    <div class="section-title">🚀 Step 4: Trade Entry</div>
+                    <div class="section-subtitle">Execute Trade with Technical Precision</div>
+                    <div class="section-description">Final verification and trade execution based on technical confirmation</div>
+                </div>
+
+                <div class="cards-grid">
+                    <div class="card entry-card">
+                        <div class="card-header">
+                            <div class="card-icon">⚡</div>
+                            <div class="card-title">Entry Execution</div>
+                        </div>
+                        <div class="card-content">
+                            <div class="card-item"><strong>Entry Timing:</strong> Always on candle closure, never during formation</div>
+                            <div class="card-item"><strong>13 EMA Confirmed:</strong> Enter on close below 13 EMA</div>
+                            <div class="card-item"><strong>Rail Road Track:</strong> Enter on 2nd candle close</div>
+                            <div class="card-item"><strong>Cord of Woods:</strong> Enter on 4th candle close</div>
+                            <div class="card-item"><strong>O.T.E.:</strong> Enter when price retraces to 62%-79% Fib zone</div>
+                            <div class="card-item"><strong>Stars:</strong> Enter on completion candle close</div>
+                        </div>
+                    </div>
+
+                    <div class="card entry-card">
+                        <div class="card-header">
+                            <div class="card-icon">⏰</div>
+                            <div class="card-title">Optimal Timing</div>
+                        </div>
+                        <div class="card-content">
+                            <div class="card-item">Session alignment (London/NY optimal)</div>
+                            <div class="card-item">Brinks timing consideration (9:45 PM, 3:45 AM, 9:45 AM EST)</div>
+                            <div class="card-item">Volatility period confirmation</div>
+                            <div class="card-item">News event awareness</div>
+                        </div>
+                    </div>
+
+                    <div class="card entry-card">
+                        <div class="card-header">
+                            <div class="card-icon">🔍</div>
+                            <div class="card-title">Final Validation</div>
+                        </div>
+                        <div class="card-content">
+                            <div class="card-item">All 4 steps completed systematically</div>
+                            <div class="card-item">High confidence in setup quality</div>
+                            <div class="card-item">Technical confluence present</div>
+                            <div class="card-item">Market conditions favorable</div>
+                            <div class="card-item">Entry pattern clearly identified</div>
+                            <div class="card-item">Session timing optimal</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="checklist-section">
+                    <div class="checklist-header">
+                        <div class="checklist-title">✅ Final Entry Checklist</div>
+                        <p>Complete ALL items before executing the trade</p>
+                    </div>
+
+                    <div class="checklist-grid">
+                        <div class="checklist-column">
+                            <div class="column-title">Technical Confirmation</div>
+                            <div class="checklist-item" onclick="toggleCheck(this)">
+                                <input type="checkbox" id="entry-candle-closure">
+                                <label for="entry-candle-closure">Entry executed on candle closure (not during formation)</label>
+                            </div>
+                            <div class="checklist-item" onclick="toggleCheck(this)">
+                                <input type="checkbox" id="entry-ote-zone">
+                                <label for="entry-ote-zone">O.T.E. - Key level taken out (PDH/PDL, PSH/PSL, PWH/PWL) + price in 62%-79% Fib zone</label>
+                            </div>
+                            <div class="checklist-item" onclick="toggleCheck(this)">
+                                <input type="checkbox" id="entry-visual-pattern">
+                                <label for="entry-visual-pattern">Visual pattern completed (COW/RR/13EMA/Stars)</label>
+                            </div>
+                        </div>
+
+                        <div class="checklist-column">
+                            <div class="column-title">Market Conditions</div>
+                            <div class="checklist-item" onclick="toggleCheck(this)">
+                                <input type="checkbox" id="entry-session-active">
+                                <label for="entry-session-active">Within optimal session timing</label>
+                            </div>
+                            <div class="checklist-item" onclick="toggleCheck(this)">
+                                <input type="checkbox" id="entry-volatility">
+                                <label for="entry-volatility">Adequate volatility present</label>
+                            </div>
+                            <div class="checklist-item" onclick="toggleCheck(this)">
+                                <input type="checkbox" id="entry-news">
+                                <label for="entry-news">No major news events pending</label>
+                            </div>
+                        </div>
+
+                        <div class="checklist-column">
+                            <div class="column-title">Target & Levels</div>
+                            <div class="checklist-item" onclick="toggleCheck(this)">
+                                <input type="checkbox" id="entry-targets">
+                                <label for="entry-targets">Profit targets identified</label>
+                            </div>
+                            <div class="checklist-item" onclick="toggleCheck(this)">
+                                <input type="checkbox" id="entry-liquidity">
+                                <label for="entry-liquidity">Next liquidity level marked</label>
+                            </div>
+                            <div class="checklist-item" onclick="toggleCheck(this)">
+                                <input type="checkbox" id="entry-adr-level">
+                                <label for="entry-adr-level">ADR level consideration factored in</label>
+                            </div>
+                        </div>
+
+                        <div class="checklist-column">
+                            <div class="column-title">Final Confirmation</div>
+                            <div class="checklist-item" onclick="toggleCheck(this)">
+                                <input type="checkbox" id="entry-all-steps">
+                                <label for="entry-all-steps">All previous steps completed</label>
+                            </div>
+                            <div class="checklist-item" onclick="toggleCheck(this)">
+                                <input type="checkbox" id="entry-confidence">
+                                <label for="entry-confidence">High confidence in setup</label>
+                            </div>
+                            <div class="checklist-item" onclick="toggleCheck(this)">
+                                <input type="checkbox" id="entry-ready">
+                                <label for="entry-ready">Ready to execute trade</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="action-buttons">
+                        <button class="btn btn-reset" onclick="window.resetChecklist('entry')">🔄 Reset</button>
+                        <button class="btn btn-execute" id="entry-execute-btn" disabled onclick="window.executeTrade()">
+                            🚀 EXECUTE TRADE
+                        </button>
+                    </div>
+                </div>
+
+                <div class="key-concepts">
+                    <h3 style="color: #ffeb3b; margin-bottom: 15px;">💡 X-Vibz Entry Execution Summary</h3>
+                    <div class="concepts-grid">
+                        <div class="concept-card">
+                            <h4>Second Leg Required Entries</h4>
+                            <ul style="margin-top: 10px; padding-left: 20px;">
+                                <li>⚡ <strong>13 EMA Confirmed:</strong> Close below 13 EMA on 2nd leg</li>
+                                <li>🚂 <strong>Rail Road Track:</strong> 2 candles take out previous high/low</li>
+                                <li>🌲 <strong>Cord of Woods:</strong> 4 candles at extreme</li>
+                                <li>⭐ <strong>Evening-Morning Star:</strong> Classic reversal patterns</li>
+                                <li><strong>Rule:</strong> All require second leg formation</li>
+                            </ul>
+                        </div>
+                        <div class="concept-card">
+                            <h4>No Second Leg Required</h4>
+                            <ul style="margin-top: 10px; padding-left: 20px;">
+                                <li>🎯 <strong>O.T.E. (Optimal Trade Entry)</strong></li>
+                                <li><strong>Trigger:</strong> Only when key levels broken</li>
+                                <li><strong>Levels:</strong> PDH/PDL, PSH/PSL, PWH/PWL, PMH/PML, PYH/PYL</li>
+                                <li><strong>Zone:</strong> 62%-79% Fibonacci retracement</li>
+                                <li><strong>Sweet Spot:</strong> 70.5% retracement level</li>
+                                <li><strong>Timing:</strong> Best during NY session</li>
+                            </ul>
+                        </div>
+                        <div class="concept-card">
+                            <h4>Universal Execution Rule</h4>
+                            <ul style="margin-top: 10px; padding-left: 20px;">
+                                <li><strong>Entry Timing:</strong> ALWAYS on candle closure</li>
+                                <li><strong>Never Enter:</strong> During candle formation</li>
+                                <li><strong>Discipline:</strong> Wait for complete confirmation</li>
+                                <li><strong>Consistency:</strong> Same rule across all patterns</li>
+                            </ul>
+                        </div>
+                        <div class="concept-card">
+                            <h4>Entry Categories</h4>
+                            <ul style="margin-top: 10px; padding-left: 20px;">
+                                <li><strong>Visual Entries:</strong> COW, Rail Road Track</li>
+                                <li><strong>EMA Entries:</strong> 13 EMA Confirmed</li>
+                                <li><strong>ICT Entries:</strong> O.T.E. (level breaks only)</li>
+                                <li><strong>Candlestick:</strong> Morning/Evening Stars</li>
+                                <li><strong>Confluence:</strong> Can combine multiple signals</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="navigation-hint">
+                    <p><strong>💡 Final Entry Tip:</strong> O.T.E. is your only entry that doesn't need a second leg - it's triggered specifically when major levels (PDH/PDL, PSH/PSL, PWH/PWL, etc.) are broken. All other X-Vibz patterns require proper second leg formation before entry consideration.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Completion Celebration -->
+        <div id="completion-celebration" class="completion-celebration">
+            <h2>🎉 Trade Executed Successfully!</h2>
+            <p>All criteria verified and trade placed with proper technical confirmation.</p>
+            <p style="margin-top: 15px;"><strong>Remember:</strong> Monitor price action and stick to your plan!</p>
+            <button onclick="window.hideCompletionCelebration()" style="margin-top: 20px; padding: 12px 25px; background: white; color: #27ae60; border: none; border-radius: 25px; font-weight: bold;">Continue Trading</button>
+        </div>
+    </div>
+
+    <script>
+        let currentStep = 'bias';
+        let completedSteps = [];
+        let stepProgress = {
+            bias: 0,
+            setup: 0,
+            pattern: 0,
+            entry: 0
+        };
+
+        // Show specific section
+        window.showSection = function(sectionName) {
+            // Hide all sections
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => section.classList.remove('active'));
+            
+            // Remove active from flow steps
+            const flowSteps = document.querySelectorAll('.flow-step');
+            flowSteps.forEach(step => step.classList.remove('active'));
+            
+            // Show target section
+            const targetSection = document.getElementById(sectionName + '-section');
+            if (targetSection) {
+                console.log('Found entry section:', targetSection);
+                console.log('Adding active class to:', targetSection);
+                targetSection.classList.add('active');
+            }
+            
+            // Activate flow step
+            const targetStep = document.getElementById('step-' + sectionName);
+            if (targetStep) {
+                targetStep.classList.add('active');
+            }
+            
+            currentStep = sectionName;
+            updateCurrentStepIndicator();
+            updateProgressSteps();
+        }
+
+        // Update current step indicator
+        function updateCurrentStepIndicator() {
+            const indicator = document.getElementById('current-step');
+            const stepNames = {
+                bias: 'Step 1: Bias Analysis',
+                setup: 'Step 2: Setup Identification', 
+                pattern: 'Step 3: Pattern Recognition',
+                entry: 'Step 4: Trade Entry'
+            };
+            
+            if (indicator) {
+                indicator.textContent = stepNames[currentStep] || 'Trading Process';
+            }
+        }
+
+        // Update progress steps visual
+        function updateProgressSteps() {
+            const steps = ['bias', 'setup', 'pattern', 'entry'];
+            
+            steps.forEach((step, index) => {
+                const progressStep = document.getElementById('progress-' + step);
+                if (progressStep) {
+                    progressStep.classList.remove('active', 'completed');
+                    
+                    if (completedSteps.includes(step)) {
+                        progressStep.classList.add('completed');
+                    } else if (step === currentStep) {
+                        progressStep.classList.add('active');
+                    }
+                }
+            });
+        }
+
+        // Toggle checkbox and update progress
+        window.toggleCheck = function(item) {
+            const checkbox = item.querySelector('input[type="checkbox"]');
+            if (checkbox) {
+                checkbox.checked = !checkbox.checked;
+                
+                if (checkbox.checked) {
+                    item.classList.add('completed');
+                } else {
+                    item.classList.remove('completed');
+                }
+                
+                // Update step progress
+                const stepName = checkbox.id.split('-')[0];
+                updateStepProgress(stepName);
+            }
+        }
+
+        // Update progress for specific step
+        function updateStepProgress(stepName) {
+            const checkboxes = document.querySelectorAll(`input[id^="${stepName}-"]:not([id$="-btn"])`);
+            const nextBtn = document.getElementById(`${stepName}-next-btn`) || document.getElementById(`${stepName}-execute-btn`);
+            
+            if (!checkboxes.length) return;
+            
+            let checked = 0;
+            checkboxes.forEach(checkbox => {
+                if (checkbox.checked) checked++;
+            });
+            
+            const percentage = Math.round((checked / checkboxes.length) * 100);
+            stepProgress[stepName] = percentage;
+            
+            // Enable next button when 100% complete
+            if (nextBtn) {
+                if (percentage === 100) {
+                    nextBtn.disabled = false;
+                    if (!completedSteps.includes(stepName)) {
+                        completedSteps.push(stepName);
+                        if (stepName !== 'entry') {
+                            showCompletionCelebration(`Step ${getStepNumber(stepName)} Complete!`, 'Ready for next step');
+                        }
+                    }
+                } else {
+                    nextBtn.disabled = true;
+                    completedSteps = completedSteps.filter(step => step !== stepName);
+                }
+            }
+            
+            updateMasterProgress();
+            updateProgressSteps();
+        }
+
+        // Update master progress bar
+        function updateMasterProgress() {
+            const totalProgress = Object.values(stepProgress).reduce((sum, progress) => sum + progress, 0);
+            const masterPercentage = Math.round(totalProgress / 4);
+            
+            const progressFill = document.getElementById('master-progress-fill');
+            const progressText = document.getElementById('master-progress-text');
+            
+            if (progressFill) {
+                progressFill.style.width = masterPercentage + '%';
+            }
+            
+            <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>X-Vibz Trading Setup Manual</title>
+    <script>
+        // Define all functions immediately in global scope
+        var currentStep = 'bias';
+        var completedSteps = [];
+        var stepProgress = {
+            bias: 0,
+            setup: 0,
+            pattern: 0,
+            entry: 0
+        };
+
+        function showSection(sectionName) {
+            console.log('showSection called:', sectionName);
+            
+            var sections = document.querySelectorAll('.section');
+            for (var i = 0; i < sections.length; i++) {
+                sections[i].classList.remove('active');
+            }
+            
+            var flowSteps = document.querySelectorAll('.flow-step');
+            for (var i = 0; i < flowSteps.length; i++) {
+                flowSteps[i].classList.remove('active');
+            }
+            
+            var targetSection = document.getElementById(sectionName + '-section');
+            if (targetSection) {
+                targetSection.classList.add('active');
+            }
+            
+            var targetStep = document.getElementById('step-' + sectionName);
+            if (targetStep) {
+                targetStep.classList.add('active');
+            }
+            
+            currentStep = sectionName;
+            updateCurrentStepIndicator();
+            updateProgressSteps();
+        }
+
+        function updateCurrentStepIndicator() {
+            var indicator = document.getElementById('current-step');
+            var stepNames = {
+                bias: 'Step 1: Bias Analysis',
+                setup: 'Step 2: Setup Identification', 
+                pattern: 'Step 3: Pattern Recognition',
+                entry: 'Step 4: Trade Entry'
+            };
+            
+            if (indicator) {
+                indicator.textContent = stepNames[currentStep] || 'Trading Process';
+            }
+        }
+
+        function updateProgressSteps() {
+            var steps = ['bias', 'setup', 'pattern', 'entry'];
+            
+            for (var i = 0; i < steps.length; i++) {
+                var step = steps[i];
+                var progressStep = document.getElementById('progress-' + step);
+                if (progressStep) {
+                    progressStep.classList.remove('active', 'completed');
+                    
+                    if (completedSteps.indexOf(step) !== -1) {
+                        progressStep.classList.add('completed');
+                    } else if (step === currentStep) {
+                        progressStep.classList.add('active');
+                    }
+                }
+            }
+        }
+
+        function toggleCheck(item) {
+            var checkbox = item.querySelector('input[type="checkbox"]');
+            if (checkbox) {
+                checkbox.checked = !checkbox.checked;
+                
+                if (checkbox.checked) {
+                    item.classList.add('completed');
+                } else {
+                    item.classList.remove('completed');
+                }
+                
+                var stepName = checkbox.id.split('-')[0];
+                updateStepProgress(stepName);
+            }
+        }
+
+        function updateStepProgress(stepName) {
+            var checkboxes = document.querySelectorAll('input[id^="' + stepName + '-"]:not([id$="-btn"])');
+            var nextBtn = document.getElementById(stepName + '-next-btn') || document.getElementById(stepName + '-execute-btn');
+            
+            if (!checkboxes.length) return;
+            
+            var checked = 0;
+            for (var i = 0; i < checkboxes.length; i++) {
+                if (checkboxes[i].checked) checked++;
+            }
+            
+            var percentage = Math.round((checked / checkboxes.length) * 100);
+            stepProgress[stepName] = percentage;
+            
+            if (nextBtn) {
+                if (percentage === 100) {
+                    nextBtn.disabled = false;
+                    if (completedSteps.indexOf(stepName) === -1) {
+                        completedSteps.push(stepName);
+                        if (stepName !== 'entry') {
+                            showCompletionCelebration('Step ' + getStepNumber(stepName) + ' Complete!', 'Ready for next step');
+                        }
+                    }
+                } else {
+                    nextBtn.disabled = true;
+                    var newCompleted = [];
+                    for (var i = 0; i < completedSteps.length; i++) {
+                        if (completedSteps[i] !== stepName) {
+                            newCompleted.push(completedSteps[i]);
+                        }
+                    }
+                    completedSteps = newCompleted;
+                }
+            }
+            
+            updateMasterProgress();
+            updateProgressSteps();
+        }
+
+        function updateMasterProgress() {
+            var totalProgress = 0;
+            for (var key in stepProgress) {
+                totalProgress += stepProgress[key];
+            }
+            var masterPercentage = Math.round(totalProgress / 4);
+            
+            var progressFill = document.getElementById('master-progress-fill');
+            var progressText = document.getElementById('master-progress-text');
+            
+            if (progressFill) {
+                progressFill.style.width = masterPercentage + '%';
+            }
+            
+            if (progressText) {
+                progressText.textContent = masterPercentage + '% Complete';
+            }
+        }
+
+        function getStepNumber(stepName) {
+            var stepNumbers = { bias: 1, setup: 2, pattern: 3, entry: 4 };
+            return stepNumbers[stepName] || 0;
+        }
+
+        function nextStep(nextStepName) {
+            showSection(nextStepName);
+        }
+
+        function resetChecklist(stepName) {
+            var checkboxes = document.querySelectorAll('input[id^="' + stepName + '-"]:not([id$="-btn"])');
+            var items = document.querySelectorAll('.checklist-item');
+            
+            for (var i = 0; i < checkboxes.length; i++) {
+                checkboxes[i].checked = false;
+            }
+            
+            for (var i = 0; i < items.length; i++) {
+                items[i].classList.remove('completed');
+            }
+            
+            stepProgress[stepName] = 0;
+            var newCompleted = [];
+            for (var i = 0; i < completedSteps.length; i++) {
+                if (completedSteps[i] !== stepName) {
+                    newCompleted.push(completedSteps[i]);
+                }
+            }
+            completedSteps = newCompleted;
+            
+            updateStepProgress(stepName);
+        }
+
+        function selectSetup(setupType) {
+            var setupCards = document.querySelectorAll('.setup-card');
+            for (var i = 0; i < setupCards.length; i++) {
+                setupCards[i].style.border = '2px solid transparent';
+            }
+            
+            if (window.event && window.event.currentTarget) {
+                window.event.currentTarget.style.border = '2px solid #ff6b35';
+            }
+            
+            var setupCheckbox = document.getElementById('setup-type');
+            if (setupCheckbox) {
+                setupCheckbox.checked = true;
+                setupCheckbox.closest('.checklist-item').classList.add('completed');
+                updateStepProgress('setup');
+            }
+        }
+
+        function executeTrade() {
+            var confirmation = confirm('🚨 FINAL TRADE EXECUTION 🚨\n\nAre you absolutely certain?\n\n✅ All 4 steps completed\n✅ Technical confirmation verified\n✅ Market conditions confirmed\n\nThis will execute your trade!');
+            
+            if (confirmation) {
+                showCompletionCelebration('🎉 TRADE EXECUTED! 🎉', 'Position opened with technical confirmation');
+                
+                setTimeout(function() {
+                    resetAllSteps();
+                    showSection('bias');
+                }, 3000);
+            }
+        }
+
+        function resetAllSteps() {
+            var steps = ['bias', 'setup', 'pattern', 'entry'];
+            for (var i = 0; i < steps.length; i++) {
+                resetChecklist(steps[i]);
+            }
+            
+            completedSteps = [];
+            stepProgress = { bias: 0, setup: 0, pattern: 0, entry: 0 };
+            updateMasterProgress();
+            updateProgressSteps();
+        }
+
+        function showCompletionCelebration(title, message) {
+            title = title || '🎉 Step Complete!';
+            message = message || 'Great job!';
+            
+            var celebration = document.getElementById('completion-celebration');
+            if (celebration) {
+                celebration.querySelector('h2').textContent = title;
+                celebration.querySelector('p').textContent = message;
+                celebration.style.display = 'block';
+                
+                setTimeout(hideCompletionCelebration, 2000);
+            }
+        }
+
+        function hideCompletionCelebration() {
+            var celebration = document.getElementById('completion-celebration');
+            if (celebration) {
+                celebration.style.display = 'none';
+            }
+        }
+
+        function updateCurrentTime() {
+            var now = new Date();
+            var est = new Date(now.toLocaleString("en-US", {timeZone: "America/New_York"}));
+            var hour = est.getHours();
+            
+            var timeCards = document.querySelectorAll('.time-card');
+            for (var i = 0; i < timeCards.length; i++) {
+                timeCards[i].classList.remove('active');
+            }
+            
+            if ((hour >= 3 && hour < 6)) {
+                if (timeCards[0]) timeCards[0].classList.add('active');
+            } else if (hour >= 9 && hour < 12) {
+                if (timeCards[1]) timeCards[1].classList.add('active');
+            } else if (hour === 21 || hour === 3 || hour === 9) {
+                if (timeCards[2]) timeCards[2].classList.add('active');
+            }
+        }
+
+        // Make sure functions are available globally
+        window.showSection = showSection;
+        window.nextStep = nextStep;
+        window.toggleCheck = toggleCheck;
+        window.resetChecklist = resetChecklist;
+        window.selectSetup = selectSetup;
+        window.executeTrade = executeTrade;
+        window.hideCompletionCelebration = hideCompletionCelebration;
+    </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: #fff;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 25px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .trading-flow {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .flow-step {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 2px solid transparent;
+            backdrop-filter: blur(10px);
+        }
+
+        .flow-step:hover {
+            transform: translateY(-5px);
+            border-color: #ff6b35;
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .flow-step.active {
+            border-color: #ff6b35;
+            background: rgba(255, 107, 53, 0.2);
+            transform: scale(1.05);
+        }
+
+        .flow-number {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            background: #ff6b35;
+            border-radius: 50%;
+            line-height: 50px;
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .flow-title {
+            font-size: 1.3em;
+            color: #ffeb3b;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .flow-description {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+
+        .main-content {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+            min-height: 600px;
+        }
+
+        .section {
+            display: none;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 12px;
+        }
+
+        .section-title {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            color: #ff6b35;
+        }
+
+        .section-subtitle {
+            font-size: 1.2em;
+            color: #ffeb3b;
+            margin-bottom: 10px;
+        }
+
+        .section-description {
+            font-size: 1em;
+            opacity: 0.9;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            padding: 25px;
+            border-left: 5px solid;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            background: rgba(0, 0, 0, 0.4);
+        }
+
+        .bias-card { border-left-color: #e74c3c; }
+        .setup-card { border-left-color: #f39c12; }
+        .pattern-card { border-left-color: #27ae60; }
+        .entry-card { border-left-color: #3498db; }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .card-icon {
+            font-size: 2em;
+        }
+
+        .card-title {
+            font-size: 1.4em;
+            color: #ffeb3b;
+            font-weight: 600;
+        }
+
+        .card-content {
+            margin-bottom: 20px;
+        }
+
+        .card-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            transition: all 0.2s ease;
+        }
+
+        .card-item:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateX(5px);
+        }
+
+        .checklist-section {
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 15px;
+            padding: 30px;
+            margin-top: 30px;
+        }
+
+        .checklist-header {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .checklist-title {
+            font-size: 1.5em;
+            color: #ff6b35;
+            margin-bottom: 10px;
+        }
+
+        .progress-container {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 25px;
+        }
+
+        .progress-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .progress-title {
+            font-size: 1.3em;
+            color: #ffeb3b;
+            margin-bottom: 10px;
+        }
+
+        .progress-steps {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .progress-step {
+            text-align: center;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .progress-step.completed {
+            background: rgba(39, 174, 96, 0.3);
+            border: 2px solid #27ae60;
+        }
+
+        .progress-step.active {
+            background: rgba(255, 107, 53, 0.3);
+            border: 2px solid #ff6b35;
+        }
+
+        .step-number {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            background: #666;
+            border-radius: 50%;
+            line-height: 30px;
+            font-size: 0.9em;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .progress-step.completed .step-number {
+            background: #27ae60;
+        }
+
+        .progress-step.active .step-number {
+            background: #ff6b35;
+        }
+
+        .step-name {
+            font-size: 0.9em;
+            font-weight: 600;
+        }
+
+        .checklist-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+        }
+
+        .checklist-column {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 25px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .column-title {
+            font-weight: 600;
+            color: #ffeb3b;
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 1.2em;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(255, 235, 59, 0.3);
+        }
+
+        .checklist-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+            padding: 12px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .checklist-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .checklist-item.completed {
+            background: rgba(76, 175, 80, 0.2);
+            border-left: 4px solid #4caf50;
+        }
+
+        .checklist-item input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            accent-color: #ff6b35;
+            cursor: pointer;
+        }
+
+        .checklist-item label {
+            cursor: pointer;
+            flex: 1;
+            font-size: 1em;
+        }
+
+        .master-progress {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 30px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            overflow: hidden;
+            margin: 15px 0;
+            position: relative;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #ff6b35, #ffeb3b);
+            width: 0%;
+            transition: width 0.5s ease;
+            position: relative;
+        }
+
+        .progress-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-weight: bold;
+            color: white;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
+            z-index: 1;
+        }
+
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 25px;
+        }
+
+        .btn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-size: 1em;
+        }
+
+        .btn-next {
+            background: #ff6b35;
+            color: white;
+        }
+
+        .btn-next:hover {
+            background: #e55a2b;
+            transform: scale(1.05);
+        }
+
+        .btn-next:disabled {
+            background: #666;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn-reset {
+            background: #e74c3c;
+            color: white;
+        }
+
+        .btn-reset:hover {
+            background: #c0392b;
+            transform: scale(1.05);
+        }
+
+        .btn-execute {
+            background: #27ae60;
+            color: white;
+            font-size: 1.1em;
+            padding: 18px 35px;
+        }
+
+        .btn-execute:hover {
+            background: #219a52;
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(39, 174, 96, 0.4);
+        }
+
+        .btn-execute:disabled {
+            background: #666;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .session-timing {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+
+        .timing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .time-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .time-card.active {
+            border-color: #ff6b35;
+            background: rgba(255, 107, 53, 0.2);
+        }
+
+        .completion-celebration {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(39, 174, 96, 0.95);
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            z-index: 1000;
+            animation: celebrationPop 0.5s ease-out;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        @keyframes celebrationPop {
+            0% { transform: translate(-50%, -50%) scale(0.5); opacity: 0; }
+            100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+        }
+
+        .key-concepts {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 25px;
+        }
+
+        .concepts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .concept-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #ffeb3b;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .trading-flow {
+                grid-template-columns: 1fr 1fr;
+                gap: 15px;
+            }
+            
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .checklist-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 250px;
+            }
+        }
+
+        .navigation-hint {
+            text-align: center;
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(255, 235, 59, 0.1);
+            border-radius: 10px;
+            border: 1px solid rgba(255, 235, 59, 0.3);
+        }
+
+        .current-step-indicator {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 15px 20px;
+            border-radius: 25px;
+            font-weight: 600;
+            z-index: 100;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📈 X-Vibz Trading Manual</h1>
+            <p>Systematic 4-Step Trading Process: Bias → Setup → Pattern → Entry</p>
+        </div>
+
+        <!-- Current Step Indicator -->
+        <div class="current-step-indicator" id="current-step">
+            Step 1: Bias Analysis
+        </div>
+
+        <!-- Trading Flow Navigation -->
+        <div class="trading-flow">
+            <div class="flow-step active" id="step-bias">
+                <div class="flow-number">1</div>
+                <div class="flow-title">📊 BIAS</div>
+                <div class="flow-description">Determine market direction and daily bias using DOL and higher timeframes</div>
+            </div>
+            
+            <div class="flow-step" id="step-setup">
+                <div class="flow-number">2</div>
+                <div class="flow-title">🎯 SETUP</div>
+                <div class="flow-description">Identify setup type (1, 2, 3, 4) and optimal locations</div>
+            </div>
+            
+            <div class="flow-step" id="step-pattern">
+                <div class="flow-number">3</div>
+                <div class="flow-title">🔍 PATTERN</div>
+                <div class="flow-description">Recognize specific patterns and candlestick confirmations</div>
+            </div>
+            
+            <div class="flow-step" id="step-entry">
+                <div class="flow-number">4</div>
+                <div class="flow-title">🚀 ENTRY</div>
+                <div class="flow-description">Execute trade with technical confirmation</div>
+            </div>
+        </div>
+
+        <!-- Progress Tracking -->
+        <div class="progress-container">
+            <div class="progress-header">
+                <div class="progress-title">🎯 Trading Process Progress</div>
+                <p>Complete each step systematically for optimal results</p>
+            </div>
+            
+            <div class="progress-steps">
+                <div class="progress-step active" id="progress-bias">
+                    <div class="step-number">1</div>
+                    <div class="step-name">Bias</div>
+                </div>
+                <div class="progress-step" id="progress-setup">
+                    <div class="step-number">2</div>
+                    <div class="step-name">Setup</div>
+                </div>
+                <div class="progress-step" id="progress-pattern">
+                    <div class="step-number">3</div>
+                    <div class="step-name">Pattern</div>
+                </div>
+                <div class="progress-step" id="progress-entry">
+                    <div class="step-number">4</div>
+                    <div class="step-name">Entry</div>
+                </div>
+            </div>
+            
+            <div class="master-progress">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="master-progress-fill"></div>
+                    <div class="progress-text" id="master-progress-text">0% Complete</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content Area -->
+        <div class="main-content">
+            
+            <!-- STEP 1: BIAS ANALYSIS -->
+            <div class="section active" id="bias-section">
+                <div class="section-header">
+                    <div class="section-title">📊 Step 1: Bias Analysis</div>
+                    <div class="section-subtitle">Determine Market Direction & Daily Bias</div>
+                    <div class="section-description">Use levels analysis, EMA crossovers, Asian box stacking, and ADR to identify market direction</div>
+                </div>
+
+                <div class="cards-grid">
+                    <div class="card bias-card">
+                        <div class="card-header">
+                            <div class="card-icon">📈</div>
+                            <div class="card-title">Key Levels Analysis</div>
+                        </div>
+                        <div class="card-content">
+                            <div class="card-item"><strong>PDH/PDL:</strong> Previous Day High/Low levels</div>
+                            <div class="card-item"><strong>PSH/PSL:</strong> Previous Session High/Low levels</div>
+                            <div class="card-item"><strong>PWH/PWL:</strong> Previous Week High/Low levels</div>
+                            <div class="card-item"><strong>PMH/PML:</strong> Previous Month High/Low levels</div>
+                            <div class="card-item"><strong>PYH/PYL:</strong> Previous Year High/Low levels</div>
+                            <div class="card-item"><strong>HOD/LOD:</strong> Current session High/Low of Day</div>
+                            <div class="card-item"><strong>WVVM:</strong> Weekly Volume Value Mean levels</div>
+                            <div class="card-item"><strong>MAAW:</strong> Monthly Average All Weighted levels</div>
+                            <div class="card-item"><strong>Psychological Levels:</strong> Round numbers, 50s, 00s</div>
+                        </div>
+                    </div>
+
+                    <div class="card bias-card">
+                        <div class="card-header">
+                            <div class="card-icon">⚡</div>
+                            <div class="card-title">EMA Crossover Analysis</div>
+                        </div>
+                        <div class="card-content">
+                            <div class="card-item"><strong>13/50 Cross:</strong> Short-term momentum shift signal</div>
+                            <div class="card-item"><strong>50/200 Cross:</strong> Medium-term trend change</div>
+                            <div class="card-item"><strong>200/800 Cross:</strong> Long-term trend reversal signal</div>
+                            <div class="card-item"><strong>13/200 Cross:</strong> Strong directional bias shift</div>
+                            <div class="card-item"><strong>EMA Stack Order:</strong> Bull (13>50>200>800) vs Bear (13<50<200<800)</div>
+                            <div class="card-item"><strong>800 EMA Trend:</strong> Ultimate trend direction filter</div>
+                            <div class="card-item"><strong>Cross Confirmation:</strong> Multiple timeframe alignment</div>
+                            <div class="card-item"><strong>False Cross Filter:</strong> Wait for clean separation</div>
+                        </div>
+                    </div>
+
+                    <div class="card bias-card">
+                        <div class="card-header">
+                            <div class="card-icon">📦</div>
+                            <div class="card-title">Asian Box Stacking</div>
+                        </div>
+                        <div class="card-content">
+                            <div class="card-item"><strong>Asian Range:</strong> Identify high/low of Asian session</div>
+                            <div class="card-item"><strong>Box Stacking:</strong> Multiple Asian boxes alignment</div>
+                            <div class="card-item"><strong>Bias Direction:</strong> Which side boxes are stacking</div>
+                            <div class="card-item"><strong>Break Direction:</strong> Expected breakout side</div>
+                            <div class="card-item"><strong>Target Calculation:</strong> Box height projection</div>
+                            <div class="card-item"><strong>Invalidation Level:</strong> Box reclaim scenarios</div>
+                        </div>
+                    </div>
+
+                    <div class="card bias-card">
+                        <div class="card-header">
+                            <div class="card-icon">📏</div>
+                            <div class="card-title">3x ADR Analysis</div>
+                        </div>
+                        <div class="card-content">
+                            <div class="card-item"><strong>ADR Calculation:</strong> 20-day Average Daily Range</div>
+                            <div class="card-item"><strong>Current ADR %:</strong> How much of ADR is used today</div>
+                            <div class="card-item"><strong>3x ADR Level:</strong> Extreme extension target</div>
+                            <div class="card-item"><strong>ADR Zones:</strong> 25%, 50%, 75%, 100%, 150%, 200%</div>
+                            <div class="card-item"><strong>Reversal Probability:</strong> Higher at 100%+ ADR</div>
+                            <div class="card-item"><strong>Continuation Bias:</strong> Lower ADR = more room to move</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="key-concepts">
+                    <h3 style="color: #ffeb3b; margin-bottom: 15px;">💡 Bias Analysis Framework</h3>
+                    <div class="concepts-grid">
+                        <div class="concept-card">
+                            <h4>Bullish Bias Signals</h4>
+                            <ul style="margin-top: 10px; padding-left: 20px;">
+                                <li>13/50 EMA bullish cross</li>
+                                <li>Price above 200 & 800 EMA</li>
+                                <li>Full EMA stack: 13>50>200>800</li>
+                                <li>Asian boxes stacking higher</li>
+                                <li>Price above key levels (PDH, PSH, PWH, WVVM)</li>
+                                <li>Above MAAW weekly/monthly levels</li>
+                                <li>Low ADR usage (room to move up)</li>
+                                <li>ERL above current price</li>
+                            </ul>
+                        </div>
+                        <div class="concept-card">
+                            <h4>Bearish Bias Signals</h4>
+                            <ul style="margin-top: 10px; padding-left: 20px;">
+                                <li>13/50 EMA bearish cross</li>
+                                <li>Price below 200 & 800 EMA</li>
+                                <li>Full EMA stack: 13<50<200<800</li>
+                                <li>Asian boxes stacking lower</li>
+                                <li>Price below key levels (PDL, PSL, PWL, WVVM)</li>
+                                <li>Below MAAW weekly/monthly levels</li>
+                                <li>Low ADR usage (room to move down)</li>
+                                <li>ERL below current price</li>
+                            </ul>
+                        </div>
+                        <div class="concept-card">
+                            <h4>WVVM & MAAW Levels</h4>
+                            <ul style="margin-top: 10px; padding-left: 20px;">
+                                <li><strong>WVVM:</strong> Weekly Volume Value Mean</li>
+                                <li><strong>MAAW:</strong> Monthly Average All Weighted</li>
+                                <li><strong>Significance:</strong> High-probability reversal zones</li>
+                                <li><strong>Confluence:</strong> Combine with other levels</li>
+                                <li><strong>Direction:</strong> Above = bullish, Below = bearish</li>
+                                <li><strong>Timing:</strong> Weekly/monthly rebalancing</li>
+                            </ul>
+                        </div>
+                        <div class="concept-card">
+                            <h4>800 EMA Significance</h4>
+                            <ul style="margin-top: 10px; padding-left: 20px;">
+                                <li><strong>Trend Filter:</strong> Ultimate direction guide</li>
+                                <li><strong>Support/Resistance:</strong> Major dynamic level</li>
+                                <li><strong>Reversal Signal:</strong> 200/800 cross importance</li>
+                                <li><strong>Confluence:</strong> Adds weight to setups</li>
+                                <li><strong>Long-term View:</strong> Weekly/Monthly bias</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="session-timing">
+                    <h3 style="color: #ffeb3b; margin-bottom: 15px;">🕐 Session Timing & Levels</h3>
+                    <div class="timing-grid">
+                        <div class="time-card">
+                            <h4>🌏 Asian Session (8 PM - 5 AM EST)</h4>
+                            <p><strong>Focus:</strong> Range identification</p>
+                            <p><strong>Key Levels:</strong> Asian High/Low</p>
+                            <p><strong>Box Stacking:</strong> Direction bias</p>
+                            <p><strong>Volume:</strong> Generally lower</p>
+                        </div>
+                        <div class="time-card">
+                            <h4>🇬🇧 London Session (3:30 AM - 5:30 AM EST)</h4>
+                            <p><strong>Focus:</strong> Breakouts & momentum</p>
+                            <p><strong>Key Levels:</strong> LOD/HOD, PDH/PDL</p>
+                            <p><strong>EMA Activity:</strong> Cross confirmations</p>
+                            <p><strong>Volume:</strong> High volatility</p>
+                        </div>
+                        <div class="time-card">
+                            <h4>🇺🇸 New York Session (9:30 AM - 11:00 AM EST)</h4>
+                            <p><strong>Focus:</strong> Trend continuation</p>
+                            <p><strong>Key Levels:</strong> ADR extensions</p>
+                            <p><strong>Momentum:</strong> Follow-through moves</p>
+                            <p><strong>Volume:</strong> Highest of day</p>
+                        </div>
+                        <div class="time-card">
+                            <h4>⏰ Brinks Timing</h4>
+                            <p><strong>Times:</strong> 9:45 PM, 3:45 AM, 9:45 AM EST</p>
+                            <p><strong>Focus:</strong> Precise reversal setups</p>
+                            <p><strong>Confluence:</strong> Multiple factors align</p>
+                            <p><strong>Accuracy:</strong> Highest probability</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="checklist-section">
+                    <div class="checklist-header">
+                        <div class="checklist-title">✅ Comprehensive Bias Analysis Checklist</div>
+                        <p>Complete all items for accurate bias determination</p>
+                    </div>
+
+                    <div class="checklist-grid">
+                        <div class="checklist-column">
+                            <div class="column-title">Key Levels Analysis</div>
+                            <div class="checklist-item" onclick="toggleCheck(this)">
+                                <input type="checkbox" id="bias-pdh-psl">
+                                <label for="bias-pdh-psl">PDH/PDL and PSH/PSL levels identified and marked</label>
+                            </div>
+                            <div class="checklist-item" onclick="toggleCheck(this)">
+                                <input type="checkbox" id="bias-weekly-monthly">
+                                <label for="bias-weekly-monthly">PWH/PWL and PMH/PML levels marked</label>
+                            </div>
+                            <div class="checklist-item" onclick="toggleCheck(this)">
+                                <input type="checkbox" id="bias-wvvm-maaw">
+                                <label for="bias-wvvm-maaw">WVVM and MAAW levels identified</label>
+                            </div>
+                            <div class="checklist-item" onclick="toggleCheck(this)">
+                                <input type="checkbox" id="bias-current-levels">
+                                <label for="bias-current-levels">Current HOD/LOD and psychological levels noted</label>
+                            </div>
+                        </div>
+
+                        <div class="checklist-column">
+                            <div class="column-title">EMA Crossover Status</div>
+                            <div class="checklist-item" onclick="toggleCheck(this)">
+                                <input type="checkbox" id="bias-ema-13-50">
+                                <label for="bias-ema-13-50">13/50 EMA cross direction confirmed</label>
+                            </div>
+                            <div class="checklist-item" onclick="toggleCheck(this)">
+                                <input type="checkbox" id="bias-ema-200-800">
+                                <label for="bias-ema-200-800">200/800 EMA trend alignment verified</label>
+                            </div>
+                            <div class="checklist-item" onclick="toggleCheck(this)">
+                                <input type="checkbox" id="bias-ema-stack">
+                                <label for="bias-ema-stack">Full EMA stacking order analyzed (13>50>200>800)</label>
+                            </div>
+                            <div class="checklist-item" onclick="toggleCheck(this)">
+                                <input type="checkbox" id="bias-ema-timeframes">
+                                <label for="bias-ema-timeframes">Multiple timeframe EMA alignment checked</label>
+                            </div>
+                        </div>
+
+                        <div class="checklist-column">
+                            <div class="column-title">Asian Box Analysis</div>
+                            <div class="checklist-item" onclick="toggleCheck(this)">
+                                <input type="checkbox" id="bias-asian-range">
+                                <label for="bias-asian-range">Asian session range (high/low) identified</label>
+                            </div>
+                            <div class="checklist-item" onclick="toggleCheck(this)">
+                                <input type="checkbox" id="bias-box-stacking">
+                                <label for="bias-box-stacking">Box stacking direction determined</label>
+                            </div>
+                            <div class="checklist-item" onclick="toggleCheck(this)">
+                                <input type="checkbox" id="bias-break-expectation">
+                                <label for="bias-break-expectation">Expected breakout direction identified</label>
+                            </div>
+                        </div>
+
+                        <div class="checklist-column">
+                            <div class="column-title">ADR Analysis</div>
+                            <div class="checklist-item" onclick="toggleCheck(this)">
+                                <input type="checkbox" id="bias-adr-current">
+                                <label for="bias-adr-current">Current ADR percentage calculated</label>
+                            </div>
+                            <div class="checklist-item" onclick="toggleCheck(this)">
+                                <input type="checkbox" id="bias-adr-zones">
+                                <label for="bias-adr-zones">ADR zones (25%, 50%, 75%, 100%+) marked</label>
+                            </div>
+                            <div class="checklist-item" onclick="toggleCheck(this)">
+                                <input type="checkbox" id="bias-adr-3x">
+                                <label for="bias-adr-3x">3x ADR extreme level calculated</label>
+                            </div>
+                        </div>
+
+                        <div class="checklist-column">
+                            <div class="column-title">Liquidity & DOL</div>
+                            <div class="checklist-item" onclick="toggleCheck(this)">
+                                <input type="checkbox" id="bias-erl">
+                                <label for="bias-erl">External Range Liquidity (ERL) identified</label>
+                            </div>
+                            <div class="checklist-item" onclick="toggleCheck(this)">
+                                <input type="checkbox" id="bias-irl">
+                                <label for="bias-irl">Internal Range Liquidity (IRL) identified</label>
+                            </div>
+                            <div class="checklist-item" onclick="toggleCheck(this)">
+                                <input type="checkbox" id="bias-dol">
+                                <label for="bias-dol">Next Draw on Liquidity (DOL) determined</label>
+                            </div>
+                        </div>
+
+                        <div class="checklist-column">
+                            <div class="column-title">Final Bias Determination</div>
+                            <div class="checklist-item" onclick="toggleCheck(this)">
+                                <input type="checkbox" id="bias-direction">
+                                <label for="bias-direction">Overall bias direction confirmed (Bull/Bear/Neutral)</label>
+                            </div>
+                            <div class="checklist-item" onclick="toggleCheck(this)">
+                                <input type="checkbox" id="bias-session">
+                                <label for="bias-session">Session timing aligns with bias</label>
+                            </div>
+                            <div class="checklist-item" onclick="toggleCheck(this)">
+                                <input type="checkbox" id="bias-confluence">
+                                <label for="bias-confluence">Multiple bias factors in confluence</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="action-buttons">
+                        <button class="btn btn-reset" onclick="window.resetChecklist('bias')">🔄 Reset Analysis</button>
+                        <button class="btn btn-next" id="bias-next-btn" disabled onclick="window.nextStep('setup')">
+                            Next: Setup Identification →
+                        </button>
+                    </div>
+                </div>
+
+                <div class="navigation-hint">
+                    <p><strong>💡 Pro Tip:</strong> Spend quality time on bias analysis - it's the foundation of every successful trade. When multiple factors align (levels + EMAs + Asian boxes + ADR), confidence increases significantly.</p>
+                </div>
+            </div>
+
+            <!-- STEP 2: SETUP IDENTIFICATION -->
+            <div class="section" id="setup-section">
+                <div class="section-header">
+                    <div class="section-title">🎯 Step 2: Setup Identification</div>
+                    <div class="section-subtitle">Choose Your X-Vibz Trading Setup</div>
+                    <div class="section-description">Select the appropriate setup based on market conditions and bias analysis</div>
+                </div>
+
+                <div class="cards-grid">
+                    <div class="card setup-card" onclick="window.selectSetup('anchors')">
+                        <div class="card-header">
+                            <div class="card-icon">⚓</div>
+                            <div class="card-title">Anchors</div>
+                        </div>
+                        <div class="card-content">
+                            <div class="card-item"><strong>Focus:</strong> Anchor-based reference points</div>
+                            <div class="card-item"><strong>Best For:</strong> Establishing structural reference</div>
+                            <div class="card-item"><strong>Timing:</strong> Pre-setup identification phase</div>
+                            <div class="card-item"><strong>Key Factor:</strong> Must have anchor present on left</div>
+                        </div>
+                    </div>
+
+                    <div class="card setup-card" onclick="window.selectSetup('asian-range')">
+                        <div class="card-header">
+                            <div class="card-icon">🌏</div>
+                            <div class="card-title">Asian Range Setups</div>
+                        </div>
+                        <div class="card-content">
+                            <div class="card-item"><strong>Focus:</strong> Asian session range interactions</div>
+                            <div class="card-item"><strong>Best For:</strong> Range break and bounce setups</div>
+                            <div class="card-item"><strong>Session:</strong> London/NY vs Asian range</div>
+                            <div class="card-item"><strong>Timing:</strong> Post-Asian session analysis</div>
+                        </div>
+                    </div>
+
+                    <div class="card setup-card" onclick="window.selectSetup('box-setups')">
+                        <div class="card-header">
+                            <div class="card-icon">📦</div>
+                            <div class="card-title">Box Setups (12/21/22 Trades)</div>
+                        </div>
+                        <div class="card-content">
+                            <div class="card-item"><strong>Focus:</strong> Weekly reversal box patterns</div>
+                            <div class="card-item"><strong>Formation Days:</strong> Tuesday, Wednesday, Thursday</div>
+                            <div class="card-item"><strong>Trade Direction:</strong> Away from box areas</div>
+                            <div class="card-item"><strong>Duration:</strong> 2-3 day trade setups</div>
+                            <div class="card-item"><strong>Key Patterns:</strong> 12/21/22 box formations</div>
+                        </div>
+                    </div>
+
+                    <div class="card setup-card" onclick="window.selectSetup('harmonics')">
+                        <div class="card-header">
+                            <div class="card-icon">🎼</div>
+                            <div class="card-title">Harmonics Part 1</div>
+                        </div>
+                        <div class="card-content">
+                            <div class="card-item"><strong>Focus:</strong> Harmonic pattern recognition</div>
+                            <div class="card-item"><strong>Best For:</strong> Advanced geometric setups</div>
+                            <div class="card-item"><strong>Structure:</strong> Fibonacci-based patterns</div>
+                            <div class="card-item"><strong>Precision:</strong> High-accuracy reversal points</div>
+                        </div>
+                    </div>
+
+                    <div class="card setup-card" onclick="window.selectSetup('reset-safety')">
+                        <div class="card-header">
+                            <div class="card-icon">🛡️</div>
+                            <div class="card-title">Reset Safety Trades</div>
+                        </div>
+                        <div class="card-content">
+                            <div class="card-item"><strong>Focus:</strong> Safe re-entry after resets</div>
+                            <div class="card-item"><strong>Best For:</strong> Conservative approach setups</div>
+                            <div class="card-item"><strong>Timing:</strong> After market structure reset</div>
+                            <div class="card-item"><strong>Safety:</strong> Lower-risk scenarios</div>
+                        </div>
+                    </div>
+
+                    <div class="card setup-card" onclick="window.selectSetup('resets')">
+                        <div class="card-header">
+                            <div class="card-icon">🔄</div>
+                            <div class="card-title">Resets</div>
+                        </div>
+                        <div class="card-content">
+                            <div class="card-item"><strong>Focus:</strong> Market structure reset patterns</div>
+                            <div class="card-item"><strong>Best For:</strong> New cycle identification</div>
+                            <div class="card-item"><strong>Signal:</strong> Structure break and reset</div>
+                            <div class="card-item"><strong>Opportunity:</strong> Fresh directional moves</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="key-concepts">
+                    <h3 style="color: #ffeb3b; margin-bottom: 15px;">🎯 X-Vibz Setup Categories</h3>
+                    <div class="concepts-grid">
+                        <div class="concept-card">
+                            <h4>📦 Box Setups (12/21/22)</h4>
+                            <ul style="margin-top: 10px; padding-left: 20px;">
+                                <li><strong>Formation:</strong> Tuesday, Wednesday, Thursday</li>
+                                <li><strong>Pattern:</strong> 12/21/22 box structures</li>
+                                <li><strong>Direction:</strong> Trade AWAY from box areas</li>
+                                <li><strong>Duration:</strong> 2-3 day setups</li>
+                                <li><strong>Reversal:</strong> Weekly structure reversals</li>
+                                <li><strong>Timing:</strong> Mid-week formation optimal</li>
+                            </ul>
+                        </div>
+                        <div class="concept-card">
+                            <h4>🌏 Asian Range Dynamics</h4>
+                            <ul style="margin-top: 10px; padding-left: 20px;">
+                                <li><strong>Range ID:</strong> Asian session high/low</li>
+                                <li><strong>Break Setups:</strong> London/NY breakouts</li>
+                                <li><strong>Bounce Setups:</strong> Range respect trades</li>
+                                <li><strong>50% Level:</strong> Mid-range bounce zones</li>
+                                <li><strong>Bias Direction:</strong> Which way to expect break</li>
+                            </ul>
+                        </div>
+                        <div class="concept-card">
+                            <h4>⚓ Anchor Requirements</h4>
+                            <ul style="margin-top: 10px; padding-left: 20px;">
+                                <li><strong>Left Side:</strong> Anchor must be present</li>
+                                <li><strong>Reference:</strong> Structural reference point</li>
+                                <li><strong>Validation:</strong> Setup validity confirmation</li>
+                                <li><strong>Multiple TFs:</strong> Cross-timeframe anchors</li>
+                                <li><strong>Quality:</strong> Clear, unambiguous anchors</li>
+                            </ul>
+                        </div>
+                        <div class="concept-card">
+                            <h4>🔄 Reset Identification</h4>
+                            <ul style="margin-top: 10px; padding-left: 20px;">
+                                <li><strong>Structure Break:</strong> Key level violation</li>
+                                <li><strong>New Cycle:</strong> Fresh directional bias</li>
+                                <li><strong>Safety Trades:</strong> Conservative re-entries</li>
+                                <li><strong>Confirmation:</strong> Reset validation signals</li>
+                                <li><strong>Opportunity:</strong> Clean slate scenarios</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="session-timing">
+                    <h3 style="color: #ffeb3b; margin-bottom: 15px;">📅 Weekly Box Setup Schedule</h3>
+                    <div class="timing-grid">
+                        <div class="time-card">
+                            <h4>📅 Tuesday Formation</h4>
+                            <p><strong>12/21/22 Box Setup</strong></p>
+                            <p>Early week reversal pattern</p>
+                            <p>Trade away from box for 2-3 days</p>
+                        </div>
+                        <div class="time-card">
+                            <h4>📅 Wednesday Formation</h4>
+                            <p><strong>12/21/22 Box Setup</strong></p>
+                            <p>Mid-week reversal pattern</p>
+                            <p>Optimal formation day</p>
+                        </div>
+                        <div class="time-card">
+                            <h4>📅 Thursday Formation</h4>
+                            <p><strong>12/21/22 Box Setup</strong></p>
+                            <p>Late week reversal pattern</p>
+                            <p>End-of-week positioning</p>
+                        </div>
+                        <div class="time-card">
+                            <h4>⚠️ Avoid Monday/Friday</h4>
+                            <p><strong>Low Probability Days</strong></p>
+                            <p>Week start/end volatility</p>
+                            <p>Focus on Tue-Wed-Thu</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="checklist-section">
+                    <div class="checklist-header">
+                        <div class="checklist-title">✅ Setup Selection Checklist</div>
+                        <p>Verify setup choice matches market conditions and timing</p>
+                    </div>
+
+                    <div class="checklist-grid">
+                        <div class="checklist-column">
+                            <div class="column-title">Setup Validation</div>
+                            <div class="checklist-item" onclick="toggleCheck(this)">
+                                <input type="checkbox" id="setup-type">
+                                <label for="setup-type">X-Vibz setup type selected</label>
+                            </div>
+                            <div class="checklist-item" onclick="toggleCheck(this)">
+                                <input type="checkbox" id="setup-anchor">
+                                <label for="setup-anchor">Anchor present (if required)</label>
+                            </div>
+                            <div class="checklist-item" onclick="toggleCheck(this)">
+                                <input type="checkbox" id="setup-structure">
+                                <label for="setup-structure">Setup matches current market structure</label>
+                            </div>
+                        </div>
+
+                        <div class="checklist-column">
+                            <div class="column-title">Box Setup Specifics</div>
+                            <div class="checklist-item" onclick="toggleCheck(this)">
+                                <input type="checkbox" id="setup-day">
+                                <label for="setup-day">Formation day is Tue/Wed/Thu</label>
+                            </div>
+                            <div class="checklist-item" onclick="toggleCheck(this)">
+                                <input type="checkbox" id="setup-box-pattern">
+                                <label for="setup-box-pattern">12/21/22 box pattern identified</label>
+                            </div>
+                            <div class="checklist-item" onclick="toggleCheck(this)">
+                                <input type="checkbox" id="setup-trade-direction">
+                                <label for="setup-trade-direction">Trade direction AWAY from box confirmed</label>
+                            </div>
+                        </div>
+
+                        <div class="checklist-column">
+                            <div class="column-title">Market Alignment</div>
+                            <div class="checklist-item" onclick="toggleCheck(this)">
+                                <input type="checkbox" id="setup-bias-align">
+                                <label for="setup-bias-align">Setup aligns with bias analysis</label>
+                            </div>
+                            <div class="checklist-item" onclick="toggleCheck(this)">
+                                <input type="checkbox" id="setup-session">
+                                <label for="setup-session">Appropriate for current session</label>
+                            </div>
+                            <div class="checklist-item" onclick="toggleCheck(this)">
+                                <input type="checkbox" id="setup-asian-range">
+                                <label for="setup-asian-range">Asian range context considered</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="action-buttons">
+                        <button class="btn btn-reset" onclick="window.resetChecklist('setup')">🔄 Reset</button>
+                        <button class="btn btn-next" id="setup-next-btn" disabled onclick="window.nextStep('pattern')">
+                            Next: Pattern Recognition →
+                        </button>
+                    </div>
+                </div>
+
+                <div class="navigation-hint">
+                    <p><strong>💡 Box Setup Pro Tip:</strong> The 12/21/22 box setups are weekly reversal patterns. They typically form on Tuesday, Wednesday, or Thursday. Once identified, trade AWAY from the box area for 2-3 days. This is a high-probability weekly structure play.</p>
+                </div>
+            </div>
+
+            <!-- STEP 3: PATTERN RECOGNITION -->
+            <div class="section" id="pattern-section">
+                <div class="section-header">
+                    <div class="section-title">🔍 Step 3: Pattern Recognition</div>
+                    <div class="section-subtitle">Identify Specific X-Vibz Patterns</div>
+                    <div class="section-description">Recognize your proven patterns and confirmations for precise entries</div>
+                </div>
+
+                <div class="cards-grid">
+                    <div class="card pattern-card">
+                        <div class="card-header">
+                            <div class="card-icon">📈</div>
+                            <div class="card-title">Bounce & Continuation Patterns</div>
+                        </div>
+                        <div class="card-content">
+                            <div class="card-item"><strong>1H 50 50 Bounce:</strong> Hourly 50 EMA bounce setups</div>
+                            <div class="card-item"><strong>ID 50:</strong> 13/50 EMA cross with pullback trap</div>
+                            <div class="card-item"><strong>3 Pushes:</strong> Triple push pattern formations</div>
+                            <div class="card-item"><strong>London Patterns:</strong> Session-specific setups</div>
+                        </div>
+                    </div>
+
+                    <div class="card pattern-card">
+                        <div class="card-header">
+                            <div class="card-icon">🦇</div>
+                            <div class="card-title">Advanced Structure Patterns</div>
+                        </div>
+                        <div class="card-content">
+                            <div class="card-item"><strong>Half Bats:</strong> Incomplete Batman formations</div>
+                            <div class="card-item"><strong>2nd Leg Half Bat:</strong> Extended leg variations</div>
+                            <div class="card-item"><strong>Head and Shoulders:</strong> Classic reversal patterns</div>
+                            <div class="card-item"><strong>W&M Patterns:</strong> Double top/bottom formations</div>
+                        </div>
+                    </div>
+
+                    <div class="card pattern-card">
+                        <div class="card-header">
+                            <div class="card-icon">🎯</div>
+                            <div class="card-title">Multi-Drive Patterns</div>
+                        </div>
+                        <div class="card-content">
+                            <div class="card-item"><strong>3 Drives / 3 Day Setups:</strong> Triple drive formations</div>
+                            <div class="card-item"><strong>3 Hits Trade:</strong> Three-touch reversal patterns</div>
+                            <div class="card-item">Multi-timeframe structure validation</div>
+                            <div class="card-item">Extended drive pattern recognition</div>
+                        </div>
+                    </div>
+
+                    <div class="card pattern-card">
+                        <div class="card-header">
+                            <div class="card-icon">⚡</div>
+                            <div class="card-title">Pattern Confirmations</div>
+                        </div>
+                        <div class="card-content">
+                            <div class="card-item"><strong>TDI Alignment:</strong> RSI, signal line, MBL confluence</div>
+                            <div class="card-item"><strong>EMA Interactions:</strong> 13, 50, 200, 800 respect/violations</div>
+                            <div class="card-item"><strong>Candlestick Patterns:</strong> Morning/Evening Stars</div>
+                            <div class="card-item"><strong>13 EMA Confirmed:</strong> Price closes below 13 EMA on second leg</div>
+                            <div class="card-item"><strong>Cord of Woods (COW):</strong> 4 candles at leg extremes</div>
+                            <div class="card-item"><strong>Rail Road Track (RR):</strong> 2 candles taking out previous high/low</div>
+                            <div class="card-item"><strong>O.T.E.:</strong> ICT entry when price takes out key levels (PDH/PDL, PSH/PSL, PWH/PWL)</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="key-concepts">
+                    <h3 style="color: #ffeb3b; margin-bottom: 15px;">🎯 X-Vibz Pattern Categories</h3>
+                    <div class="concepts-grid">
+                        <div class="concept-card">
+                            <h4>🕐 1H 50 50 Bounce</h4>
+                            <ul style="margin-top: 10px; padding-left: 20px;">
+                                <li>Hourly timeframe setup</li>
+                                <li>50 EMA bounce confirmation</li>
+                                <li>Quick pullback (20-25 pips)</li>
+                                <li>Entry on rejection patterns</li>
+                                <li>TDI signal line cross</li>
+                            </ul>
+                        </div>
+                        <div class="concept-card">
+                            <h4>🦇 Half Batman Patterns</h4>
+                            <ul style="margin-top: 10px; padding-left: 20px;">
+                                <li>Outside structure first leg</li>
+                                <li>Failed retest (10 pip rule)</li>
+                                <li>Shift candle 10-12 pips</li>
+                                <li>Close above/below apex</li>
+                                <li>TDI confirmation required</li>
+                            </ul>
+                        </div>
+                        <div class="concept-card">
+                            <h4>📊 W&M Patterns</h4>
+                            <ul style="margin-top: 10px; padding-left: 20px;">
+                                <li>Double top/bottom structures</li>
+                                <li>8+ candle consolidation</li>
+                                <li>Second leg closes above/below 13</li>
+                                <li>TDI RSI outside bands</li>
+                                <li>Level 3 reversal areas</li>
+                            </ul>
+                        </div>
+                        <div class="concept-card">
+                            <h4>🎯 3 Drives / 3 Hits</h4>
+                            <ul style="margin-top: 10px; padding-left: 20px;">
+                                <li>Triple drive formations</li>
+                                <li>Three-touch reversals</li>
+                                <li>Multi-day structure setups</li>
+                                <li>Extended pattern recognition</li>
+                                <li>Higher timeframe validation</li>
+                            </ul>
+                        </div>
+                        <div class="concept-card">
+                            <h4>⚡ 13 EMA Confirmed</h4>
+                            <ul style="margin-top: 10px; padding-left: 20px;">
+                                <li><strong>Signal:</strong> Price closes below 13 EMA on second leg</li>
+                                <li><strong>Entry Timing:</strong> On candle closure below 13 EMA</li>
+                                <li><strong>Confirmation:</strong> Bearish momentum validated</li>
+                                <li><strong>Pattern Context:</strong> Part of larger structure setup</li>
+                                <li><strong>Execution:</strong> Enter at close, not during formation</li>
+                            </ul>
+                        </div>
+                        <div class="concept-card">
+                            <h4>🌲 Cord of Woods (COW)</h4>
+                            <ul style="margin-top: 10px; padding-left: 20px;">
+                                <li><strong>Formation:</strong> 4 candles at extremes</li>
+                                <li><strong>Entry Timing:</strong> On closure of 4th candle</li>
+                                <li><strong>Bullish COW:</strong> 4th bullish candle at bottom of W</li>
+                                <li><strong>Bearish COW:</strong> 4th bearish candle at top of M</li>
+                                <li><strong>Rules:</strong> Visual entry, no strict length tolerance</li>
+                                <li><strong>Execution:</strong> Enter at 4th candle close</li>
+                            </ul>
+                        </div>
+                        <div class="concept-card">
+                            <h4>🚂 Rail Road Track (RR)</h4>
+                            <ul style="margin-top: 10px; padding-left: 20px;">
+                                <li><strong>Formation:</strong> 2 candles taking out previous high/low</li>
+                                <li><strong>Entry Timing:</strong> On closure of 2nd candle</li>
+                                <li><strong>Bullish RR:</strong> 2nd candle breaks previous high at bottom</li>
+                                <li><strong>Bearish RR:</strong> 2nd candle breaks previous low at top</li>
+                                <li><strong>Rules:</strong> Visual entry, faster than COW</li>
+                                <li><strong>Execution:</strong> Enter at 2nd candle close</li>
+                            </ul>
+                        </div>
+                        <div class="concept-card">
+                            <h4>🎯 O.T.E. (Optimal Trade Entry)</h4>
+                            <ul style="margin-top: 10px; padding-left: 20px;">
+                                <li><strong>ICT Method:</strong> Fibonacci retracement 62% - 79% zone</li>
+                                <li><strong>Sweet Spot:</strong> 70.5% retracement level (precise OTE)</li>
+                                <li><strong>UNIQUE:</strong> Only entry that doesn't require a second leg</li>
+                                <li><strong>Trigger:</strong> Only when price takes out PDH/PDL, PSH/PSL, PWH/PWL, PMH/PML, etc.</li>
+                                <li><strong>Setup:</strong> Draw Fib from level break point for retracement</li>
+                                <li><strong>Entry Zone:</strong> Wait for price to retrace into OTE area</li>
+                                <li><strong>Timing:</strong> Best during NY session (8:30-11:00 AM EST)</li>
+                            </ul>
+                        </div>
+                        <div class="concept-card">
+                            <h4>🏙️ London Patterns</h4>
+                            <ul style="margin-top: 10px; padding-left: 20px;">
+                                <li>Session-specific setups</li>
+                                <li>3:30-5:30 AM EST timing</li>
+                                <li>High volatility breakouts</li>
+                                <li>Asian range interactions</li>
+                                <li>London Open momentum</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="checklist-section">
+                    <div class="checklist-header">
+                        <div class="checklist-title">✅ Pattern Recognition Checklist</div>

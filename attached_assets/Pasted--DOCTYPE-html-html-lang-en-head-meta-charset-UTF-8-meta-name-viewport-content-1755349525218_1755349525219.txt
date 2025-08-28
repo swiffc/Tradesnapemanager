@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forex Compound Trading Calculator with Margin</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            padding: 30px;
+        }
+        
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 2em;
+        }
+        
+        .strategy-info {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+        
+        .strategy-info h3 {
+            margin-bottom: 10px;
+        }
+        
+        .strategy-info ul {
+            margin-left: 20px;
+        }
+        
+        .controls {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .control-group {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+            font-weight: 600;
+            font-size: 0.9em;
+        }
+        
+        input, select {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        
+        input:focus, select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        .margin-info {
+            background: linear-gradient(135deg, #00bcd4 0%, #00838f 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .margin-info h3 {
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+        
+        .margin-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+        }
+        
+        .margin-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 10px;
+            border-radius: 8px;
+        }
+        
+        .margin-item span {
+            display: block;
+            font-size: 0.85em;
+            opacity: 0.9;
+            margin-bottom: 5px;
+        }
+        
+        .margin-item strong {
+            font-size: 1.2em;
+        }
+        
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        button {
+            flex: 1;
+            padding: 12px 24px;
+            font-size: 16px;
+            font-weight: 600;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-win {
+            background: #4CAF50;
+            color: white;
+        }
+        
+        .btn-win:hover {
+            background: #45a049;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(76, 175, 80, 0.3);
+        }
+        
+        .btn-loss {
+            background: #f44336;
+            color: white;
+        }
+        
+        .btn-loss:hover {
+            background: #da190b;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(244, 67, 54, 0.3);
+        }
+        
+        .btn-reset {
+            background: #757575;
+            color: white;
+        }
+        
+        .btn-reset:hover {
+            background: #616161;
+        }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .stat-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        
+        .stat-card h4 {
+            font-size: 0.9em;
+            margin-bottom: 5px;
+            opacity: 0.9;
+        }
+        
+        .stat-card p {
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+        
+        .current-risk {
+            background: #fff3e0;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border: 2px solid #ff9800;
+        }
+        
+        .current-risk h3 {
+            color: #ff9800;
+            margin-bottom: 10px;
+        }
+        
+        .risk-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+        }
+        
+        .risk-item {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .risk-item span {
+            color: #666;
+            font-size: 0.85em;
+            margin-bottom: 5px;
+        }
+        
+        .risk-item strong {
+            font-size: 1.2em;
+            color: #333;
+        }
+        
+        .table-container {
+            overflow-x: auto;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            font-size: 0.9em;
+        }
+        
+        th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px 8px;
+            text-align: left;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+        
+        td {
+            padding: 10px 8px;
+            border-bottom: 1px solid #eee;
+            white-space: nowrap;
+        }
+        
+        tr:hover {
+            background: #f5f5f5;
+        }
+        
+        .win-row {
+            background: #e8f5e9;
+        }
+        
+        .loss-row {
+            background: #ffebee;
+        }
+        
+        .profit {
+            color: #4CAF50;
+            font-weight: 600;
+        }
+        
+        .loss {
+            color: #f44336;
+            font-weight: 600;
+        }
+        
+        .info-box {
+            background: #e3f2fd;
+            border: 2px solid #2196f3;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .info-box h4 {
+            color: #1976d2;
+            margin-bottom: 10px;
+        }
+        
+        .info-box p {
+            color: #555;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔷 Forex Compound Trading Calculator with 500:1 Leverage</h1>
+        
+        <div class="strategy-info">
+            <h3>Your Trading Strategy:</h3>
+            <ul>
+                <li>Initial capital: $3,000</li>
+                <li>Leverage: 500:1</li>
+                <li>First trade: Risk 10% of capital</li>
+                <li>After WIN: Risk 25% of the profit from that win</li>
+                <li>Continue risking 25% of each win's profit</li>
+                <li>After LOSS: Risk 4% of total account balance until next win</li>
+            </ul>
+        </div>
+        
+        <div class="controls">
+            <div class="control-group">
+                <label for="stopLoss">Stop Loss (pips)</label>
+                <input type="number" id="stopLoss" value="20" min="1" step="1">
+            </div>
+            <div class="control-group">
+                <label for="riskReward">Risk:Reward Ratio</label>
+                <select id="riskReward">
+                    <option value="1">1:1</option>
+                    <option value="1.5">1:1.5</option>
+                    <option value="2" selected>1:2</option>
+                    <option value="2.5">1:2.5</option>
+                    <option value="3">1:3</option>
+                    <option value="4">1:4</option>
+                    <option value="5">1:5</option>
+                </select>
+            </div>
+            <div class="control-group">
+                <label for="pipValue">Pip Value ($/pip per lot)</label>
+                <input type="number" id="pipValue" value="10" min="0.01" step="0.01">
+            </div>
+            <div class="control-group">
+                <label for="customReward">Custom R:R (optional)</label>
+                <input type="number" id="customReward" placeholder="e.g., 3.5" step="0.1" min="0.1">
+            </div>
+        </div>
+        
+        <div class="margin-info">
+            <h3>📊 Position Sizing & Margin Requirements (500:1 Leverage)</h3>
+            <div class="margin-grid">
+                <div class="margin-item">
+                    <span>Position Size:</span>
+                    <strong id="positionSize">0.00 lots</strong>
+                </div>
+                <div class="margin-item">
+                    <span>Notional Value:</span>
+                    <strong id="notionalValue">$0</strong>
+                </div>
+                <div class="margin-item">
+                    <span>Required Margin:</span>
+                    <strong id="requiredMargin">$0.00</strong>
+                </div>
+                <div class="margin-item">
+                    <span>Free Margin:</span>
+                    <strong id="freeMargin">$3,000.00</strong>
+                </div>
+                <div class="margin-item">
+                    <span>Margin Level:</span>
+                    <strong id="marginLevel">∞%</strong>
+                </div>
+                <div class="margin-item">
+                    <span>Max Lots Available:</span>
+                    <strong id="maxLots">0.00</strong>
+                </div>
+            </div>
+        </div>
+        
+        <div class="current-risk">
+            <h3>Next Trade Risk Amount</h3>
+            <div class="risk-info">
+                <div class="risk-item">
+                    <span>Risk Amount:</span>
+                    <strong id="nextRiskAmount">$300.00</strong>
+                </div>
+                <div class="risk-item">
+                    <span>Potential Profit:</span>
+                    <strong id="potentialProfit">$600.00</strong>
+                </div>
+                <div class="risk-item">
+                    <span>Take Profit (pips):</span>
+                    <strong id="takeProfitPips">40</strong>
+                </div>
+                <div class="risk-item">
+                    <span>Risk Type:</span>
+                    <strong id="riskType">Initial 10%</strong>
+                </div>
+                <div class="risk-item">
+                    <span>Account Balance:</span>
+                    <strong id="currentBalance">$3,000.00</strong>
+                </div>
+                <div class="risk-item">
+                    <span>Loss to Recover:</span>
+                    <strong id="lossToRecover">$0.00</strong>
+                </div>
+            </div>
+        </div>
+        
+        <div class="button-group">
+            <button class="btn-win" onclick="recordTrade('WIN')">Record WIN ✓</button>
+            <button class="btn-loss" onclick="recordTrade('LOSS')">Record LOSS ✗</button>
+            <button class="btn-reset" onclick="resetCalculator()">Reset Calculator</button>
+        </div>
+        
+        <div class="stats">
+            <div class="stat-card">
+                <h4>Starting Capital</h4>
+                <p>$3,000.00</p>
+            </div>
+            <div class="stat-card">
+                <h4>Current Balance</h4>
+                <p id="statBalance">$3,000.00</p>
+            </div>
+            <div class="stat-card">
+                <h4>Total P&L</h4>
+                <p id="statPL">$0.00</p>
+            </div>
+            <div class="stat-card">
+                <h4>Win Rate</h4>
+                <p id="statWinRate">0%</p>
+            </div>
+            <div class="stat-card">
+                <h4>Total Trades</h4>
+                <p id="statTrades">0</p>
+            </div>
+            <div class="stat-card">
+                <h4>Max Drawdown</h4>
+                <p id="statDrawdown">$0.00</p>
+            </div>
+        </div>
+        
+        <div class="info-box">
+            <h4>💡 How Margin Calculation Works:</h4>
+            <p>
+                With 500:1 leverage, you only need to put up 1/500th of the position value as margin. 
+                For example: A 1 standard lot position (100,000 units) requires only $200 margin at 500:1 leverage.
+                The calculator automatically sizes your positions based on your stop loss and risk amount, 
+                ensuring you never risk more than your strategy dictates while maximizing the leverage available.
+            </p>
+        </div>
+        
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Result</th>
+                        <th>Risk $</th>
+                        <th>Risk Type</th>
+                        <th>Lots</th>
+                        <th>Margin</th>
+                        <th>SL</th>
+                        <th>TP</th>
+                        <th>R:R</th>
+                        <th>P&L</th>
+                        <th>Balance</th>
+                        <th>Total P&L</th>
+                    </tr>
+                </thead>
+                <tbody id="tradesTable">
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+    <script>
+        let trades = [];
+        let currentBalance = 3000;
+        let initialCapital = 3000;
+        let lastWinProfit = 0;
+        let isAfterWin = false;
+        let highestBalance = 3000;
+        let lowestBalance = 3000;
+        let cumulativeWinProfits = 0; // Track total profits from current winning streak
+        let lossToRecover = 0; // Track losses that need to be recovered
+        let recoveryMode = false; // Track if we're in recovery mode
+        const leverage = 500;
+        const standardLotSize = 100000; // 1 standard lot = 100,000 units
+        
+        function getRiskReward() {
+            const customReward = document.getElementById('customReward').value;
+            if (customReward && !isNaN(customReward)) {
+                return parseFloat(customReward);
+            }
+            return parseFloat(document.getElementById('riskReward').value);
+        }
+        
+        function getStopLoss() {
+            return parseFloat(document.getElementById('stopLoss').value) || 20;
+        }
+        
+        function getPipValue() {
+            return parseFloat(document.getElementById('pipValue').value) || 10;
+        }
+        
+        function calculatePositionSize(riskAmount) {
+            const stopLossPips = getStopLoss();
+            const pipValue = getPipValue();
+            
+            // Position size in lots = Risk Amount / (Stop Loss in Pips × Pip Value per lot)
+            // For example: $160 risk / (20 pips × $10/pip) = $160 / $200 = 0.80 lots
+            const lots = riskAmount / (stopLossPips * pipValue);
+            return lots;
+        }
+        
+        function calculateMargin(lots) {
+            // Notional value = lots × standard lot size
+            const notionalValue = lots * standardLotSize;
+            // Required margin = notional value / leverage
+            const requiredMargin = notionalValue / leverage;
+            return {
+                notionalValue: notionalValue,
+                requiredMargin: requiredMargin
+            };
+        }
+        
+        function calculateNextRisk() {
+            let riskAmount;
+            let riskType;
+            
+            if (trades.length === 0) {
+                // First trade: 10% of initial capital
+                riskAmount = initialCapital * 0.10;
+                riskType = "Initial 10%";
+            } else {
+                const lastTrade = trades[trades.length - 1];
+                
+                // Check if we're in recovery mode (have losses to recover)
+                if (recoveryMode || lossToRecover > 0) {
+                    // Stay at 4% until losses are fully recovered
+                    riskAmount = currentBalance * 0.04;
+                    riskType = `4% recovery mode ($${lossToRecover.toFixed(2)} to recover)`;
+                } else if (lastTrade.result === 'WIN' && !recoveryMode) {
+                    // After a win and not in recovery: risk 25% of TOTAL CUMULATIVE profits
+                    riskAmount = cumulativeWinProfits * 0.25;
+                    riskType = `25% of total profits ($${cumulativeWinProfits.toFixed(2)})`;
+                    isAfterWin = true;
+                } else if (lastTrade.result === 'LOSS') {
+                    // After a loss: enter recovery mode with 4% of current balance
+                    riskAmount = currentBalance * 0.04;
+                    riskType = "4% of balance (post-loss)";
+                    isAfterWin = false;
+                } else {
+                    // Default to 4% if uncertain
+                    riskAmount = currentBalance * 0.04;
+                    riskType = "4% of balance";
+                }
+            }
+            
+            return { riskAmount, riskType };
+        }
+        
+        function updateNextTradeInfo() {
+            const { riskAmount, riskType } = calculateNextRisk();
+            const riskReward = getRiskReward();
+            const potentialProfit = riskAmount * riskReward;
+            const stopLossPips = getStopLoss();
+            const takeProfitPips = stopLossPips * riskReward;
+            
+            // Calculate position size and margin
+            const lots = calculatePositionSize(riskAmount);
+            const { notionalValue, requiredMargin } = calculateMargin(lots);
+            const freeMargin = currentBalance - requiredMargin;
+            const marginLevel = requiredMargin > 0 ? (currentBalance / requiredMargin * 100) : Infinity;
+            const maxLotsAvailable = (currentBalance * leverage) / standardLotSize;
+            
+            // Update display
+            document.getElementById('nextRiskAmount').textContent = `$${riskAmount.toFixed(2)}`;
+            document.getElementById('potentialProfit').textContent = `$${potentialProfit.toFixed(2)}`;
+            document.getElementById('takeProfitPips').textContent = takeProfitPips.toFixed(0);
+            document.getElementById('riskType').textContent = riskType;
+            document.getElementById('currentBalance').textContent = `$${currentBalance.toFixed(2)}`;
+            document.getElementById('lossToRecover').textContent = lossToRecover > 0 ? `$${lossToRecover.toFixed(2)}` : 'None';
+            
+            // Color code loss to recover
+            const lossRecoverElement = document.getElementById('lossToRecover');
+            if (lossToRecover > 0) {
+                lossRecoverElement.style.color = '#f44336';
+            } else {
+                lossRecoverElement.style.color = '#4CAF50';
+            }
+            
+            // Update margin info
+            document.getElementById('positionSize').textContent = `${lots.toFixed(2)} lots`;
+            document.getElementById('notionalValue').textContent = `$${notionalValue.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`;
+            document.getElementById('requiredMargin').textContent = `$${requiredMargin.toFixed(2)}`;
+            document.getElementById('freeMargin').textContent = `$${freeMargin.toFixed(2)}`;
+            document.getElementById('marginLevel').textContent = marginLevel === Infinity ? '∞%' : `${marginLevel.toFixed(0)}%`;
+            document.getElementById('maxLots').textContent = `${maxLotsAvailable.toFixed(2)}`;
+        }
+        
+        function recordTrade(result) {
+            const { riskAmount, riskType } = calculateNextRisk();
+            const riskReward = getRiskReward();
+            const stopLossPips = getStopLoss();
+            const takeProfitPips = stopLossPips * riskReward;
+            
+            // Calculate position details
+            const lots = calculatePositionSize(riskAmount);
+            const { notionalValue, requiredMargin } = calculateMargin(lots);
+            
+            let pl;
+            if (result === 'WIN') {
+                pl = riskAmount * riskReward;
+                lastWinProfit = pl;
+                
+                // If in recovery mode, reduce the loss to recover
+                if (recoveryMode || lossToRecover > 0) {
+                    lossToRecover -= pl;
+                    if (lossToRecover <= 0) {
+                        // Fully recovered! Exit recovery mode
+                        recoveryMode = false;
+                        lossToRecover = 0;
+                        // Start accumulating profits for next trades
+                        cumulativeWinProfits = Math.abs(lossToRecover); // Any excess becomes profit
+                    }
+                } else {
+                    // Not in recovery, add to cumulative profits
+                    cumulativeWinProfits += pl;
+                }
+            } else {
+                // LOSS
+                pl = -riskAmount;
+                
+                // Add to losses that need recovery
+                lossToRecover += Math.abs(pl);
+                recoveryMode = true;
+                
+                // Reset cumulative profits
+                cumulativeWinProfits = 0;
+            }
+            
+            const previousBalance = currentBalance;
+            currentBalance += pl;
+            
+            // Track highest and lowest balance for drawdown
+            if (currentBalance > highestBalance) {
+                highestBalance = currentBalance;
+            }
+            if (currentBalance < lowestBalance) {
+                lowestBalance = currentBalance;
+            }
+            
+            const trade = {
+                number: trades.length + 1,
+                result: result,
+                riskAmount: riskAmount,
+                riskType: riskType,
+                lots: lots,
+                requiredMargin: requiredMargin,
+                stopLoss: stopLossPips,
+                takeProfit: takeProfitPips,
+                riskReward: `1:${riskReward}`,
+                pl: pl,
+                balanceAfter: currentBalance,
+                runningPL: currentBalance - initialCapital,
+                balanceBefore: previousBalance,
+                cumulativeProfits: cumulativeWinProfits,
+                lossToRecover: lossToRecover,
+                recoveryMode: recoveryMode
+            };
+            
+            trades.push(trade);
+            updateTable();
+            updateStats();
+            updateNextTradeInfo();
+        }
+        
+        function updateTable() {
+            const tbody = document.getElementById('tradesTable');
+            tbody.innerHTML = '';
+            
+            trades.forEach(trade => {
+                const row = tbody.insertRow();
+                row.className = trade.result === 'WIN' ? 'win-row' : 'loss-row';
+                
+                row.innerHTML = `
+                    <td>${trade.number}</td>
+                    <td><strong>${trade.result}</strong></td>
+                    <td>$${trade.riskAmount.toFixed(2)}</td>
+                    <td>${trade.riskType}</td>
+                    <td>${trade.lots.toFixed(2)}</td>
+                    <td>$${trade.requiredMargin.toFixed(2)}</td>
+                    <td>${trade.stopLoss} pips</td>
+                    <td>${trade.takeProfit.toFixed(0)} pips</td>
+                    <td>${trade.riskReward}</td>
+                    <td class="${trade.pl >= 0 ? 'profit' : 'loss'}">
+                        ${trade.pl >= 0 ? '+' : ''}$${trade.pl.toFixed(2)}
+                    </td>
+                    <td>$${trade.balanceAfter.toFixed(2)}</td>
+                    <td class="${trade.runningPL >= 0 ? 'profit' : 'loss'}">
+                        ${trade.runningPL >= 0 ? '+' : ''}$${trade.runningPL.toFixed(2)}
+                    </td>
+                `;
+            });
+        }
+        
+        function updateStats() {
+            const wins = trades.filter(t => t.result === 'WIN').length;
+            const winRate = trades.length > 0 ? (wins / trades.length * 100).toFixed(1) : 0;
+            const totalPL = currentBalance - initialCapital;
+            const maxDrawdown = highestBalance - lowestBalance;
+            
+            document.getElementById('statBalance').textContent = `$${currentBalance.toFixed(2)}`;
+            document.getElementById('statPL').textContent = `${totalPL >= 0 ? '+' : ''}$${totalPL.toFixed(2)}`;
+            document.getElementById('statPL').className = totalPL >= 0 ? 'profit' : 'loss';
+            document.getElementById('statWinRate').textContent = `${winRate}%`;
+            document.getElementById('statTrades').textContent = trades.length;
+            document.getElementById('statDrawdown').textContent = `$${maxDrawdown.toFixed(2)}`;
+        }
+        
+        function resetCalculator() {
+            if (confirm('Are you sure you want to reset all trades?')) {
+                trades = [];
+                currentBalance = 3000;
+                lastWinProfit = 0;
+                isAfterWin = false;
+                highestBalance = 3000;
+                lowestBalance = 3000;
+                cumulativeWinProfits = 0;
+                lossToRecover = 0;
+                recoveryMode = false;
+                updateTable();
+                updateStats();
+                updateNextTradeInfo();
+            }
+        }
+        
+        // Initialize and add event listeners
+        updateNextTradeInfo();
+        
+        document.getElementById('riskReward').addEventListener('change', updateNextTradeInfo);
+        document.getElementById('customReward').addEventListener('input', updateNextTradeInfo);
+        document.getElementById('stopLoss').addEventListener('input', updateNextTradeInfo);
+        document.getElementById('pipValue').addEventListener('input', updateNextTradeInfo);
+    </script>
+</body>
+</html>
