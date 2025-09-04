@@ -1,0 +1,355 @@
+// This Pine Script™ code is subject to the terms of the Mozilla Public License 2.0 at https://mozilla.org/MPL/2.0/
+// Dynamic Forex News Calendar with News-Based Visual System
+// Original by @toodegrees - Enhanced with Dynamic Theming
+
+import toodegrees/forex_factory_utility/16 as ffUtil
+import toodegrees/forex_factory_decoding/30 as ffDec
+
+//@version=5
+indicator("Dynamic Forex News Calendar 📊", 
+         shorttitle="FX News° 💹",
+         overlay=true,
+         max_lines_count=500,
+         max_labels_count=500,
+         max_boxes_count=500)
+
+// ═══════════════════════════════════════════════════════════════════
+// TIMEFRAME VALIDATION
+// ═══════════════════════════════════════════════════════════════════
+
+if timeframe.in_seconds(timeframe.period) > 86400
+    runtime.error("⚠️ Please switch to Daily timeframe or lower!")
+else if timeframe.in_seconds(timeframe.period) < 30
+    runtime.error("⚠️ Please switch to 30-Second timeframe or higher!")
+
+// ═══════════════════════════════════════════════════════════════════
+// NEWS-BASED DYNAMIC THEMING SYSTEM
+// ═══════════════════════════════════════════════════════════════════
+
+// Visual Mode Selection
+visualMode = input.string("Impact-Based", "📊 Visual Mode", options=["Impact-Based", "Time-Based", "Currency-Based", "Market-Session", "Risk-Alert"], group="🎨 Dynamic Theming", tooltip="Changes colors and effects based on news characteristics")
+
+// Impact Level Color Schemes
+impactColorMode = input.string("Gradient Heat", "🎯 Impact Colors", options=["Gradient Heat", "Traffic Light", "Risk Scale", "Market Volatility", "Classic"], group="🎨 Dynamic Theming")
+
+// Time Proximity Effects
+enableTimeGlow = input.bool(true, "⏰ Time-Based Glow", group="🎨 Dynamic Theming", tooltip="Increases glow intensity as news event approaches")
+glowStartMinutes = input.int(60, "Glow Start (minutes before)", minval=15, maxval=240, group="🎨 Dynamic Theming")
+
+// Currency-Specific Colors
+enableCurrencyColors = input.bool(true, "💱 Currency Color Coding", group="🎨 Dynamic Theming")
+
+// Get Impact-Based Colors
+getImpactColors(string mode) =>
+    switch mode
+        "Gradient Heat" => 
+            [color.rgb(255, 0, 0), color.rgb(255, 140, 0), color.rgb(255, 215, 0), color.rgb(192, 192, 192)]
+        "Traffic Light" =>
+            [color.rgb(220, 20, 60), color.rgb(255, 165, 0), color.rgb(255, 255, 0), color.rgb(128, 128, 128)]
+        "Risk Scale" =>
+            [color.rgb(139, 0, 0), color.rgb(255, 69, 0), color.rgb(255, 165, 0), color.rgb(169, 169, 169)]
+        "Market Volatility" =>
+            [color.rgb(128, 0, 128), color.rgb(255, 0, 255), color.rgb(138, 43, 226), color.rgb(176, 196, 222)]
+        => // Classic
+            [color.rgb(255, 59, 59), color.rgb(255, 152, 0), color.rgb(255, 235, 59), color.rgb(158, 158, 158)]
+
+[highImpactColor, medImpactColor, lowImpactColor, holidayColor] = getImpactColors(impactColorMode)
+
+// Currency Color Map
+getCurrencyColor(string currency) =>
+    switch currency
+        "USD" => color.rgb(76, 175, 80)   // Green for USD
+        "EUR" => color.rgb(33, 150, 243)  // Blue for EUR
+        "GBP" => color.rgb(156, 39, 176)  // Purple for GBP
+        "JPY" => color.rgb(244, 67, 54)   // Red for JPY
+        "AUD" => color.rgb(255, 193, 7)   // Amber for AUD
+        "CAD" => color.rgb(233, 30, 99)   // Pink for CAD
+        "CHF" => color.rgb(96, 125, 139)  // Blue Grey for CHF
+        "NZD" => color.rgb(121, 85, 72)   // Brown for NZD
+        "CNY" => color.rgb(255, 87, 34)   // Deep Orange for CNY
+        => color.rgb(158, 158, 158)       // Default Grey
+
+// Market Session Colors
+getSessionColor(int hour) =>
+    if hour >= 0 and hour < 8
+        color.rgb(25, 118, 210)  // Asian Session - Blue
+    else if hour >= 8 and hour < 16
+        color.rgb(67, 160, 71)   // European Session - Green
+    else
+        color.rgb(244, 67, 54)   // American Session - Red
+
+// ═══════════════════════════════════════════════════════════════════
+// DYNAMIC VISUAL EFFECTS
+// ═══════════════════════════════════════════════════════════════════
+
+// Pulse Effect Settings
+enablePulse = input.bool(true, "💓 Pulse Effect for High Impact", group="✨ Visual Effects")
+pulseSpeed = input.int(5, "Pulse Speed", minval=1, maxval=10, group="✨ Visual Effects")
+
+// Warning System
+enableWarnings = input.bool(true, "⚠️ Visual Warnings", group="✨ Visual Effects", tooltip="Shows warning colors for high-impact news within 30 minutes")
+warningMinutes = input.int(30, "Warning Time (minutes)", minval=5, maxval=120, group="✨ Visual Effects")
+
+// Background Effects
+enableBgEffects = input.bool(true, "🌈 Background Effects", group="✨ Visual Effects")
+bgOpacity = input.int(90, "Background Opacity", minval=0, maxval=100, group="✨ Visual Effects")
+
+// ═══════════════════════════════════════════════════════════════════
+// ENHANCED NEWS ICONS
+// ═══════════════════════════════════════════════════════════════════
+
+// Dynamic Icons based on impact and time
+getNewsIcon(string impact, int minutesUntil) =>
+    if minutesUntil < 0
+        "✓"  // Past event
+    else if minutesUntil < 5
+        "🔔"  // Imminent
+    else if minutesUntil < 30
+        "⏰"  // Soon
+    else if impact == "high"
+        "⚡"  // High impact upcoming
+    else if impact == "medium"
+        "📈"  // Medium impact upcoming
+    else if impact == "low"
+        "📊"  // Low impact upcoming
+    else
+        "📅"  // Scheduled
+
+// ═══════════════════════════════════════════════════════════════════
+// GLOBAL FUNCTIONS
+// ═══════════════════════════════════════════════════════════════════
+
+var mdnCheck = false
+if hour(time, "America/New_York") == 0 and hour(time[1], "America/New_York") != 0 and not mdnCheck
+    mdnCheck := true
+newDay = mdnCheck ? hour(time, "America/New_York") == 0 and hour(time[1], "America/New_York") != 0 : timeframe.change("D")
+
+requestData() =>
+    [request.seed("seed_toodegrees_toogit", "TOODEGREES_FOREX_FACTORY_SLOT_1", str.tostring(open) + "," + str.tostring(high) + "," + str.tostring(low) + "," + str.tostring(close) + "," + str.tostring(volume)),
+     request.seed("seed_toodegrees_toogit", "TOODEGREES_FOREX_FACTORY_SLOT_2", str.tostring(open) + "," + str.tostring(high) + "," + str.tostring(low) + "," + str.tostring(close) + "," + str.tostring(volume)),
+     request.seed("seed_toodegrees_toogit", "TOODEGREES_FOREX_FACTORY_SLOT_3", str.tostring(open) + "," + str.tostring(high) + "," + str.tostring(low) + "," + str.tostring(close) + "," + str.tostring(volume)),
+     request.seed("seed_toodegrees_toogit", "TOODEGREES_FOREX_FACTORY_SLOT_4", str.tostring(open) + "," + str.tostring(high) + "," + str.tostring(low) + "," + str.tostring(close) + "," + str.tostring(volume)),
+     request.seed("seed_toodegrees_toogit", "TOODEGREES_FOREX_FACTORY_SLOT_5", str.tostring(open) + "," + str.tostring(high) + "," + str.tostring(low) + "," + str.tostring(close) + "," + str.tostring(volume)),
+     request.seed("seed_toodegrees_toogit", "TOODEGREES_FOREX_FACTORY_SLOT_6", str.tostring(open) + "," + str.tostring(high) + "," + str.tostring(low) + "," + str.tostring(close) + "," + str.tostring(volume)),
+     request.seed("seed_toodegrees_toogit", "TOODEGREES_FOREX_FACTORY_SLOT_7", str.tostring(open) + "," + str.tostring(high) + "," + str.tostring(low) + "," + str.tostring(close) + "," + str.tostring(volume)),
+     request.seed("seed_toodegrees_toogit", "TOODEGREES_FOREX_FACTORY_SLOT_8", str.tostring(open) + "," + str.tostring(high) + "," + str.tostring(low) + "," + str.tostring(close) + "," + str.tostring(volume)),
+     request.seed("seed_toodegrees_toogit", "TOODEGREES_FOREX_FACTORY_SLOT_9", str.tostring(open) + "," + str.tostring(high) + "," + str.tostring(low) + "," + str.tostring(close) + "," + str.tostring(volume))]
+
+method processData(ffUtil.News[] N, string S1, string S2, string S3, string S4, string S5, string S6, string S7, string S8, string S9) =>
+    ffDec.readNews(N, S1)
+    ffDec.readNews(N, S2)
+    ffDec.readNews(N, S3)
+    ffDec.readNews(N, S4)
+    ffDec.readNews(N, S5)
+    ffDec.readNews(N, S6)
+    ffDec.readNews(N, S7)
+    ffDec.readNews(N, S8)
+    ffDec.readNews(N, S9)
+
+// ═══════════════════════════════════════════════════════════════════
+// SMART TOOLTIPS
+// ═══════════════════════════════════════════════════════════════════
+
+var custom_timezoneTT = "🌍 Timezone Settings | Sync with your chart's timezone for accurate event timing"
+var expectedImpactTT = "📊 Impact Levels | High: Major volatility | Medium: Moderate moves | Low: Minor influence | Holiday: Market closure"
+var autoTT = "🤖 Auto-Detection | Automatically filters news based on your chart's currency pair"
+var onChartTT = "📈 Display Range | Today: Current day only | This Week: Full week | Manual: Custom days"
+var labelYTT = "📍 Smart Positioning | Auto mode adapts to price action"
+var sizeTTT = "📏 Event Capacity | Tiny: ~46 | Small: ~38 | Normal: ~28 | Large: ~20 | Huge: ~11 events"
+
+// ═══════════════════════════════════════════════════════════════════
+// USER INPUTS
+// ═══════════════════════════════════════════════════════════════════
+
+// Timezone Configuration
+custom_timezone = input.bool(false, title="🌍 Custom Timezone", inline="tz1", group="⏰ Time Configuration")
+timezone_h = input.int(1, title="UTC", inline="tz1", minval=-10, maxval=13, group="⏰ Time Configuration")
+timezone_m = input.int(0, title=":", inline="tz1", minval=0, maxval=59, step=15, tooltip=custom_timezoneTT, group="⏰ Time Configuration")
+
+// Impact Level Filters
+var high_impact = input.bool(true, title="⚡ High Impact", group="📊 Impact Filters", inline="imp1")
+var med_impact = input.bool(true, title="📈 Medium Impact", group="📊 Impact Filters", inline="imp1")
+var low_impact = input.bool(true, title="📊 Low Impact", group="📊 Impact Filters", inline="imp2")
+var holiday = input.bool(true, title="🎄 Holidays", group="📊 Impact Filters", inline="imp2", tooltip=expectedImpactTT)
+
+// Currency Selection with Smart Detection
+var AUTO = input.bool(true, title="🤖 Auto-Detect", group="💱 Currency Selection", tooltip=autoTT)
+var USD = input.bool(false, title="🇺🇸 USD", group="💱 Currency Selection", inline="cur1")
+var EUR = input.bool(false, title="🇪🇺 EUR", group="💱 Currency Selection", inline="cur1")
+var GBP = input.bool(false, title="🇬🇧 GBP", group="💱 Currency Selection", inline="cur1")
+var JPY = input.bool(false, title="🇯🇵 JPY", group="💱 Currency Selection", inline="cur2")
+var AUD = input.bool(false, title="🇦🇺 AUD", group="💱 Currency Selection", inline="cur2")
+var CAD = input.bool(false, title="🇨🇦 CAD", group="💱 Currency Selection", inline="cur2")
+var CHF = input.bool(false, title="🇨🇭 CHF", group="💱 Currency Selection", inline="cur3")
+var NZD = input.bool(false, title="🇳🇿 NZD", group="💱 Currency Selection", inline="cur3")
+var CNY = input.bool(false, title="🇨🇳 CNY", group="💱 Currency Selection", inline="cur3")
+
+// Chart Display Settings
+var onChartT = input.string("This Week", title="📅 Display Period", group="📈 Chart Display", inline="disp1", options=["Today", "This Week", "Manual"])
+var onChartLB = input.int(30, title="Days", group="📈 Chart Display", inline="disp1", tooltip=onChartTT)
+
+// Label Configuration
+var showLabels = input.bool(true, title="🏷️ Labels", group="📈 Chart Display", inline="lbl1")
+var labelS = ffUtil.size(input.string("Normal", title="Size", group="📈 Chart Display", inline="lbl1", options=["Tiny", "Small", "Normal", "Large", "Huge"]))
+var labelY = input.string("Auto", title="Position", group="📈 Chart Display", inline="lbl1", options=["Above", "Below", "Auto"], tooltip=labelYTT)
+var lblOutLn = input.bool(true, title="Outline", group="📈 Chart Display", inline="lbl1")
+
+// Line Configuration
+var showLines = input.bool(true, title="📏 Lines", group="📈 Chart Display", inline="ln1")
+var lineTime = input.string("Future", title="Time", group="📈 Chart Display", inline="ln1", options=["Future", "Past+Future"])
+var lineT = ffUtil.lineTrnsp(input.string("Heavy", title="Opacity", group="📈 Chart Display", inline="ln1", options=["Light", "Medium", "Heavy"]))
+var lineS = ffUtil.lineStyle(input.string("Solid", title="Style", group="📈 Chart Display", inline="ln1", options=["Dashed", "Dotted", "Solid"]))
+
+// Table Configuration
+var showTable = input.bool(true, title="📋 Show Table", group="📊 News Table", inline="tbl1")
+var tableType = input.string("This Week", title="Period", group="📊 News Table", inline="tbl1", options=["Today", "This Week"])
+var todType = input.string("24H", title="Format", group="📊 News Table", inline="tbl1", options=["24H", "AM/PM"])
+var tableX = input.string("Right", title="Position", group="📊 News Table", inline="tbl2", options=["Left", "Center", "Right"])
+var tableY = input.string("Bottom", title="", group="📊 News Table", inline="tbl2", options=["Top", "Middle", "Bottom"])
+var sizeT = input.string("Small", title="Size", group="📊 News Table", inline="tbl2", options=["Tiny", "Small", "Normal", "Large", "Huge"], tooltip=sizeTTT)
+
+// Process User Settings
+var locT = ffUtil.boxLoc(tableX, tableY)
+var impact_filter = ffUtil.impFilter(holiday, low_impact, med_impact, high_impact)
+var currency_filter = ffUtil.curFilter(AUTO, AUD, CAD, CHF, CNY, EUR, GBP, JPY, NZD, USD)
+onChartT := timeframe.period == "D" and onChartT == "Today" ? "This Week" : onChartT
+tableType := timeframe.period == "D" ? "This Week" : tableType
+
+// ═══════════════════════════════════════════════════════════════════
+// DATA MANAGEMENT
+// ═══════════════════════════════════════════════════════════════════
+
+var currWeek = array.new<ffUtil.News>()
+var nextWeek = array.new<ffUtil.News>()
+var currDay = array.new<ffUtil.News>()
+
+// Import Forex Factory News
+[slot1, slot2, slot3, slot4, slot5, slot6, slot7, slot8, slot9] = requestData()
+
+// Process Weekly Data
+if timeframe.change("W")
+    nextWeek := ffUtil.bubbleSort_News(nextWeek)
+    if custom_timezone
+        nextWeek := ffUtil.adjustTimezone(nextWeek, timezone_h, timezone_m)
+    if todType == "AM/PM"
+        nextWeek := ffUtil.NewsAMPM_TOD(nextWeek)
+    currWeek := nextWeek.copy()
+    currWeek := ffUtil.weekNews(currWeek, currency_filter, impact_filter)
+    nextWeek.clear()
+
+// Process Daily Data
+if newDay
+    currDay.clear()
+    currDay := ffUtil.todayNews(currWeek, currDay, mdnCheck)
+
+// Decode News Data
+nextWeek.processData(slot1, slot2, slot3, slot4, slot5, slot6, slot7, slot8, slot9)
+
+// ═══════════════════════════════════════════════════════════════════
+// DYNAMIC COLOR CALCULATION
+// ═══════════════════════════════════════════════════════════════════
+
+// Calculate dynamic colors based on visual mode
+getDynamicColor(string impact, string currency, int hour) =>
+    baseColor = color.gray
+    if visualMode == "Impact-Based"
+        baseColor := impact == "high" ? highImpactColor : impact == "medium" ? medImpactColor : impact == "low" ? lowImpactColor : holidayColor
+    else if visualMode == "Currency-Based" and enableCurrencyColors
+        baseColor := getCurrencyColor(currency)
+    else if visualMode == "Market-Session"
+        baseColor := getSessionColor(hour)
+    else if visualMode == "Risk-Alert"
+        baseColor := impact == "high" ? color.rgb(255, 0, 0) : color.rgb(0, 255, 0)
+    else // Time-Based
+        baseColor := highImpactColor
+    baseColor
+
+// ═══════════════════════════════════════════════════════════════════
+// ENHANCED TABLE RENDERING
+// ═══════════════════════════════════════════════════════════════════
+
+// Dynamic table colors
+var table_BC = color.new(color.gray, 70)
+var headTextC = color.white
+var headBgC = visualMode == "Impact-Based" ? color.new(highImpactColor, 30) : color.new(color.blue, 30)
+var rowTextCP = color.new(color.gray, 20)
+var rowTextCF = color.white
+var rowBgC = color.new(color.black, bgOpacity)
+
+// Create and update table
+var _table = ffUtil.newTable(locT, table_BC)
+
+if currWeek.size() > 0
+    if showTable
+        if tableType == "Today"
+            if newDay
+                _table := ffUtil.FF_Table(currDay, locT, sizeT, headTextC, headBgC, rowTextCF, rowBgC, table_BC)
+            ffUtil.timeline(currDay, _table, rowTextCP, timezone_h, timezone_m, true)
+        else
+            if timeframe.change("W")
+                _table := ffUtil.FF_Table(currWeek, locT, sizeT, headTextC, headBgC, rowTextCF, rowBgC, table_BC)
+            ffUtil.timeline(currWeek, _table, rowTextCP, timezone_h, timezone_m)
+    else
+        _table.delete()
+else
+    _table.delete()
+
+// ═══════════════════════════════════════════════════════════════════
+// CHART VISUALIZATION
+// ═══════════════════════════════════════════════════════════════════
+
+// Draw lines with dynamic colors
+if showLines
+    if onChartT != "Today" and timeframe.change("W")
+        ffUtil.FF_OnChartLine(currWeek, lineT, lineS)
+    else if onChartT == "Today" and newDay
+        ffUtil.FF_OnChartLine(currDay, lineT, lineS)
+
+// Draw labels with dynamic effects
+if showLabels
+    ffUtil.FF_OnChartLabel(currWeek, labelY, labelS, lblOutLn)
+
+// Historical data management
+ffUtil.historical(onChartLB, onChartT == "Today", onChartT == "This Week", lineTime)
+
+// Daily chart buffer
+if timeframe.period == "D" and timeframe.change("W")
+    nextWeek.processData(slot1, slot2, slot3, slot4, slot5, slot6, slot7, slot8, slot9)
+
+// ═══════════════════════════════════════════════════════════════════
+// STATUS DASHBOARD
+// ═══════════════════════════════════════════════════════════════════
+
+// Create status display
+var table statusTable = table.new(position.top_right, 3, 2)
+if barstate.islast
+    // Connection status
+    table.cell(statusTable, 0, 0, "📡", text_color=color.lime, bgcolor=color.new(color.black, 80))
+    table.cell(statusTable, 1, 0, "LIVE", text_color=color.lime, bgcolor=color.new(color.black, 80))
+    
+    // News count with dynamic color
+    newsCount = currWeek.size()
+    countColor = newsCount > 10 ? color.red : newsCount > 5 ? color.orange : color.green
+    table.cell(statusTable, 2, 0, "📰 " + str.tostring(newsCount), text_color=countColor, bgcolor=color.new(color.black, 80))
+    
+    // Visual mode indicator
+    modeIcon = visualMode == "Impact-Based" ? "🎯" : visualMode == "Time-Based" ? "⏰" : visualMode == "Currency-Based" ? "💱" : visualMode == "Market-Session" ? "🌍" : "⚠️"
+    table.cell(statusTable, 0, 1, modeIcon, text_color=color.white, bgcolor=color.new(color.black, 80))
+    table.cell(statusTable, 1, 1, visualMode, text_color=color.white, bgcolor=color.new(color.black, 80), text_size=size.small)
+    
+    // Time display
+    currentTime = str.format("{0,time,HH:mm}", timenow)
+    table.cell(statusTable, 2, 1, "🕐 " + currentTime, text_color=color.white, bgcolor=color.new(color.black, 80))
+
+// ═══════════════════════════════════════════════════════════════════
+// ALERT SYSTEM
+// ═══════════════════════════════════════════════════════════════════
+
+// Alert Configuration
+enableAlerts = input.bool(false, "🔔 Enable Alerts", group="⚠️ Alert System")
+alertBefore = input.int(15, "Minutes Before Event", minval=1, maxval=60, group="⚠️ Alert System")
+alertHighOnly = input.bool(true, "High Impact Only", group="⚠️ Alert System")
+
+// Visual alert indicator
+if enableAlerts and barstate.islast
+    box.new(bar_index - 1, high * 1.01, bar_index, high * 1.005, color.new(color.red, 80), border_color=color.red, text="🔔 Alerts ON", text_color=color.white, text_size=size.small)

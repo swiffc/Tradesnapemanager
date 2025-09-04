@@ -1,0 +1,204 @@
+{
+  "task": {
+    "id": "TSM-ICT-001",
+    "title": "Integrate ICT Live Trading Decision System",
+    "description": "Build and integrate the complete ICT Live Trading Decision System into TradeSnapManager as a new module for real-time market analysis and execution guidance",
+    "priority": "P0",
+    "status": "pending",
+    "phase": "Phase 2: Enhanced Analytics",
+    "category": "live-trading-system",
+    "estimatedHours": 32,
+    "tags": ["ict", "live-trading", "decision-system", "real-time", "market-analysis"],
+    "dependencies": ["TSM-CATEGORIZATION-001"],
+    "acceptanceCriteria": [
+      "Implement complete ICT Live Trading Decision System as React component",
+      "Integrate live forex price feeds from X-Rates API",
+      "Create real-time session tracking (Asian, London, NY)",
+      "Implement CBDR, Asian Range, and Flout analysis tools",
+      "Add protraction timing system with normal/delayed modes",
+      "Create pair-specific analysis for major currency pairs",
+      "Implement SD (Standard Deviation) calculation tools",
+      "Add live clock and session status indicators",
+      "Create progress tracking for analysis completion",
+      "Implement range invalidation alerts",
+      "Add reset and toggle functionality for live updates"
+    ],
+    "detailedRequirements": {
+      "coreFeatures": [
+        "Live Trading Decision Interface",
+        "Real-time Forex Price Integration",
+        "Session-Based Analysis (Asian, London, NY)",
+        "Range Analysis Tools (CBDR, Asian, Flout)",
+        "Protraction Timing System",
+        "Standard Deviation Calculations",
+        "Pair-Specific Trading Notes",
+        "Progress Tracking System",
+        "Alert and Notification System"
+      ],
+      "tradingRanges": {
+        "cbdr": "2:00-8:00 PM EST consolidation analysis",
+        "asian": "7:00 PM-12:00 AM EST range formation",
+        "flout": "3:00 PM-Midnight EST equilibrium analysis"
+      },
+      "protractionTypes": {
+        "normal": "12:00-2:00 AM EST (Pre-London)",
+        "delayed": "2:00-4:00 AM EST (During London)"
+      },
+      "supportedPairs": [
+        "EUR/USD", "GBP/USD", "USD/JPY", "AUD/USD", "NZD/USD"
+      ]
+    },
+    "technicalRequirements": [
+      "Create React component with TypeScript",
+      "Integrate live forex price API (X-Rates or alternative)",
+      "Implement real-time clock with timezone handling",
+      "Create session detection algorithms",
+      "Add range calculation utilities",
+      "Implement SD calculation functions",
+      "Create responsive mobile-friendly interface",
+      "Add local storage for user preferences",
+      "Implement WebSocket for real-time updates",
+      "Create notification system for alerts"
+    ],
+    "uiComponents": [
+      "Live status bar with session indicators",
+      "Range analysis cards (CBDR, Asian, Flout)",
+      "Protraction timing timeline",
+      "Progress tracking bar",
+      "Pair selection dropdown",
+      "Live price table",
+      "SD calculation inputs and results",
+      "Execution guidance panels",
+      "Alert notification system"
+    ],
+    "files": [
+      "client/src/components/ict/ICTTradingSystem.tsx",
+      "client/src/components/ict/LiveStatusBar.tsx",
+      "client/src/components/ict/RangeAnalysis.tsx",
+      "client/src/components/ict/ProtractionTimer.tsx",
+      "client/src/components/ict/PairSelector.tsx",
+      "client/src/components/ict/LivePrices.tsx",
+      "client/src/components/ict/SDCalculator.tsx",
+      "client/src/hooks/useICTData.ts",
+      "client/src/hooks/useLivePrices.ts",
+      "client/src/utils/ictCalculations.ts",
+      "client/src/utils/sessionUtils.ts",
+      "server/routes/ict.ts",
+      "server/utils/forexPrices.ts"
+    ]
+  },
+  "subtasks": [
+    {
+      "id": "TSM-ICT-001A",
+      "title": "Create Core ICT Trading System Component",
+      "description": "Build the main React component structure with live status tracking",
+      "estimatedHours": 8,
+      "files": [
+        "client/src/components/ict/ICTTradingSystem.tsx",
+        "client/src/components/ict/LiveStatusBar.tsx"
+      ]
+    },
+    {
+      "id": "TSM-ICT-001B",
+      "title": "Implement Live Forex Price Integration",
+      "description": "Integrate X-Rates API or alternative for real-time forex prices",
+      "estimatedHours": 6,
+      "files": [
+        "client/src/hooks/useLivePrices.ts",
+        "server/utils/forexPrices.ts",
+        "client/src/components/ict/LivePrices.tsx"
+      ]
+    },
+    {
+      "id": "TSM-ICT-001C",
+      "title": "Build Range Analysis Tools",
+      "description": "Create CBDR, Asian Range, and Flout analysis components",
+      "estimatedHours": 10,
+      "files": [
+        "client/src/components/ict/RangeAnalysis.tsx",
+        "client/src/components/ict/SDCalculator.tsx",
+        "client/src/utils/ictCalculations.ts"
+      ]
+    },
+    {
+      "id": "TSM-ICT-001D",
+      "title": "Implement Protraction Timing System",
+      "description": "Build normal and delayed protraction timing with live timeline",
+      "estimatedHours": 6,
+      "files": [
+        "client/src/components/ict/ProtractionTimer.tsx",
+        "client/src/utils/sessionUtils.ts"
+      ]
+    },
+    {
+      "id": "TSM-ICT-001E",
+      "title": "Add Pair-Specific Analysis",
+      "description": "Implement pair selection and specific trading guidance",
+      "estimatedHours": 2,
+      "files": [
+        "client/src/components/ict/PairSelector.tsx"
+      ]
+    }
+  ],
+  "integrationPoints": {
+    "tradeSnapManager": [
+      "Link ICT analysis to screenshot categorization",
+      "Connect range analysis to bias categories (M, A1, A2, W, V1, V2)",
+      "Integrate with existing analytics dashboard",
+      "Add ICT insights to performance tracking",
+      "Connect to existing note-taking system"
+    ],
+    "navigation": [
+      "Add ICT System to main navigation menu",
+      "Create dedicated ICT analysis page",
+      "Add quick access from analytics dashboard"
+    ]
+  },
+  "apiRequirements": {
+    "forexPrices": {
+      "source": "X-Rates API or alternative",
+      "updateFrequency": "Real-time or 1-minute intervals",
+      "pairs": ["EUR/USD", "GBP/USD", "USD/JPY", "AUD/USD", "NZD/USD"],
+      "fallback": "Static price table for demo"
+    },
+    "timeData": {
+      "timezone": "America/New_York (EST)",
+      "sessionTracking": "Real-time session detection",
+      "killZoneAlerts": "Automated notifications"
+    }
+  },
+  "userExperience": {
+    "workflow": [
+      "User selects trading pair",
+      "System shows live prices and current session",
+      "User analyzes CBDR/Asian/Flout ranges",
+      "System calculates SDs and provides guidance",
+      "User tracks protraction timing",
+      "System provides execution recommendations"
+    ],
+    "mobileOptimization": [
+      "Responsive design for mobile trading",
+      "Touch-optimized controls",
+      "Simplified mobile interface",
+      "Offline capability for core features"
+    ]
+  },
+  "testing": {
+    "unitTests": [
+      "SD calculation accuracy",
+      "Session detection logic",
+      "Range validation algorithms",
+      "Time zone conversion"
+    ],
+    "integrationTests": [
+      "Live price feed integration",
+      "Real-time updates",
+      "Cross-component communication"
+    ],
+    "userAcceptanceTests": [
+      "Complete trading analysis workflow",
+      "Mobile responsiveness",
+      "Performance under load"
+    ]
+  }
+}

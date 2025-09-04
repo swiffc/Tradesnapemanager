@@ -1,0 +1,184 @@
+{
+  "tasks": [
+    {
+      "id": "TSM-017",
+      "title": "AI Pattern Recognition for Market Cycle Identification", 
+      "description": "Implement AI/ML system to automatically identify M patterns, stophunts (A1,A2,V1,V2), and W reversals in trading screenshots",
+      "priority": "P0",
+      "status": "pending",
+      "phase": "Phase 4: AI & Automation",
+      "category": "ai-ml",
+      "estimatedHours": 40,
+      "tags": ["ai", "pattern-recognition", "computer-vision", "automation"],
+      "dependencies": ["TSM-013"],
+      "acceptanceCriteria": [
+        "Train ML model to identify M patterns on H1+ timeframes",
+        "Implement A1/A2 stophunt high detection algorithms",
+        "Create V1/V2 stophunt low identification system",
+        "Add W reversal pattern recognition",
+        "Achieve 85%+ accuracy in pattern identification",
+        "Provide confidence scores for AI suggestions"
+      ],
+      "files": [
+        "server/ai/patternRecognition.py",
+        "server/ai/models/marketCycleDetector.py", 
+        "client/src/components/ai/PatternSuggestions.tsx",
+        "server/utils/aiIntegration.ts"
+      ]
+    },
+    {
+      "id": "TSM-018",
+      "title": "Automated Trade Classification System",
+      "description": "Create intelligent system that automatically categorizes trades based on image analysis and historical patterns",
+      "priority": "P1", 
+      "status": "pending",
+      "phase": "Phase 4: AI & Automation",
+      "category": "ai-ml", 
+      "estimatedHours": 32,
+      "tags": ["automation", "classification", "ml", "smart-categorization"],
+      "dependencies": ["TSM-017"],
+      "acceptanceCriteria": [
+        "Auto-suggest bias categories from screenshot analysis",
+        "Intelligently recommend setup types based on patterns",
+        "Predict optimal entry types for identified patterns",
+        "Learn from user corrections to improve accuracy",
+        "Implement batch auto-categorization for bulk uploads",
+        "Create confidence-based suggestion system"
+      ],
+      "files": [
+        "server/ai/tradeClassifier.py",
+        "client/src/components/ai/SmartCategorization.tsx",
+        "server/utils/mlTraining.ts",
+        "client/src/hooks/useAiSuggestions.ts"
+      ]
+    },
+    {
+      "id": "TSM-019",
+      "title": "Performance Prediction Models",
+      "description": "Develop ML models that predict trade success probability based on market cycle stage and historical performance",
+      "priority": "P1",
+      "status": "pending", 
+      "phase": "Phase 4: AI & Automation",
+      "category": "ai-ml",
+      "estimatedHours": 36,
+      "tags": ["prediction", "ml", "success-probability", "analytics"],
+      "dependencies": ["TSM-017", "TSM-002"],
+      "acceptanceCriteria": [
+        "Predict success probability for M pattern setups",
+        "Forecast effectiveness of A1/A2 stophunt trades",
+        "Model W reversal success rates by session and pair",
+        "Predict optimal R-multiple targets for V1/V2 setups",
+        "Create real-time trade scoring system",
+        "Implement adaptive models that learn from new data"
+      ],
+      "files": [
+        "server/ai/predictionModels.py", 
+        "client/src/components/ai/TradePredictions.tsx",
+        "server/utils/modelTraining.ts",
+        "client/src/components/analytics/PredictiveAnalytics.tsx"
+      ]
+    },
+    {
+      "id": "TSM-020",
+      "title": "Smart Recommendations Engine",
+      "description": "Create intelligent recommendation system that suggests optimal trading opportunities based on user performance and market conditions",
+      "priority": "P1",
+      "status": "pending",
+      "phase": "Phase 4: AI & Automation", 
+      "category": "ai-ml",
+      "estimatedHours": 28,
+      "tags": ["recommendations", "personalization", "optimization", "smart-alerts"],
+      "dependencies": ["TSM-018", "TSM-019"],
+      "acceptanceCriteria": [
+        "Recommend best performing bias categories for user",
+        "Suggest optimal session times based on user's success rates",
+        "Alert users to high-probability setup opportunities",
+        "Recommend risk-reward adjustments based on historical data", 
+        "Create personalized trading strategy optimization",
+        "Implement smart notifications and trade alerts"
+      ],
+      "files": [
+        "server/ai/recommendationEngine.py",
+        "client/src/components/ai/SmartRecommendations.tsx",
+        "server/utils/personalization.ts",
+        "client/src/hooks/useSmartAlerts.ts"
+      ]
+    },
+    {
+      "id": "TSM-021",
+      "title": "Natural Language Processing for Trade Analysis",
+      "description": "Implement NLP system to analyze trade notes and extract insights, patterns, and improvement suggestions",
+      "priority": "P2",
+      "status": "pending",
+      "phase": "Phase 4: AI & Automation",
+      "category": "ai-ml",
+      "estimatedHours": 24,
+      "tags": ["nlp", "text-analysis", "insights", "automation"], 
+      "dependencies": ["TSM-012"],
+      "acceptanceCriteria": [
+        "Extract key insights from trade notes and comments",
+        "Identify recurring themes in successful vs failed trades",
+        "Auto-generate trade summaries from detailed notes",
+        "Detect emotional indicators in trade descriptions",
+        "Create searchable knowledge base from trade notes",
+        "Implement sentiment analysis for trade reviews"
+      ],
+      "files": [
+        "server/ai/nlpProcessor.py",
+        "client/src/components/ai/TradeInsights.tsx", 
+        "server/utils/textAnalysis.ts",
+        "client/src/components/ai/AutoSummary.tsx"
+      ]
+    },
+    {
+      "id": "TSM-022",
+      "title": "Automated Backtesting Integration",
+      "description": "Create system that automatically backtests identified patterns and strategies against historical market data",
+      "priority": "P2", 
+      "status": "pending",
+      "phase": "Phase 4: AI & Automation",
+      "category": "backtesting",
+      "estimatedHours": 32,
+      "tags": ["backtesting", "validation", "historical-data", "automation"],
+      "dependencies": ["TSM-017", "TSM-019"],
+      "acceptanceCriteria": [
+        "Integrate with historical forex data providers",
+        "Automate backtesting of identified M, A, W, V patterns",
+        "Validate AI pattern recognition against historical performance",
+        "Create automated strategy optimization reports",
+        "Implement forward testing for new pattern variations", 
+        "Generate statistical significance reports for patterns"
+      ],
+      "files": [
+        "server/backtesting/engine.py",
+        "client/src/components/backtesting/Results.tsx",
+        "server/integrations/marketData.ts",
+        "client/src/components/backtesting/AutoValidation.tsx"
+      ]
+    }
+  ],
+  "metadata": {
+    "projectName": "TradeSnapManager",
+    "prdVersion": "2.0", 
+    "generatedAt": "2025-08-29T12:25:00Z",
+    "totalTasks": 6,
+    "totalEstimatedHours": 192,
+    "phase": "Phase 4: AI & Automation",
+    "focusAreas": [
+      "AI Pattern Recognition (M, A1, A2, W, V1, V2)",
+      "Automated Trade Classification", 
+      "Performance Prediction Models",
+      "Smart Recommendations Engine",
+      "Natural Language Processing",
+      "Automated Backtesting & Validation"
+    ],
+    "aiTechnologies": [
+      "Computer Vision for Pattern Recognition",
+      "Machine Learning for Classification",
+      "Predictive Analytics", 
+      "Natural Language Processing",
+      "Recommendation Systems",
+      "Automated Backtesting"
+    ]
+  }
+}

@@ -1,0 +1,137 @@
+# TradeSnapManager - Product Requirements Document (PRD)
+
+## 📊 Project Overview
+**Project Name**: TradeSnapManager
+**Version**: 2.0
+**Last Updated**: August 29, 2025
+**Document Type**: Product Requirements Document
+
+## 🎯 Executive Summary
+TradeSnapManager is a comprehensive trading screenshot management system designed for systematic trade analysis and performance tracking. The application enables traders to organize, analyze, and learn from their trading screenshots using a structured **Bias → Setup → Pattern → Entry** methodology.
+
+## 🎬 Product Vision
+**Vision Statement**: To provide traders with the most comprehensive and systematic trading screenshot management platform that transforms scattered trade images into actionable insights and improved performance.
+
+**Mission**: Empower traders to achieve consistent profitability through systematic documentation, analysis, and continuous improvement of their trading strategies.
+
+## 👥 Target Audience
+### Primary Users
+- **Individual Forex Traders**: Independent traders seeking systematic trade documentation
+- **Trading Educators**: Instructors who need to organize and share trading examples
+- **Trading Teams**: Small groups collaborating on strategy development
+
+### Secondary Users
+- **Trading Students**: Learning traders who need structure for trade analysis
+- **Trading Coaches**: Mentors reviewing student trades
+- **Prop Trading Firms**: Small firms tracking trader performance
+
+## 🎯 Problem Statement
+**Current Pain Points**:
+1. **Disorganized Trade Screenshots**: Traders accumulate hundreds of screenshots without systematic organization
+2. **Lack of Performance Analysis**: No centralized way to analyze win rates, risk-reward ratios across strategies
+3. **Inefficient Learning Process**: Difficulty identifying patterns in successful vs. unsuccessful trades
+4. **Manual Documentation**: Time-consuming manual processes for trade journaling
+5. **Session-Based Analysis Gap**: No systematic way to compare performance across trading sessions (Asian, London, NY)
+
+## ✅ Success Criteria
+### Primary KPIs
+- **User Engagement**: 80% of users upload screenshots within first 7 days
+- **Retention**: 60% monthly active users after 3 months
+- **Performance Improvement**: Users report 15% improvement in win rates after 3 months
+- **Documentation Efficiency**: 75% reduction in time spent organizing trades
+
+### Secondary KPIs
+- **Screenshot Organization**: Average 100+ screenshots per active user
+- **Analysis Usage**: 70% of users regularly use performance analytics
+- **Feature Adoption**: 85% usage rate for core features (upload, categorize, analyze)
+
+## 🚀 Core Features
+
+### 1. Screenshot Management System (P0 - Critical)
+- Upload multiple trading screenshots (drag-and-drop, file browser)
+- Support common image formats (PNG, JPG, JPEG, WebP)
+- Automatic image optimization and compression
+- Cloud storage integration (Supabase Storage)
+- Image preview with zoom capabilities
+- Bulk upload functionality
+
+### 2. Systematic Trade Categorization (P0 - Critical)
+**Hierarchical Structure**: Bias → Setup → Pattern → Entry
+
+**Bias Categories**:
+- **Levels Folder**: M, A1, A2, W, V1, V2
+  - M: M pattern on H1 timeframe and higher before a down move
+  - A1: First stophunt high level in the down move
+  - A2: Second stophunt high level in the down move  
+  - W: Reversal pattern before the big up move
+  - V1: First stophunt low level (Level 1)
+  - V2: Second stophunt low level (Level 2)
+- **Other Categories**: ABS, 3XADR, L1_13_50, L2_50_200
+**Setup Categories**: Box Setups, Anchors, Asian Range, Harmonics P1, Reset Safety, Resets
+**Pattern Categories**: 1H 50 50 Bounce, 2nd leg half bat, 3 Drives - 3 Day setups, 3 Hits Trade, Half Bats, Head and Shoulders Patterns, ID 50, London Patterns, M-Formation, type1, type2, type3, type4, W_Formation
+**Entry Types**: a/b/c variants, Railroad Tracks, Cord of Woods, Evening Star, Morning Star, Shift Candle
+
+### 3. Performance Analytics Dashboard (P0 - Critical)
+- Win/Loss ratios by strategy
+- Risk-Reward analysis (R-multiples)
+- Session performance comparison (Asian, London, NY)
+- Consecutive wins/losses tracking
+- Drawdown analysis
+- Currency pair performance
+- Interactive charts using Recharts
+
+### 4. Session-Based Analysis (P1 - High)
+**Sessions**: Asian (00:00-08:00 GMT), London (08:00-16:00 GMT), NY (13:00-22:00 GMT), Gap Times, Brinks
+- Session-specific win rates
+- Best performing setups per session
+- Risk-reward comparison across sessions
+
+### 5. Advanced Filtering & Search (P1 - High)
+- Date range, currency pairs, trade outcomes
+- Risk-reward ranges, strategy combinations
+- Full-text search in notes
+- Saved filter presets
+
+## 🏗️ Technical Architecture
+### Frontend: React 18 + TypeScript + Vite + Tailwind CSS + Radix UI
+### Backend: Node.js + Express + TypeScript + Drizzle ORM
+### Database: PostgreSQL (Supabase) + Supabase Storage
+### Deployment: Vercel + GitHub
+
+## 🚀 Implementation Phases
+### Phase 1: Core Foundation (Completed)
+- Basic screenshot upload and storage
+- Core categorization system
+- Simple analytics dashboard
+- Basic filtering and search
+
+### Phase 2: Enhanced Analytics (Current Priority)
+- Advanced performance analytics
+- Session-based analysis
+- Risk-reward tracking
+- Export functionality
+
+### Phase 3: Advanced Features
+- User authentication system
+- Advanced note-taking with rich text
+- Image annotation tools
+- Sharing and collaboration features
+
+### Phase 4: AI & Automation
+- Pattern recognition AI
+- Automated trade classification
+- Performance prediction models
+- Smart recommendations
+
+## 📊 Success Metrics & KPIs
+- **Daily/Monthly Active Users**
+- **Screenshot Upload Frequency**
+- **User-Reported Win Rate Improvement**
+- **Analytics Dashboard Usage**
+- **Page Load Speed < 3 seconds**
+- **Upload Success Rate > 95%**
+- **Uptime > 99.9%**
+
+---
+**Document Prepared By**: TradeSnapManager Development Team
+**Next Review Date**: September 29, 2025

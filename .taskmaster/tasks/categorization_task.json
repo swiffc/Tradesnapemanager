@@ -1,0 +1,137 @@
+{
+  "task": {
+    "id": "TSM-CATEGORIZATION-001",
+    "title": "Implement Four-Level Trade Categorization System",
+    "description": "Implement the complete hierarchical trade categorization system: Bias → Setup → Pattern → Entry with all specified categories and proper database schema",
+    "priority": "P0",
+    "status": "pending",
+    "phase": "Phase 2: Enhanced Analytics",
+    "category": "categorization",
+    "estimatedHours": 20,
+    "tags": ["categorization", "hierarchy", "database", "ui", "forms"],
+    "dependencies": [],
+    "acceptanceCriteria": [
+      "Implement four-level hierarchical dropdown system in UI",
+      "Create proper database schema for all four category levels",
+      "Ensure dependent dropdowns (Setup depends on Bias, Pattern depends on Setup, Entry depends on Pattern)",
+      "Add validation for category combinations",
+      "Implement search and filtering by all four levels",
+      "Create analytics that work across the full hierarchy",
+      "Add bulk editing capabilities for category updates"
+    ],
+    "detailedRequirements": {
+      "biasCategories": {
+        "levelsFolder": {
+          "M": "M pattern on H1 timeframe and higher before a down move",
+          "A1": "First stophunt high level in the down move", 
+          "A2": "Second stophunt high level in the down move",
+          "W": "Reversal pattern before the big up move",
+          "V1": "First stophunt low level (Level 1)",
+          "V2": "Second stophunt low level (Level 2)"
+        },
+        "otherCategories": [
+          "ABS (Absolute)",
+          "3XADR (3x Average Daily Range)", 
+          "L1_13_50 (Liquidity level 1)",
+          "L2_50_200 (Liquidity level 2)"
+        ]
+      },
+      "setupCategories": [
+        "Box Setups",
+        "Anchors",
+        "Asian Range",
+        "Harmonics P1",
+        "Reset Safety",
+        "Resets"
+      ],
+      "patternCategories": [
+        "1H 50 50 Bounce",
+        "2nd leg half bat",
+        "3 Drives - 3 Day setups",
+        "3 Hits Trade",
+        "Half Bats",
+        "Head and Shoulders Patterns",
+        "ID 50",
+        "London Patterns",
+        "M-Formation",
+        "type1",
+        "type2", 
+        "type3",
+        "type4",
+        "W_Formation"
+      ],
+      "entryCategories": [
+        "a, b, c variants (for precise timing)",
+        "Railroad Tracks",
+        "Cord of Woods",
+        "Evening Star",
+        "Morning Star",
+        "Shift Candle"
+      ]
+    },
+    "technicalRequirements": [
+      "Update database schema to separate Setup and Pattern fields",
+      "Create migration script for existing data",
+      "Implement cascading dropdown components",
+      "Add category validation logic",
+      "Create category management admin interface",
+      "Implement full-text search across all category levels",
+      "Add category-based analytics aggregation"
+    ],
+    "databaseChanges": [
+      "Add 'pattern' field to screenshots table (separate from setup)",
+      "Create category lookup tables for validation",
+      "Add indexes for category-based queries",
+      "Create migration to split existing setup/pattern data"
+    ],
+    "files": [
+      "shared/schema.ts - Update database schema",
+      "migrations/separate_setup_pattern.sql - Database migration", 
+      "client/src/components/forms/CategorySelector.tsx - Four-level dropdown",
+      "client/src/components/forms/BiasSelector.tsx - Bias category selector",
+      "client/src/components/forms/SetupSelector.tsx - Setup category selector", 
+      "client/src/components/forms/PatternSelector.tsx - Pattern category selector",
+      "client/src/components/forms/EntrySelector.tsx - Entry category selector",
+      "client/src/utils/categoryValidation.ts - Category validation logic",
+      "server/utils/categoryMigration.ts - Data migration utilities"
+    ],
+    "uiComponents": [
+      "Hierarchical cascading dropdowns",
+      "Category breadcrumb navigation",
+      "Category-based filtering interface", 
+      "Analytics breakdown by full hierarchy",
+      "Category combination validation alerts",
+      "Bulk category editing modal"
+    ]
+  },
+  "subtasks": [
+    {
+      "id": "TSM-CAT-001A",
+      "title": "Update Database Schema for Four-Level Categories",
+      "description": "Modify database schema to properly separate Setup and Pattern as distinct fields",
+      "estimatedHours": 4,
+      "files": ["shared/schema.ts", "migrations/separate_setup_pattern.sql"]
+    },
+    {
+      "id": "TSM-CAT-001B", 
+      "title": "Create Cascading Category Dropdown Components",
+      "description": "Build reusable dropdown components that cascade based on parent selections",
+      "estimatedHours": 8,
+      "files": ["client/src/components/forms/CategorySelector.tsx", "client/src/components/forms/*Selector.tsx"]
+    },
+    {
+      "id": "TSM-CAT-001C",
+      "title": "Implement Category Validation and Migration",
+      "description": "Create validation logic and migrate existing data to new schema",
+      "estimatedHours": 6, 
+      "files": ["client/src/utils/categoryValidation.ts", "server/utils/categoryMigration.ts"]
+    },
+    {
+      "id": "TSM-CAT-001D",
+      "title": "Update Analytics for Four-Level Hierarchy",
+      "description": "Modify analytics queries and displays to work with the complete hierarchy",
+      "estimatedHours": 2,
+      "files": ["client/src/components/analytics/PerformanceDashboard.tsx"]
+    }
+  ]
+}

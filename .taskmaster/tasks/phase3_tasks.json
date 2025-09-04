@@ -1,0 +1,177 @@
+{
+  "tasks": [
+    {
+      "id": "TSM-011",
+      "title": "User Authentication System with Role-Based Access",
+      "description": "Implement comprehensive authentication system using Supabase Auth with role-based access control for different user types",
+      "priority": "P0",
+      "status": "pending", 
+      "phase": "Phase 3: Advanced Features",
+      "category": "authentication",
+      "estimatedHours": 20,
+      "tags": ["auth", "supabase", "security", "rbac"],
+      "dependencies": [],
+      "acceptanceCriteria": [
+        "Implement user registration with email verification",
+        "Create secure login/logout with JWT tokens",
+        "Add password reset and change functionality", 
+        "Implement role-based access (Trader, Educator, Team Lead)",
+        "Create user profile management with trading preferences",
+        "Add social login options (Google, GitHub)"
+      ],
+      "files": [
+        "client/src/components/auth/LoginForm.tsx",
+        "client/src/components/auth/RegisterForm.tsx",
+        "client/src/hooks/useAuth.ts",
+        "server/middleware/auth.ts",
+        "shared/types/auth.ts"
+      ]
+    },
+    {
+      "id": "TSM-012",
+      "title": "Advanced Note-Taking with Market Cycle Templates",
+      "description": "Implement rich text note-taking system with predefined templates for each market cycle stage",
+      "priority": "P1",
+      "status": "pending",
+      "phase": "Phase 3: Advanced Features", 
+      "category": "notes",
+      "estimatedHours": 18,
+      "tags": ["notes", "rich-text", "templates", "market-cycle"],
+      "dependencies": ["TSM-011"],
+      "acceptanceCriteria": [
+        "Create rich text editor with formatting options",
+        "Add predefined templates for M, A1, A2, W, V1, V2 setups",
+        "Implement note linking between related trades",
+        "Add markdown support and export capability",
+        "Create note tagging and search functionality", 
+        "Implement collaborative note editing for teams"
+      ],
+      "files": [
+        "client/src/components/notes/RichTextEditor.tsx",
+        "client/src/components/notes/MarketCycleTemplates.tsx",
+        "client/src/components/notes/NoteCollaboration.tsx",
+        "server/utils/noteTemplates.ts"
+      ]
+    },
+    {
+      "id": "TSM-013",
+      "title": "Image Annotation Tools for Market Analysis",
+      "description": "Implement comprehensive image annotation tools for marking key levels, patterns, and analysis on trading screenshots", 
+      "priority": "P1",
+      "status": "pending",
+      "phase": "Phase 3: Advanced Features",
+      "category": "annotation",
+      "estimatedHours": 22,
+      "tags": ["annotation", "drawing", "analysis", "tools"],
+      "dependencies": ["TSM-011"],
+      "acceptanceCriteria": [
+        "Add drawing tools (lines, rectangles, arrows, text)",
+        "Create preset annotations for M patterns, stophunts, W reversals",
+        "Implement layered annotations with show/hide functionality",
+        "Add measurement tools for price levels and time periods",
+        "Create annotation templates for each bias category",
+        "Implement annotation sharing and collaboration"
+      ],
+      "files": [
+        "client/src/components/annotation/DrawingTools.tsx",
+        "client/src/components/annotation/PresetAnnotations.tsx", 
+        "client/src/components/annotation/AnnotationLayers.tsx",
+        "client/src/utils/annotationEngine.ts"
+      ]
+    },
+    {
+      "id": "TSM-014", 
+      "title": "Team Collaboration and Sharing Features",
+      "description": "Implement team collaboration features for sharing trades, strategies, and performance insights",
+      "priority": "P1",
+      "status": "pending",
+      "phase": "Phase 3: Advanced Features",
+      "category": "collaboration", 
+      "estimatedHours": 24,
+      "tags": ["collaboration", "sharing", "teams", "social"],
+      "dependencies": ["TSM-011", "TSM-012"],
+      "acceptanceCriteria": [
+        "Create team workspaces with shared trade libraries",
+        "Implement trade sharing with privacy controls",
+        "Add commenting and discussion threads on trades",
+        "Create team performance dashboards and comparisons", 
+        "Implement mentoring features for trader-coach relationships",
+        "Add team challenges and performance competitions"
+      ],
+      "files": [
+        "client/src/components/collaboration/TeamWorkspace.tsx",
+        "client/src/components/collaboration/TradeSharing.tsx",
+        "client/src/components/collaboration/TeamDashboard.tsx",
+        "server/utils/teamManagement.ts"
+      ]
+    },
+    {
+      "id": "TSM-015",
+      "title": "Advanced Data Import/Export System",
+      "description": "Create comprehensive system for importing/exporting trade data from various trading platforms and formats",
+      "priority": "P2", 
+      "status": "pending",
+      "phase": "Phase 3: Advanced Features",
+      "category": "integration",
+      "estimatedHours": 16,
+      "tags": ["import", "export", "integration", "platforms"],
+      "dependencies": ["TSM-011"],
+      "acceptanceCriteria": [
+        "Support MT4/MT5 trade history import",
+        "Add TradingView screenshot import with metadata",
+        "Create CSV/Excel trade data import functionality",
+        "Implement bulk data migration tools",
+        "Add API integration for popular trading platforms",
+        "Create automated backup and sync features"
+      ],
+      "files": [
+        "client/src/components/import/DataImporter.tsx",
+        "client/src/components/import/PlatformConnectors.tsx",
+        "server/utils/dataImport.ts",
+        "server/integrations/tradingPlatforms.ts"
+      ]
+    },
+    {
+      "id": "TSM-016",
+      "title": "Progressive Web App (PWA) Implementation", 
+      "description": "Convert the application to a Progressive Web App for offline functionality and mobile app-like experience",
+      "priority": "P2",
+      "status": "pending",
+      "phase": "Phase 3: Advanced Features",
+      "category": "pwa",
+      "estimatedHours": 14,
+      "tags": ["pwa", "offline", "mobile", "caching"],
+      "dependencies": ["TSM-010"],
+      "acceptanceCriteria": [
+        "Implement service worker for offline functionality",
+        "Add offline caching for trades and analytics", 
+        "Create app manifest for mobile installation",
+        "Implement background sync for uploads",
+        "Add push notifications for trade alerts",
+        "Create offline-first data synchronization"
+      ],
+      "files": [
+        "client/public/sw.js",
+        "client/src/utils/offline.ts",
+        "client/src/hooks/useOfflineSync.ts", 
+        "client/public/manifest.json"
+      ]
+    }
+  ],
+  "metadata": {
+    "projectName": "TradeSnapManager", 
+    "prdVersion": "2.0",
+    "generatedAt": "2025-08-29T12:20:00Z",
+    "totalTasks": 6,
+    "totalEstimatedHours": 114,
+    "phase": "Phase 3: Advanced Features",
+    "focusAreas": [
+      "User Authentication & Security",
+      "Advanced Note-Taking with Market Cycle Integration", 
+      "Image Annotation & Analysis Tools",
+      "Team Collaboration & Sharing",
+      "Platform Integrations & Data Import",
+      "Progressive Web App Features"
+    ]
+  }
+}

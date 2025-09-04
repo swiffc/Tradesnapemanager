@@ -1,0 +1,95 @@
+# Cursor IDE Rules for Pine Script and Code Quality
+
+## Line Continuation and Syntax Error Prevention
+
+### Pine Script Specific Rules
+- **ALWAYS check for line continuation errors** in Pine Script (.pine) files
+- **NEVER split input function parameters** across multiple lines without proper continuation syntax
+- **ALWAYS use single-line format** for input functions when possible:
+  ```pine
+  // ✅ CORRECT - Single line
+  myVar = input.string("default", "title", options=["opt1", "opt2"], group="group")
+  
+  // ❌ INCORRECT - Multi-line without continuation
+  myVar = input.string("default", "title",
+      options=["opt1", "opt2"],
+      group="group")
+  ```
+
+### General Code Quality Rules
+- **ALWAYS scan for undeclared variables** before code execution
+- **ALWAYS validate variable declarations** before usage
+- **CHECK for missing imports** and dependencies
+- **VERIFY function parameter counts** match their definitions
+- **ENSURE proper variable scope** (var, let, const in JS/TS)
+
+### Pre-Commit Checks
+When editing any file, automatically check for:
+1. **Line continuation syntax errors**
+2. **Undeclared variable references**
+3. **Missing function parameters**
+4. **Improper variable declarations**
+5. **Syntax errors that would prevent compilation**
+
+### Pine Script Validation Rules
+- Check that all `input.*()` functions are properly formatted
+- Validate that `method` definitions have correct syntax
+- Ensure `switch` statements have proper syntax
+- Verify that array and function declarations are complete
+- Check for missing `=>` operators in function definitions
+
+### JavaScript/TypeScript Rules
+- Validate all variable declarations (`const`, `let`, `var`)
+- Check for undefined variables before usage
+- Ensure proper import/export syntax
+- Validate function parameter types and counts
+
+### Error Prevention Workflow
+1. **Before saving any file**: Run syntax validation
+2. **Before committing**: Check for undeclared variables
+3. **When editing Pine Script**: Validate line continuation syntax
+4. **When adding new functions**: Verify all parameters are declared
+
+### Auto-Fix Suggestions
+- Suggest combining multi-line input functions into single lines
+- Recommend proper variable declarations for undeclared variables
+- Offer import suggestions for missing dependencies
+- Provide syntax corrections for common Pine Script errors
+
+### File Type Specific Rules
+
+#### .pine files:
+- Always validate Pine Script v5 syntax
+- Check for proper `@version=5` declaration
+- Validate indicator/strategy function calls
+- Ensure proper array and method syntax
+
+#### .ts/.tsx/.js/.jsx files:
+- Check TypeScript/JavaScript variable declarations
+- Validate import statements
+- Ensure proper React component syntax (for .tsx/.jsx)
+- Check for unused variables and functions
+
+#### .json files:
+- Validate JSON syntax
+- Check for missing commas or brackets
+- Ensure proper string escaping
+
+### Error Reporting
+When errors are found:
+- **Highlight the specific line** with the error
+- **Provide clear error message** explaining the issue
+- **Suggest automatic fix** when possible
+- **Show before/after examples** for corrections
+
+### Performance Optimization
+- Run lightweight syntax checks on every keystroke
+- Perform deep validation on file save
+- Cache validation results to avoid repeated checks
+- Use incremental validation for large files
+
+## Implementation Notes
+- These rules should be applied automatically by Cursor IDE
+- Validation should happen in real-time during editing
+- Error highlighting should be immediate and clear
+- Auto-fix suggestions should be contextual and accurate

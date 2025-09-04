@@ -9,6 +9,7 @@ import NotFound from "@/pages/not-found";
 import { BTMMDashboard } from "@/components/btmm-dashboard";
 import { ModernBTMMDashboard } from "@/components/modern-btmm-dashboard";
 import { ProfessionalTradingDashboard } from "@/components/professional-trading-dashboard";
+import { ICTTradingSystem } from "@/components/ict/ICTTradingSystem";
 
 function Router() {
   return (
@@ -18,6 +19,7 @@ function Router() {
       <Route path="/btmm" component={BTMMDashboard} />
       <Route path="/btmm-modern" component={ModernBTMMDashboard} />
       <Route path="/pro" component={ProfessionalTradingDashboard} />
+      <Route path="/ict" component={ICTTradingSystem} />
       <Route path="/legacy" component={StudyBucketsPage} /> {/* Legacy interface for reference */}
       <Route component={NotFound} />
     </Switch>

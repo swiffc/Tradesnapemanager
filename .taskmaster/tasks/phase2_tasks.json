@@ -1,0 +1,281 @@
+{
+  "tasks": [
+    {
+      "id": "TSM-001",
+      "title": "Enhanced Performance Analytics Dashboard",
+      "description": "Implement advanced performance analytics with comprehensive metrics including win/loss ratios by strategy, risk-reward analysis (R-multiples), and consecutive wins/losses tracking",
+      "priority": "P0",
+      "status": "pending",
+      "phase": "Phase 2: Enhanced Analytics",
+      "category": "analytics",
+      "estimatedHours": 16,
+      "tags": ["analytics", "dashboard", "recharts", "performance"],
+      "dependencies": [],
+      "acceptanceCriteria": [
+        "Display win/loss ratios by full hierarchy (Bias → Setup → Pattern → Entry)",
+        "Show R-multiple analysis with visual charts and trend lines",
+        "Track consecutive wins/losses with streak indicators and alerts",
+        "Implement drawdown analysis with maximum drawdown tracking",
+        "Create interactive charts using Recharts library with drill-down capability",
+        "Add performance comparison between Levels Folder (M,A1,A2,W,V1,V2) and Other Categories"
+      ],
+      "files": [
+        "client/src/components/analytics/PerformanceDashboard.tsx",
+        "client/src/components/analytics/WinLossChart.tsx", 
+        "client/src/components/analytics/RiskRewardChart.tsx",
+        "client/src/components/analytics/LevelsAnalysis.tsx",
+        "client/src/hooks/useAnalytics.ts"
+      ]
+    },
+    {
+      "id": "TSM-002", 
+      "title": "Session-Based Performance Analysis with Market Cycle Integration",
+      "description": "Implement comprehensive session analysis that tracks how the Levels Folder categories (M,A1,A2,W,V1,V2) perform across different trading sessions",
+      "priority": "P1",
+      "status": "pending",
+      "phase": "Phase 2: Enhanced Analytics",
+      "category": "analytics",
+      "estimatedHours": 14,
+      "tags": ["sessions", "analysis", "market-cycle", "timezone"],
+      "dependencies": ["TSM-001"],
+      "acceptanceCriteria": [
+        "Track performance of M pattern setups across Asian/London/NY sessions",
+        "Analyze A1/A2 stophunt high effectiveness by session",
+        "Monitor W reversal pattern success rates by session",
+        "Track V1/V2 stophunt low performance across sessions",
+        "Create session heatmaps showing best performing levels",
+        "Add session overlap analysis for Gap Times and Brinks periods"
+      ],
+      "files": [
+        "client/src/components/analytics/SessionAnalysis.tsx",
+        "client/src/components/analytics/MarketCycleBySession.tsx",
+        "client/src/utils/sessionUtils.ts",
+        "server/utils/sessionAnalytics.ts"
+      ]
+    },
+    {
+      "id": "TSM-003",
+      "title": "Risk-Reward Tracking with Market Cycle Insights", 
+      "description": "Implement R-multiple tracking that provides insights into risk-reward performance across the complete market cycle (M→A1→A2→W→V1→V2)",
+      "priority": "P0",
+      "status": "pending",
+      "phase": "Phase 2: Enhanced Analytics", 
+      "category": "risk-management",
+      "estimatedHours": 12,
+      "tags": ["risk", "reward", "r-multiples", "market-cycle"],
+      "dependencies": ["TSM-001"],
+      "acceptanceCriteria": [
+        "Calculate average R-multiples for each level in the market cycle",
+        "Track risk-reward progression from M pattern through to V2",
+        "Identify most profitable phases of the market cycle",
+        "Create risk-reward heat maps by bias category",
+        "Implement expected value calculations for each market phase",
+        "Add alerts for risk-reward ratio deviations"
+      ],
+      "files": [
+        "client/src/components/analytics/RiskRewardTracker.tsx",
+        "client/src/components/analytics/MarketCycleRisk.tsx",
+        "client/src/utils/riskCalculations.ts",
+        "server/utils/riskAnalytics.ts"
+      ]
+    },
+    {
+      "id": "TSM-004",
+      "title": "Advanced Filtering with Levels Folder Integration",
+      "description": "Enhance filtering system to support the hierarchical Levels Folder structure and provide advanced search capabilities",
+      "priority": "P1", 
+      "status": "pending",
+      "phase": "Phase 2: Enhanced Analytics",
+      "category": "search",
+      "estimatedHours": 16,
+      "tags": ["filtering", "search", "levels", "hierarchy"],
+      "dependencies": [],
+      "acceptanceCriteria": [
+        "Create hierarchical filter interface for Levels Folder vs Other Categories",
+        "Implement market cycle progression filtering (M→A1→A2→W→V1→V2)",
+        "Add quick filters for stophunt highs (A1,A2) vs stophunt lows (V1,V2)",
+        "Create saved filter presets for common market cycle combinations",
+        "Implement full-text search across all categorization levels",
+        "Add URL-based filter sharing for collaboration"
+      ],
+      "files": [
+        "client/src/components/filters/LevelsFilter.tsx",
+        "client/src/components/filters/MarketCycleFilter.tsx", 
+        "client/src/components/filters/AdvancedFilters.tsx",
+        "client/src/hooks/useHierarchicalFilters.ts"
+      ]
+    },
+    {
+      "id": "TSM-005",
+      "title": "Export and Reporting with Market Cycle Analysis",
+      "description": "Create comprehensive export functionality that includes market cycle performance reports and analytics",
+      "priority": "P1",
+      "status": "pending", 
+      "phase": "Phase 2: Enhanced Analytics",
+      "category": "export",
+      "estimatedHours": 10,
+      "tags": ["export", "reports", "market-cycle", "pdf"],
+      "dependencies": ["TSM-001", "TSM-002", "TSM-003"],
+      "acceptanceCriteria": [
+        "Generate market cycle performance reports (M→A1→A2→W→V1→V2)",
+        "Export session-based analysis with bias category breakdowns",
+        "Create PDF reports with market cycle charts and insights",
+        "Add Excel exports with separate sheets for each market phase",
+        "Include stophunt effectiveness analysis in reports",
+        "Generate email-ready performance summaries"
+      ],
+      "files": [
+        "client/src/components/export/MarketCycleReport.tsx",
+        "client/src/utils/reportGenerator.ts",
+        "server/utils/pdfGenerator.ts",
+        "server/routes/export.ts"
+      ]
+    },
+    {
+      "id": "TSM-006",
+      "title": "Currency Pair Performance by Market Cycle",
+      "description": "Implement currency pair analysis that shows how different pairs perform at each stage of the market cycle",
+      "priority": "P1",
+      "status": "pending",
+      "phase": "Phase 2: Enhanced Analytics", 
+      "category": "analytics",
+      "estimatedHours": 12,
+      "tags": ["currency", "pairs", "market-cycle", "correlation"],
+      "dependencies": ["TSM-001"],
+      "acceptanceCriteria": [
+        "Track currency pair performance for each bias level (M,A1,A2,W,V1,V2)",
+        "Identify which pairs work best for stophunt highs vs lows",
+        "Create correlation analysis between pairs at different market cycle stages",
+        "Show best performing pairs for M patterns and W reversals",
+        "Add currency strength indicators for each market phase",
+        "Implement pair recommendation based on current market cycle stage"
+      ],
+      "files": [
+        "client/src/components/analytics/CurrencyMarketCycle.tsx",
+        "client/src/components/analytics/PairEffectiveness.tsx",
+        "client/src/utils/currencyAnalysis.ts",
+        "server/utils/pairAnalytics.ts"
+      ]
+    },
+    {
+      "id": "TSM-007",
+      "title": "Enhanced Screenshot Upload with Metadata Extraction",
+      "description": "Improve upload system with automatic metadata extraction and intelligent categorization suggestions",
+      "priority": "P1",
+      "status": "pending",
+      "phase": "Phase 2: Enhanced Analytics",
+      "category": "upload",
+      "estimatedHours": 14,
+      "tags": ["upload", "metadata", "ai", "automation"],
+      "dependencies": [],
+      "acceptanceCriteria": [
+        "Extract timestamp and session information from screenshots",
+        "Suggest bias categories based on image analysis patterns",
+        "Implement bulk upload with batch categorization",
+        "Add drag-and-drop with preview and quick categorization",
+        "Create upload templates for common market cycle setups",
+        "Implement image optimization and compression"
+      ],
+      "files": [
+        "client/src/components/upload/SmartUploader.tsx",
+        "client/src/components/upload/CategorySuggestions.tsx",
+        "client/src/utils/metadataExtractor.ts",
+        "server/utils/imageAnalysis.ts"
+      ]
+    },
+    {
+      "id": "TSM-008",
+      "title": "Performance Optimization and Caching Strategy",
+      "description": "Implement comprehensive performance optimizations for large datasets and frequent analytics queries",
+      "priority": "P1", 
+      "status": "pending",
+      "phase": "Phase 2: Enhanced Analytics",
+      "category": "performance",
+      "estimatedHours": 12,
+      "tags": ["performance", "caching", "optimization", "database"],
+      "dependencies": [],
+      "acceptanceCriteria": [
+        "Implement React Query caching for analytics data",
+        "Add database indexes for market cycle queries",
+        "Create materialized views for common analytics",
+        "Implement lazy loading for screenshot galleries",
+        "Add virtual scrolling for large trade lists",
+        "Optimize bundle sizes with code splitting"
+      ],
+      "files": [
+        "client/src/lib/queryOptimization.ts",
+        "server/utils/cacheStrategies.ts", 
+        "migrations/performance_indexes.sql",
+        "client/src/components/common/VirtualizedList.tsx"
+      ]
+    },
+    {
+      "id": "TSM-009",
+      "title": "Database Schema Optimization for Market Cycle",
+      "description": "Optimize database schema to support efficient queries across the market cycle hierarchy",
+      "priority": "P1",
+      "status": "pending",
+      "phase": "Phase 2: Enhanced Analytics",
+      "category": "database", 
+      "estimatedHours": 10,
+      "tags": ["database", "schema", "optimization", "indexing"],
+      "dependencies": [],
+      "acceptanceCriteria": [
+        "Add composite indexes for bias + setup + pattern + entry queries",
+        "Create separate indexes for Levels Folder vs Other Categories",
+        "Implement full-text search indexes for notes and descriptions", 
+        "Add materialized views for market cycle analytics",
+        "Create database functions for common calculations",
+        "Implement connection pooling and query optimization"
+      ],
+      "files": [
+        "migrations/market_cycle_schema.sql",
+        "migrations/performance_indexes.sql",
+        "server/database/views.sql",
+        "server/database/functions.sql"
+      ]
+    },
+    {
+      "id": "TSM-010",
+      "title": "Mobile-Optimized Analytics Interface",
+      "description": "Create mobile-optimized interface for viewing market cycle analytics and managing trades on mobile devices",
+      "priority": "P2",
+      "status": "pending",
+      "phase": "Phase 2: Enhanced Analytics",
+      "category": "mobile",
+      "estimatedHours": 16,
+      "tags": ["mobile", "responsive", "analytics", "touch"],
+      "dependencies": ["TSM-001", "TSM-002"],
+      "acceptanceCriteria": [
+        "Create mobile-optimized analytics dashboard",
+        "Implement swipe navigation for market cycle progression",
+        "Add touch-optimized filtering interface",
+        "Create mobile charts for performance data",
+        "Implement offline caching for mobile analytics",
+        "Add mobile upload with camera integration"
+      ],
+      "files": [
+        "client/src/components/mobile/MobileAnalytics.tsx",
+        "client/src/components/mobile/TouchFilters.tsx",
+        "client/src/hooks/useMobileGestures.ts",
+        "client/src/styles/mobile-analytics.css"
+      ]
+    }
+  ],
+  "metadata": {
+    "projectName": "TradeSnapManager",
+    "prdVersion": "2.0",
+    "generatedAt": "2025-08-29T12:15:00Z",
+    "totalTasks": 10,
+    "totalEstimatedHours": 132,
+    "phase": "Phase 2: Enhanced Analytics",
+    "focusAreas": [
+      "Market Cycle Analytics (M→A1→A2→W→V1→V2)",
+      "Levels Folder vs Other Categories Analysis",
+      "Stophunt High/Low Performance Tracking",
+      "Session-Based Market Cycle Performance",
+      "Advanced Filtering and Search",
+      "Performance Optimization"
+    ]
+  }
+}
