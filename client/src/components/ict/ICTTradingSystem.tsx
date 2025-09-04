@@ -203,17 +203,15 @@ export const ICTTradingSystem: React.FC<ICTTradingSystemProps> = ({ className })
           <div className="flex flex-wrap gap-4 justify-center">
             <Button 
               onClick={resetAnalysis}
-              variant="outline"
-              className="bg-gray-600 hover:bg-gray-700 text-white"
+              variant="secondary"
             >
-              Reset Analysis
+              🔄 Reset Analysis
             </Button>
             <Button 
               onClick={toggleTimeUpdates}
-              variant="outline"
-              className={timeUpdatesEnabled ? "bg-green-600 hover:bg-green-700" : "bg-red-600 hover:bg-red-700"}
+              variant={timeUpdatesEnabled ? "bullish" : "bearish"}
             >
-              {timeUpdatesEnabled ? "Disable" : "Enable"} Live Updates
+              {timeUpdatesEnabled ? "⏸️ Pause Updates" : "▶️ Resume Updates"}
             </Button>
           </div>
         </CardContent>

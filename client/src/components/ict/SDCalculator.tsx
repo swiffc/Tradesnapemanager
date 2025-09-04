@@ -266,7 +266,7 @@ export const SDCalculator: React.FC<SDCalculatorProps> = ({
                     />
                     <Button 
                       size="sm" 
-                      variant="outline"
+                      variant="secondary"
                       onClick={() => fillCurrentPrice(setCbdrHigh)}
                     >
                       Current
@@ -286,7 +286,7 @@ export const SDCalculator: React.FC<SDCalculatorProps> = ({
                     />
                     <Button 
                       size="sm" 
-                      variant="outline"
+                      variant="secondary"
                       onClick={() => fillCurrentPrice(setCbdrLow)}
                     >
                       Current
@@ -294,7 +294,7 @@ export const SDCalculator: React.FC<SDCalculatorProps> = ({
                   </div>
                 </div>
                 <div className="flex items-end">
-                  <Button onClick={calculateCBDR} className="w-full">
+                  <Button onClick={calculateCBDR} variant="ict" size="sm" className="w-full">
                     Calculate CBDR SDs
                   </Button>
                 </div>
@@ -321,7 +321,7 @@ export const SDCalculator: React.FC<SDCalculatorProps> = ({
                     />
                     <Button 
                       size="sm" 
-                      variant="outline"
+                      variant="secondary"
                       onClick={() => fillCurrentPrice(setAsianHigh)}
                     >
                       Current
@@ -341,7 +341,7 @@ export const SDCalculator: React.FC<SDCalculatorProps> = ({
                     />
                     <Button 
                       size="sm" 
-                      variant="outline"
+                      variant="secondary"
                       onClick={() => fillCurrentPrice(setAsianLow)}
                     >
                       Current
@@ -349,7 +349,7 @@ export const SDCalculator: React.FC<SDCalculatorProps> = ({
                   </div>
                 </div>
                 <div className="flex items-end">
-                  <Button onClick={calculateAsian} className="w-full">
+                  <Button onClick={calculateAsian} variant="ict" size="sm" className="w-full">
                     Calculate Asian SDs
                   </Button>
                 </div>
@@ -376,7 +376,7 @@ export const SDCalculator: React.FC<SDCalculatorProps> = ({
                     />
                     <Button 
                       size="sm" 
-                      variant="outline"
+                      variant="secondary"
                       onClick={() => fillCurrentPrice(setFloutHigh)}
                     >
                       Current
@@ -396,7 +396,7 @@ export const SDCalculator: React.FC<SDCalculatorProps> = ({
                     />
                     <Button 
                       size="sm" 
-                      variant="outline"
+                      variant="secondary"
                       onClick={() => fillCurrentPrice(setFloutLow)}
                     >
                       Current
@@ -404,7 +404,7 @@ export const SDCalculator: React.FC<SDCalculatorProps> = ({
                   </div>
                 </div>
                 <div className="flex items-end">
-                  <Button onClick={calculateFlout} className="w-full">
+                  <Button onClick={calculateFlout} variant="ict" size="sm" className="w-full">
                     Calculate Flout SDs
                   </Button>
                 </div>

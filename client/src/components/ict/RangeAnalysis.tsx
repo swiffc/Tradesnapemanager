@@ -38,9 +38,9 @@ export const RangeAnalysis: React.FC<RangeAnalysisProps> = ({
     recommendations: string[];
     borderColor?: string;
   }) => (
-    <div className={`bg-white rounded-lg p-4 border-l-4 ${borderColor} shadow-sm hover:shadow-md transition-all`}>
+    <div className={`bg-trading-card rounded-lg p-4 border-l-4 ${borderColor} shadow-sm hover:shadow-md transition-all`}>
       <div className="flex items-start justify-between mb-3">
-        <h4 className="font-semibold text-gray-800">{title}</h4>
+        <h4 className="font-semibold text-trading-text">{title}</h4>
         <Checkbox
           id={id}
           checked={completedSteps[id] || false}
@@ -49,16 +49,16 @@ export const RangeAnalysis: React.FC<RangeAnalysisProps> = ({
         />
       </div>
       
-      <p className="text-sm text-gray-600 mb-3">{description}</p>
+      <p className="text-sm text-trading-muted mb-3">{description}</p>
       
-      <div className="bg-blue-50 rounded p-3 mb-3">
-        <div className="text-xs font-semibold text-blue-800 mb-1">👁️ LIVE TIP:</div>
-        <div className="text-xs text-blue-700">{liveTip}</div>
+      <div className="bg-trading-border/20 rounded p-3 mb-3">
+        <div className="text-xs font-semibold text-trading-accent mb-1">👁️ LIVE TIP:</div>
+        <div className="text-xs text-trading-text">{liveTip}</div>
       </div>
 
       <div className="space-y-2">
         {recommendations.map((rec, index) => (
-          <div key={index} className="text-xs bg-gray-50 p-2 rounded">
+          <div key={index} className="text-xs bg-trading-border/10 text-trading-muted p-2 rounded">
             {rec}
           </div>
         ))}
@@ -76,7 +76,7 @@ export const RangeAnalysis: React.FC<RangeAnalysisProps> = ({
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <p className="text-sm text-gray-700 mb-6">
+          <p className="text-sm text-trading-muted mb-6">
             <strong>Instructor Guidance:</strong> Start with CBDR as priority for the selected pair, using weekly bias from COT and market sentiment. 
             If suboptimal, switch to Asian or Flout. Measure using body prices from live data. Calculate SDs to fill 4 levels daily. 
             Pair-specific notes below each section.
@@ -95,7 +95,7 @@ export const RangeAnalysis: React.FC<RangeAnalysisProps> = ({
                 "✅ If consolidation is clean: Confirm institutional positioning with COT; proceed to protraction.",
                 "❌ If trending or choppy: Avoid and check Flout for equilibrium-based projections."
               ]}
-              borderColor="border-l-red-500"
+              borderColor="border-l-bearish"
             />
 
             <RangeCheckItem
@@ -109,7 +109,7 @@ export const RangeAnalysis: React.FC<RangeAnalysisProps> = ({
                 "✅ If volatility low (<40 pips): Set daily high/low targets at 2-3 SD.",
                 "⚠️ If high volatility: Reduce position size to 0.5% or skip session."
               ]}
-              borderColor="border-l-red-500"
+              borderColor="border-l-bearish"
             />
 
             {/* Asian Range Analysis */}
@@ -124,7 +124,7 @@ export const RangeAnalysis: React.FC<RangeAnalysisProps> = ({
                 "✅ If clear consolidation: Sets liquidity pools for London; proceed to protraction.",
                 "❌ If no consolidation: Check CBDR or Flout; uncheck box."
               ]}
-              borderColor="border-l-yellow-500"
+              borderColor="border-l-trading-gold"
             />
 
             <RangeCheckItem
@@ -138,7 +138,7 @@ export const RangeAnalysis: React.FC<RangeAnalysisProps> = ({
                 "✅ If aligns with CBDR SDs: Confluence increases win rate to 65%; use for entry.",
                 "⚠️ If conflicts with CBDR: Resolve with Flout; reduce trade size."
               ]}
-              borderColor="border-l-yellow-500"
+              borderColor="border-l-trading-gold"
             />
 
             {/* Flout Session Analysis */}
@@ -153,7 +153,7 @@ export const RangeAnalysis: React.FC<RangeAnalysisProps> = ({
                 "✅ If aligns with CBDR/Asian: Highest probability; project 2-3 SD targets to fill 4 SDs.",
                 "⚠️ If no alignment: Prioritize CBDR; use Flout as secondary confirmation."
               ]}
-              borderColor="border-l-green-500"
+              borderColor="border-l-bullish"
             />
 
             <RangeCheckItem
@@ -167,7 +167,7 @@ export const RangeAnalysis: React.FC<RangeAnalysisProps> = ({
                 "⚠️ If post-news volatility: Enhance confluence with CBDR; monitor for 3-4 SD displacement.",
                 "✅ If low volatility: Tight projections for scalps; align with protraction."
               ]}
-              borderColor="border-l-green-500"
+              borderColor="border-l-bullish"
             />
 
             {/* General Checks */}
@@ -182,7 +182,7 @@ export const RangeAnalysis: React.FC<RangeAnalysisProps> = ({
                 "❌ If no clear bias: Avoid trading; wait for structure shift.",
                 "✅ If COT shows commercial bias: Align with large funds for 65-75% win rate."
               ]}
-              borderColor="border-l-gray-500"
+              borderColor="border-l-trading-border"
             />
 
             <RangeCheckItem
@@ -196,17 +196,17 @@ export const RangeAnalysis: React.FC<RangeAnalysisProps> = ({
                 "❌ If news during protraction: Skip entry; monitor for post-news displacement.",
                 "⚠️ If sentiment shifts: Reassess using Intermarket Analysis."
               ]}
-              borderColor="border-l-gray-500"
+              borderColor="border-l-trading-border"
             />
           </div>
 
           {/* Pair-Specific Notes */}
           {selectedPair !== 'general' && (
-            <div className="mt-6 p-4 bg-blue-50 rounded-lg">
-              <h4 className="font-semibold text-blue-800 mb-2">
+            <div className="mt-6 p-4 bg-trading-border/10 rounded-lg">
+              <h4 className="font-semibold text-trading-accent mb-2">
                 📝 {selectedPair} Specific Notes
               </h4>
-              <div className="text-sm text-blue-700">
+              <div className="text-sm text-trading-text">
                 Pair-specific analysis and recommendations for {selectedPair} will be displayed here based on 
                 the selected range method and current market conditions.
               </div>

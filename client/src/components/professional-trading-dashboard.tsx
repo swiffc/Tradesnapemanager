@@ -251,7 +251,8 @@ function TradingHeader({ onUploadClick, searchQuery, onSearchChange, metrics }: 
             
             <Button
               onClick={onUploadClick}
-              className="bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600 text-white px-6 py-2 shadow-lg hover:shadow-xl transition-all duration-300"
+              variant="premium"
+              size="lg"
             >
               <i className="fas fa-plus mr-2"></i>
               New Trade
@@ -1179,14 +1180,14 @@ function TradeDetailsCard({ screenshot }: { screenshot: Screenshot | null }) {
       <div className="grid grid-cols-2 gap-2">
         <Button 
           size="sm" 
-          className="bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600"
+          variant="ict"
         >
           <i className="fas fa-eye mr-2"></i>
           View Full
         </Button>
         <Button 
           size="sm" 
-          className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600"
+          variant="premium"
         >
           <i className="fas fa-edit mr-2"></i>
           Edit
