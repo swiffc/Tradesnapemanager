@@ -68,90 +68,97 @@ export const MainNavigation: React.FC<MainNavigationProps> = ({ className }) => 
   ];
 
   return (
-    <Card className={`bg-trading-card border-trading-border ${className}`}>
-      <CardContent className="p-6">
-        <div className="flex flex-col space-y-4">
-          {/* Header */}
-          <div className="flex items-center justify-between">
-            <h2 className="text-xl font-bold text-trading-text">TradeSnapManager</h2>
-            <Badge variant="outline" className="text-trading-accent border-trading-accent">
+    <div className={`${className}`}>
+      <div className="space-y-6">
+        {/* Header */}
+        <div className="text-center pb-4 border-b border-trading-border">
+          <h2 className="text-xl font-bold text-trading-text mb-2">TradeSnapManager</h2>
+          <div className="flex items-center justify-center space-x-2">
+            <Badge variant="outline" className="text-trading-accent border-trading-accent text-xs">
               v2.0
             </Badge>
+            <Badge variant="outline" className="text-bullish border-bullish text-xs">
+              Live
+            </Badge>
           </div>
+        </div>
 
-          {/* Navigation Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {/* Navigation List */}
+        <div className="space-y-3">
             {navigationItems.map((item) => {
               const IconComponent = item.icon;
               return (
                 <Link key={item.path} href={item.path}>
                   <Button
-                    variant={item.isActive ? "default" : "outline"}
+                    variant={item.isActive ? "default" : "ghost"}
                     className={`
-                      w-full h-auto p-4 flex flex-col items-center space-y-2 
+                      w-full justify-start p-3 h-auto
                       ${item.isActive 
-                        ? "bg-trading-accent text-white" 
-                        : "bg-trading-card border-trading-border text-trading-text hover:bg-trading-border hover:text-white"
+                        ? "bg-trading-accent text-white shadow-lg" 
+                        : "text-trading-text hover:bg-trading-border/20 hover:text-white"
                       }
                       transition-all duration-200
                     `}
                   >
-                    <div className="flex items-center space-x-2">
-                      <IconComponent className="h-5 w-5" />
-                      <span className="font-medium">{item.label}</span>
-                      {item.badge && (
-                        <Badge variant="destructive" className="text-xs animate-pulse">
-                          {item.badge}
-                        </Badge>
-                      )}
+                    <div className="flex items-center space-x-3 w-full">
+                      <IconComponent className="h-5 w-5 flex-shrink-0" />
+                      <div className="flex-1 text-left">
+                        <div className="flex items-center space-x-2">
+                          <span className="font-medium">{item.label}</span>
+                          {item.badge && (
+                            <Badge variant="destructive" className="text-xs animate-pulse">
+                              {item.badge}
+                            </Badge>
+                          )}
+                        </div>
+                        <p className="text-xs opacity-70 mt-1">{item.description}</p>
+                      </div>
                     </div>
-                    <p className="text-xs opacity-80 text-center">{item.description}</p>
                   </Button>
                 </Link>
               );
             })}
           </div>
 
-          {/* Quick Stats */}
-          <div className="grid grid-cols-3 gap-4 pt-4 border-t border-trading-border">
-            <div className="text-center">
-              <div className="text-2xl font-bold text-trading-accent">6</div>
-              <div className="text-xs text-trading-muted">Active Features</div>
-            </div>
-            <div className="text-center">
-              <div className="text-2xl font-bold text-bullish">100%</div>
-              <div className="text-xs text-trading-muted">Operational</div>
-            </div>
-            <div className="text-center">
-              <div className="text-2xl font-bold text-trading-gold">Live</div>
-              <div className="text-xs text-trading-muted">Status</div>
-            </div>
+        {/* Quick Stats */}
+        <div className="grid grid-cols-3 gap-2 pt-4 border-t border-trading-border">
+          <div className="text-center">
+            <div className="text-lg font-bold text-trading-accent">6</div>
+            <div className="text-xs text-trading-muted">Features</div>
           </div>
+          <div className="text-center">
+            <div className="text-lg font-bold text-bullish">100%</div>
+            <div className="text-xs text-trading-muted">Uptime</div>
+          </div>
+          <div className="text-center">
+            <div className="text-lg font-bold text-trading-gold">Live</div>
+            <div className="text-xs text-trading-muted">Status</div>
+          </div>
+        </div>
 
-          {/* Feature Status */}
-          <div className="space-y-2 pt-2">
-            <h3 className="text-sm font-semibold text-trading-text">System Status</h3>
-            <div className="space-y-1">
-              <div className="flex items-center justify-between text-xs">
-                <span className="text-trading-muted">Professional Dashboard</span>
-                <Badge variant="outline" className="text-bullish border-bullish">Online</Badge>
-              </div>
-              <div className="flex items-center justify-between text-xs">
-                <span className="text-trading-muted">ICT Trading System</span>
-                <Badge variant="outline" className="text-bullish border-bullish">Live</Badge>
-              </div>
-              <div className="flex items-center justify-between text-xs">
-                <span className="text-trading-muted">Study Buckets</span>
-                <Badge variant="outline" className="text-bullish border-bullish">Active</Badge>
-              </div>
-              <div className="flex items-center justify-between text-xs">
-                <span className="text-trading-muted">BTMM Systems</span>
-                <Badge variant="outline" className="text-bullish border-bullish">Ready</Badge>
-              </div>
+        {/* Feature Status */}
+        <div className="space-y-3 pt-4">
+          <h3 className="text-sm font-semibold text-trading-text">System Status</h3>
+          <div className="space-y-2">
+            <div className="flex items-center justify-between text-xs">
+              <span className="text-trading-muted">Dashboard</span>
+              <Badge variant="outline" className="text-bullish border-bullish text-xs">Online</Badge>
+            </div>
+            <div className="flex items-center justify-between text-xs">
+              <span className="text-trading-muted">ICT System</span>
+              <Badge variant="outline" className="text-bullish border-bullish text-xs">Live</Badge>
+            </div>
+            <div className="flex items-center justify-between text-xs">
+              <span className="text-trading-muted">Study Buckets</span>
+              <Badge variant="outline" className="text-bullish border-bullish text-xs">Active</Badge>
+            </div>
+            <div className="flex items-center justify-between text-xs">
+              <span className="text-trading-muted">BTMM Systems</span>
+              <Badge variant="outline" className="text-bullish border-bullish text-xs">Ready</Badge>
             </div>
           </div>
         </div>
-      </CardContent>
-    </Card>
+      </div>
+    </div>
   );
 };

@@ -26,46 +26,57 @@ export const AppLayout: React.FC<AppLayoutProps> = ({
     <div className="min-h-screen bg-gradient-to-br from-trading-dark via-gray-900 to-trading-dark">
       {/* Top Bar */}
       <div className="sticky top-0 z-50 bg-trading-card/95 backdrop-blur-sm border-b border-trading-border">
-        <div className="flex items-center justify-between px-4 py-3">
+        <div className="flex items-center justify-between px-6 py-4">
           <div className="flex items-center space-x-4">
             <Button
               variant="ghost"
               size="sm"
               onClick={toggleNavigation}
-              className="text-trading-text hover:text-white"
+              className="text-trading-text hover:text-white hover:bg-trading-border/20"
             >
               {isNavigationOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </Button>
             
             {title && (
-              <h1 className="text-lg font-semibold text-trading-text">{title}</h1>
+              <h1 className="text-xl font-semibold text-trading-text">{title}</h1>
             )}
           </div>
 
-          <div className="flex items-center space-x-2">
-            <Badge variant="outline" className="text-trading-accent border-trading-accent">
-              TradeSnapManager
+          <div className="flex items-center space-x-3">
+            <Badge variant="outline" className="text-trading-accent border-trading-accent px-3 py-1">
+              TradeSnapManager v2.0
             </Badge>
-            <Button variant="ghost" size="sm" className="text-trading-text hover:text-white">
+            <Button variant="ghost" size="sm" className="text-trading-text hover:text-white hover:bg-trading-border/20">
               <Settings className="h-4 w-4" />
             </Button>
-            <Button variant="ghost" size="sm" className="text-trading-text hover:text-white">
+            <Button variant="ghost" size="sm" className="text-trading-text hover:text-white hover:bg-trading-border/20">
               <HelpCircle className="h-4 w-4" />
             </Button>
           </div>
         </div>
       </div>
 
-      <div className="flex">
+      <div className="flex min-h-screen">
         {/* Navigation Sidebar */}
         {isNavigationOpen && (
-          <div className="w-80 min-h-screen bg-trading-card/50 backdrop-blur-sm border-r border-trading-border p-4">
-            <MainNavigation />
-          </div>
+          <>
+            {/* Mobile Overlay */}
+            <div 
+              className="fixed inset-0 bg-black/50 z-30 md:hidden"
+              onClick={toggleNavigation}
+            />
+            
+            {/* Sidebar */}
+            <div className="fixed left-0 top-20 w-80 max-w-[85vw] h-[calc(100vh-5rem)] bg-trading-card/98 backdrop-blur-md border-r border-trading-border overflow-y-auto z-40 shadow-2xl">
+              <div className="p-4">
+                <MainNavigation />
+              </div>
+            </div>
+          </>
         )}
 
         {/* Main Content */}
-        <div className={`flex-1 ${isNavigationOpen ? 'ml-0' : ''}`}>
+        <div className={`flex-1 transition-all duration-300 ${isNavigationOpen ? 'md:ml-80 ml-0' : 'ml-0'}`}>
           <div className="p-4">
             {children}
           </div>
